@@ -5,11 +5,19 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from 'morgan';
 
+import categoryRouter from "./routes/categoryRouter.js";
+import productRouter from "./routes/productRouter.js";
+
 const app = express();
 
 if (process.env.NODE_ENV !== 'development') {
     app.use(morgan("dev"));
 }
+
+app.use(express.json());
+
+app.use("/api/category", categoryRouter);
+app.use("/api/product", productRouter);
 
 app.use("*", (req, res) => {
     res.status(404).json(
