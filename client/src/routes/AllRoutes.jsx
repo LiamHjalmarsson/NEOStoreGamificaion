@@ -4,7 +4,7 @@ import Categories from "../pages/categories/Categories";
 import Products from "../pages/products/Products";
 import Root, { loader } from "../pages/Root";
 import Category from "../pages/categories/pages/Category";
-import Product from "../pages/categories/pages/Product";
+import Product from "../pages/products/pages/Product";
 
 const AllRoutes = createBrowserRouter([
     {
