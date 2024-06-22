@@ -7,11 +7,13 @@ import { FaCircleUser } from "react-icons/fa6";
 import { checkDarkTheme } from '../../../../../utils/darkTheme';
 import { useCartContext } from '../../../../../context/cartContext';
 import Cart from '../cart/Cart';
+import Search from '../search/Search';
 
 const Icons = () => {
     let [isDarkMode, setIsDarkMode] = useState(checkDarkTheme());
     let { cartItems } = useCartContext();
     let [isCartOpen, setIsCartOpen] = useState(false);
+    let [isSearchOpen, setIsSearchOpen] = useState(false);
 
     let darkModeHandler = () => {
         setIsDarkMode(!isDarkMode);
@@ -29,6 +31,10 @@ const Icons = () => {
         setIsCartOpen(!isCartOpen);
     }
 
+    let searchHandler = () => {
+        setIsSearchOpen(!isSearchOpen);
+    }
+
     return (
         <>
             <div className='flex gap-6'>
@@ -36,7 +42,7 @@ const Icons = () => {
                     <Icon icon={<BsFillMoonFill />} onclick={darkModeHandler} custom={`${isDarkMode ? "delay-100" : "opacity-0"} absolute`} />
                     <Icon icon={<BsFillSunFill />} onclick={darkModeHandler} custom={`${!isDarkMode ? "delay-100" : "opacity-0"} absolute`} />
                 </div>
-                < Icon icon={<FaSearch />} />
+                < Icon icon={<FaSearch />} onclick={searchHandler} />
                 <div className='relative'>
                     <div className={`${cartItems ? " visible" : "invisible"} duration-300 transition absolute text-sm font-bold rounded-full bg-green-500 px-2 -top-4 -right-4`}>
                         1
@@ -46,8 +52,9 @@ const Icons = () => {
                 < Icon icon={<FaCircleUser />} />
             </div>
 
-            <div className=' absolute'>
+            <div className=' relative'>
                 <Cart onClose={cartHandler} open={isCartOpen} />
+                <Search open={isSearchOpen} onClose={searchHandler} />
             </div>
         </>
     );

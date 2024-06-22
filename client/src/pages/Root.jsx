@@ -14,7 +14,7 @@ export let loader = async () => {
         let recourseProducts = await responsesProducts.json();
 
         return {
-            categories: recourseCategory.categories, 
+            categories: recourseCategory.categories,
             products: recourseProducts.products
         };
     } catch (error) {
@@ -23,23 +23,21 @@ export let loader = async () => {
 }
 
 const Root = () => {
-    let { categories, products} = useLoaderData();
+    let { categories, products } = useLoaderData();
 
     return (
-        <>
+        <rootContext.Provider value={{ categories, products }}>
             <Navigation />
 
-            <rootContext.Provider value={{ categories, products }}>
-                <main className='min-h-[85vh] bg-stone-100 dark:bg-stone-700 duration-300 transition-colors'>
-                    <Outlet />
-                </main>
-            </rootContext.Provider>
+            <main className='min-h-[85vh] bg-stone-100 dark:bg-stone-700 duration-300 transition-colors'>
+                <Outlet />
+            </main>
 
             <Footer />
-        </>
+        </rootContext.Provider>
     );
 }
 
-export const useRootContext= () => useContext(rootContext);
+export const useRootContext = () => useContext(rootContext);
 
 export default Root;

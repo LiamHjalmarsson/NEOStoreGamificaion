@@ -8,7 +8,7 @@ const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
 
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200  max-w-md w-full p-4 flex flex-col gap-4 transition transform ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200  max-w-md w-full p-4 flex flex-col z-10 gap-4 transition transform ${open ? 'translate-x-0' : ' translate-x-full'}`}>
             <div className="flex justify-between items-center my-6">
                 <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-200">Your Cart</h2>
                 <button onClick={onClose} className="text-xl font-semibold">
