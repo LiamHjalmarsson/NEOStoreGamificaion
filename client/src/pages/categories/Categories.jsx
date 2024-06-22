@@ -12,7 +12,7 @@ const Categories = () => {
                     <div className='overflow-hidden '>
                         <img src={category.image} className='object-contain object-center group-hover:scale-125 transition duration-300 group-hover:opacity-80' />
                     </div>
-                    <div className=' absolute top-0 left-2 bg-stone-100 text-stone-800 p-4 font-semibold bg-opacity-80 shadow-md shadow-stone-800'>
+                    <div className=' absolute top-0 left-2 bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-stone-200 p-4 font-semibold bg-opacity-80 shadow-md shadow-stone-800'>
                         {category.title}
                     </div>
                 </Link>

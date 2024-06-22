@@ -29,7 +29,7 @@ const Root = () => {
             <Navigation />
 
             <categoriesContext.Provider value={{ categories, products }}>
-                <main className=''>
+                <main className='min-h-[90vh] bg-stone-100 dark:bg-stone-700 duration-300 transition-colors'>
                     <Outlet />
                 </main>
             </categoriesContext.Provider>

@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Icon from './Icon';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { FaSearch } from "react-icons/fa";
 import { MdShoppingCart } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
 import { checkDarkTheme } from '../../../../../utils/darkTheme';
+import { useCartContext } from '../../../../../context/cartContext';
 
 const Icons = () => {
     let [isDarkMode, setIsDarkMode] = useState(checkDarkTheme());
+    let { cartItems } = useCartContext();
 
     let darkModeHandler = () => {
         setIsDarkMode(!isDarkMode);
@@ -28,7 +30,12 @@ const Icons = () => {
                 <Icon icon={<BsFillSunFill />} onclick={darkModeHandler} custom={`${!isDarkMode ? "delay-100" : "opacity-0"} absolute`} />
             </div>
             < Icon icon={<FaSearch />} />
-            < Icon icon={<MdShoppingCart />} />
+            <div className=' relative'>
+                <div className={`${cartItems ? " visible" : "invisible" } duration-300 transition absolute text-sm font-bold rounded-full bg-green-500 px-2 -top-4 -right-4`}>
+                    1
+                </div>
+                < Icon icon={<MdShoppingCart />} />
+            </div>
             < Icon icon={<FaCircleUser />} />
         </div>
     );
