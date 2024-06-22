@@ -5,6 +5,7 @@ import Products from "../pages/products/Products";
 import Root, { loader } from "../pages/Root";
 import Category from "../pages/categories/pages/Category";
 import Product from "../pages/products/pages/Product";
+import Cart from "../pages/cart/Cart";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -35,7 +36,11 @@ const AllRoutes = createBrowserRouter([
             {
                 path: "products/:id",
                 element: <Product />
-            }
+            },
+            {
+                path: "cart",
+                element: <Cart />,
+            },
         ]
     }
 ]);
