@@ -1,8 +1,9 @@
 import React from 'react';
 import { useCartContext } from '../../../../../context/cartContext';
-import Button from '../../../../elements/Button';
 import CartItem from './CartItem';
 import { FaX } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
+import LinkButton from '../../../../elements/LinkButton';
 
 const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
@@ -23,13 +24,15 @@ const Cart = ({ onClose, open }) => {
             </ul>
 
             <div className="mt-6">
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex justify-between items-center mb-8">
                     <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">Total:</span>
                     <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">${getCartTotal().toFixed(2)}</span>
                 </div>
-                <Button onclick={onClose} type="button" custom="w-full">
-                    Checkout
-                </Button>
+                <div className='flex justify-end'>
+                    <LinkButton onclick={onClose} href="/cart">
+                        Checkout
+                    </LinkButton>
+                </div>
             </div>
         </div>
     );

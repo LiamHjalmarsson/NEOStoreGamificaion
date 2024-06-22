@@ -8,12 +8,14 @@ import { checkDarkTheme } from '../../../../../utils/darkTheme';
 import { useCartContext } from '../../../../../context/cartContext';
 import Cart from '../cart/Cart';
 import Search from '../search/Search';
+import Profile from '../profile/Profile';
 
 const Icons = () => {
     let [isDarkMode, setIsDarkMode] = useState(checkDarkTheme());
     let { cartItems } = useCartContext();
     let [isCartOpen, setIsCartOpen] = useState(false);
     let [isSearchOpen, setIsSearchOpen] = useState(false);
+    let [isProfileOpen, setIsProfileOpen] = useState(false);
 
     let darkModeHandler = () => {
         setIsDarkMode(!isDarkMode);
@@ -35,6 +37,10 @@ const Icons = () => {
         setIsSearchOpen(!isSearchOpen);
     }
 
+    let profileHandler = () => {
+        setIsProfileOpen(!isProfileOpen);
+    }
+
     return (
         <>
             <div className='flex gap-6'>
@@ -49,12 +55,13 @@ const Icons = () => {
                     </div>
                     < Icon icon={<MdShoppingCart />} onclick={cartHandler} />
                 </div>
-                < Icon icon={<FaCircleUser />} />
+                < Icon icon={<FaCircleUser />} onclick={profileHandler} />
             </div>
 
             <div className=' relative'>
                 <Cart onClose={cartHandler} open={isCartOpen} />
                 <Search open={isSearchOpen} onClose={searchHandler} />
+                <Profile open={isProfileOpen} />
             </div>
         </>
     );
