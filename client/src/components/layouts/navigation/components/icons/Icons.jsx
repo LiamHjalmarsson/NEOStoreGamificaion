@@ -30,14 +30,20 @@ const Icons = () => {
     }
 
     let cartHandler = () => {
+        setIsSearchOpen(false);
+        setIsProfileOpen(false);
         setIsCartOpen(!isCartOpen);
     }
 
     let searchHandler = () => {
+        setIsProfileOpen(false);
+        setIsCartOpen(false);
         setIsSearchOpen(!isSearchOpen);
     }
 
     let profileHandler = () => {
+        setIsSearchOpen(false);
+        setIsCartOpen(false);
         setIsProfileOpen(!isProfileOpen);
     }
 
