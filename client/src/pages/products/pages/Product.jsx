@@ -1,5 +1,5 @@
-import React from 'react';
-import { useCategoryContext } from '../../Root';
+import React, { useState } from 'react';
+import { useRootContext } from '../../Root';
 import { useParams } from 'react-router-dom';
 import Items from './components/Items';
 import Image from './components/Image';
@@ -7,11 +7,22 @@ import Button from '../../../components/elements/Button';
 import { useCartContext } from '../../../context/cartContext';
 
 const Product = () => {
-    let { products } = useCategoryContext();
+    let { products } = useRootContext();
     let { addToCart } = useCartContext();
     let { id } = useParams();
 
     let product = products.find(product => product.title === id);
+    
+    let [selectedSize, setSelectedSize] = useState(null);
+    let [selectedGender, setSelectedGender] = useState(null);
+
+    let handlerSizeSelection = (size) => {
+        setSelectedSize(size);
+    };
+
+    let handlerGenderSelection = (gender) => {
+        setSelectedGender(gender);
+    };
 
     return (
         <div className='min-h-[85vh] flex-col w-full flex justify-center items-center max-lg:px-10'>
@@ -37,8 +48,8 @@ const Product = () => {
                             }
                         </p>
 
-                        <Items title="Sizes" items={product.size} />
-                        <Items title="Gender" items={product.gender} />
+                        <Items title="Sizes" items={product.size} selected={selectedSize} onclick={handlerSizeSelection} />
+                        <Items title="Gender" items={product.gender} selected={selectedGender} onclick={handlerGenderSelection} />
                     </div>
 
                     <div className='w-full flex justify-end items-center'>

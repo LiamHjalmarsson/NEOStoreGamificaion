@@ -1,8 +1,9 @@
 import React, { createContext, useContext } from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import Navigation from '../components/layouts/navigation/Navigation';
+import Footer from '../components/layouts/footer/Footer';
 
-const categoriesContext = createContext();
+const rootContext = createContext();
 
 export let loader = async () => {
     try {
@@ -28,16 +29,17 @@ const Root = () => {
         <>
             <Navigation />
 
-            <categoriesContext.Provider value={{ categories, products }}>
+            <rootContext.Provider value={{ categories, products }}>
                 <main className='min-h-[90vh] bg-stone-100 dark:bg-stone-700 duration-300 transition-colors'>
                     <Outlet />
                 </main>
-            </categoriesContext.Provider>
+            </rootContext.Provider>
 
+            <Footer />
         </>
     );
 }
 
-export const useCategoryContext = () => useContext(categoriesContext);
+export const useRootContext= () => useContext(rootContext);
 
 export default Root;

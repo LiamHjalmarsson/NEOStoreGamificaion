@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { useCategoryContext } from '../../Root';
+import { useRootContext } from '../../Root';
 
 const Category = () => {
     let { id } = useParams();
-    let { categories, products } = useCategoryContext();
+    let { categories, products } = useRootContext();
 
     let category = categories.find(category => category.title === id);
 

@@ -1,9 +1,20 @@
 import React from 'react';
+import { useRootContext } from '../Root';
+import Hero from './components/Hero';
+import FeaturedCategories from './components/FeaturedCategories';
+import FeaturedProducts from './components/FeaturedProducts';
 
 const Home = () => {
+    let { products } = useRootContext();
+
+    let menProducts = products?.filter(item => item.gender.includes("male"))[0];
+    let womanProducts = products?.filter(item => item.gender.includes("female"))[0];
+
     return (
-        <div >
-            g
+        <div className='flex flex-col gap-24'>
+            <Hero men={menProducts} woman={womanProducts} />
+            <FeaturedProducts />
+            <FeaturedCategories />
         </div>
     );
 }
