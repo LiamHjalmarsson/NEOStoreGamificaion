@@ -42,16 +42,3 @@ export const logoutUser = async (req, res) => {
 
     res.status(StatusCodes.OK).json({ message: "User logged out" });
 }
-
-export const deleteUser = async (req, res) => {
-    let { id } = req.params;
-
-    await User.findByIdAndDelete(id);
-
-    res.cookie("token", "logout", {
-        httpOnly: true,
-        expires: new Date(Date.now())
-    });
-
-    res.status(StatusCodes.OK).json({ message: "User deleted" });
-}
