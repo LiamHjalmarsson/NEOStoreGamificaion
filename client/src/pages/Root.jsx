@@ -1,7 +1,6 @@
 import React, { createContext, useContext } from 'react';
 import { Outlet, useLoaderData } from 'react-router-dom';
 import Navigation from '../components/layouts/navigation/Navigation';
-import Footer from '../components/layouts/footer/Footer';
 
 const rootContext = createContext();
 
@@ -29,11 +28,10 @@ const Root = () => {
         <rootContext.Provider value={{ categories, products }}>
             <Navigation />
 
-            <main className='min-h-[85vh] bg-stone-100 dark:bg-stone-700 duration-300 transition-colors'>
+            <main className='min-h-[90vh] bg-stone-100 dark:bg-stone-700 text-stone-800 dark:text-stone-200 duration-300 transition-colors'>
                 <Outlet />
             </main>
 
-            <Footer />
         </rootContext.Provider>
     );
 }

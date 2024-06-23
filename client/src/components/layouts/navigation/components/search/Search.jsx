@@ -16,32 +16,32 @@ const Search = ({ open, onClose }) => {
     }
 
     return (
-        <div className={`absolute inset-0 z-10 transition-opacity ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            <div className={`${open ? "translate-y-0" : "-translate-y-full"} max-w-3xl w-full mx-auto fixed top-40 left-0 right-0 transition-transform duration-300 bg-stone-800 p-4 rounded-md`}>
+        <div className={`absolute inset-0 z-20 transition-opacity ${open ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+            <div className={`${open ? "translate-y-0" : "-translate-y-full"} max-w-3xl w-full mx-auto fixed top-40 left-0 right-0 transition-transform duration-300 bg-stone-200 dark:bg-stone-800 p-2 rounded-md`}>
                 <label htmlFor="search" className="mb-2 text-sm font-medium sr-only">
                     Search
                 </label>
-                <div className="relative">
+                <div className="relative flex justify-center items-center">
                     <Icon custom="absolute top-3 left-3 text-stone-400">
                         <FaSearch />
                     </Icon>
                     <input
                         type="search"
                         id="search"
-                        className="block w-full p-4 pl-12 pr-36 bg-stone-800 border border-stone-700 rounded-md text-stone-200 outline-none"
+                        className="block w-full p-6 pl-12 pr-36 bg-stone-200 dark:bg-stone-800 border border-stone-700 rounded-md text-stone-800 dark:text-stone-200 outline-none"
                         placeholder="Search for products..."
                         onChange={searchHandler}
                     />
                     <Button
-                        custom="bg-stone-700 text-stone-200 rounded-md hover:bg-stone-600 border-stone-700 absolute top-2 right-2 py-1.5"
+                        custom="bg-stone-700 text-stone-200 rounded-md hover:bg-stone-600 border-stone-700 absolute right-4"
                     >
                         Search
                     </Button>
                 </div>
             </div>
-            <div className={`${search ? "translate-y-0 visible" : "-translate-y-full invisible"} max-w-3xl w-full mx-auto fixed top-64 left-0 right-0 transition-transform duration-300 bg-stone-800 p-4 rounded-md`}>
+            <div className={`${search ? "translate-y-0 visible" : "-translate-y-full invisible"} max-w-3xl w-full mx-auto fixed top-64 left-0 right-0 transition-transform duration-300 bg-stone-200 dark:bg-stone-800 p-4 rounded-md`}>
                 {search.map((item, index) => (
-                    <Link to={`/products/${item.title}`} className='p-4 w-full flex items-center gap-12 border border-stone-700 mt-6' key={index}>
+                    <Link to={`/products/${item.title}`} className='p-4 w-full flex items-center gap-12 border border-stone-300 dark:border-stone-700 mt-6' key={index}>
                         <div className='flex-grow flex justify-between pr-12'>
                             <span>
                                 {item.title}
