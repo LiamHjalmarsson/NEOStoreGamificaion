@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/userModel.js"
-import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
+import { hashPassword } from "../utils/passwordUtils.js";
 import { createJWT } from "../utils/tokenUtils.js";
 
 export const registerUser = async (req, res) => {
@@ -44,5 +44,14 @@ export const logoutUser = async (req, res) => {
 }
 
 export const deleteUser = async (req, res) => {
+    let { id } = req.params;
 
+    await User.findByIdAndDelete(id);
+
+    res.cookie("token", "logout", {
+        httpOnly: true,
+        expires: new Date(Date.now())
+    });
+
+    res.status(StatusCodes.OK).json({ message: "User deleted" });
 }
