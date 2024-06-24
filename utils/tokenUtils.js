@@ -2,11 +2,10 @@ import jwt from 'jsonwebtoken';
 
 export const createJWT = (payload) => {
     let token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN
+        expiresIn: process.env.JWT_EXPIRES_IN,
     });
-
     return token;
-}
+};
 
 export const verifyJWT = (token) => {
     let decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -14,8 +13,10 @@ export const verifyJWT = (token) => {
 };
 
 export const cookieToken = (value, res) => {
+
     let token = createJWT({
         userId: value._id,
+        role: value.role
     });
 
     let oneDay = 1000 * 60 * 60 * 24;

@@ -65,7 +65,7 @@ export const validateRegisterInput = withValidationErrors([
 
 export const validateParamsCategory = withValidationErrors([
     param("id")
-        .custom(async (value) => {
+        .custom(async (value, req) => {
             let isValidId = mongoose.Types.ObjectId.isValid(value);
 
             if (!isValidId) throw new BadRequestError("Invalid MongoDB Id");
@@ -78,7 +78,7 @@ export const validateParamsCategory = withValidationErrors([
 
 export const validateParamsProduct = withValidationErrors([
     param("id")
-        .custom(async (value) => {
+        .custom(async (value, req) => {
             let isValidId = mongoose.Types.ObjectId.isValid(value);
 
             if (!isValidId) throw new BadRequestError("Invalid MongoDB Id");
@@ -87,4 +87,19 @@ export const validateParamsProduct = withValidationErrors([
 
             if (!product) throw new NotFoundError(`No Product with id : ${value}`);
         })
+]);
+
+export const validateUpdateUserInput = withValidationErrors([
+    body('firstName').notEmpty().withMessage('First name is required'),
+    body('email')
+        .notEmpty()
+        .withMessage('email is required')
+        .isEmail()
+        .withMessage('invalid email format')
+        .custom(async (email, { req }) => {
+            let user = await User.findOne({ email });
+            if (user && user._id.toString() !== req.user.userId) {
+                throw new Error('email already exists');
+            }
+        }),
 ]);

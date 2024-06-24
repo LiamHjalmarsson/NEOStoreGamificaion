@@ -8,16 +8,19 @@ export const registerUser = async (req, res) => {
     let hashedPassword = await hashPassword(req.body.password);
     req.body.password = hashedPassword;
 
+    let isFirstAccount = (await User.countDocuments()) === 0;
+    req.body.role = isFirstAccount ? 'admin' : 'user';
+
     let user = await User.create(req.body);
 
     let token = cookieToken(user, res);
 
-    res.status(StatusCodes.CREATED).json({ token, user });
+    res.status(StatusCodes.CREATED).json({ user, token });
 }
 
 export const loginUser = async (req, res) => {
-    let user = await User.findOne({ 
-        email: req.body.email 
+    let user = await User.findOne({
+        email: req.body.email
     });
 
     if (!user) {
@@ -30,10 +33,9 @@ export const loginUser = async (req, res) => {
         throw new UnauthenticatedError("Invalid credentials");
     }
 
-    let token = createJWT({
-        userId: user._id,
-        role: user.role
-    });
+    let token = createJWT(
+        { userId: user._id, role: user.role }
+    );
 
     let oneDay = 1000 * 60 * 60 * 24;
 
@@ -43,8 +45,8 @@ export const loginUser = async (req, res) => {
         secure: process.env.NODE_ENV === "development",
     });
 
-    res.status(StatusCodes.OK).json({ 
-        token 
+    res.status(StatusCodes.OK).json({
+        token
     });
 }
 

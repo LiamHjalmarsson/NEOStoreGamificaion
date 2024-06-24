@@ -38,9 +38,7 @@ const UserSchema = mongoose.Schema(
         },
         postalCode: {
             type: Number
-        }
-    },
-    {
+        },
         role: {
             type: String,
             enum: ['user', 'admin'],
@@ -51,5 +49,13 @@ const UserSchema = mongoose.Schema(
         timestamp: true
     }
 );
+
+UserSchema.methods.toJSON = function () {
+    let object = this.toObject();
+
+    delete object.password;
+
+    return object;
+}
 
 export default mongoose.model("User", UserSchema);
