@@ -1,10 +1,17 @@
+import 'express-async-errors';
 import * as dotenv from "dotenv";
 dotenv.config();
 
 import express from "express";
 import mongoose from "mongoose";
 import morgan from 'morgan';
+import cookieParser from 'cookie-parser';
 
+// Middleware
+import errorHandlerMiddleware from './middleware/ErrorHandlerMiddleware.js';
+import {authenticateUser} from './middleware/authMiddleware.js';
+
+// Routers
 import categoryRouter from "./routes/categoryRouter.js";
 import productRouter from "./routes/productRouter.js";
 import authRouter from "./routes/authRouter.js";
@@ -12,16 +19,17 @@ import userRouter from "./routes/userRouter.js";
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'development') {
+if (process.env.NODE_ENV === 'production') {
     app.use(morgan("dev"));
 }
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
-app.use("/api/user", userRouter);
+app.use("/api/user", authenticateUser, userRouter);
 
 app.use("*", (req, res) => {
     res.status(404).json(
@@ -30,6 +38,8 @@ app.use("*", (req, res) => {
         }
     );
 });
+
+app.use(errorHandlerMiddleware);
 
 const port = process.env.PORT || 5100;
 

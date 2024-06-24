@@ -48,7 +48,7 @@ const Icons = () => {
     }
 
     return (
-        <>
+        <div>
             <div className='flex gap-6'>
                 <div className='relative px-4'>
                     <Icon icon={<BsFillMoonFill />} onclick={darkModeHandler} custom={`${isDarkMode ? "delay-100" : "opacity-0"} absolute`} />
@@ -69,7 +69,7 @@ const Icons = () => {
                 <Search open={isSearchOpen} onClose={searchHandler} />
                 <Profile open={isProfileOpen} />
             </div>
-        </>
+        </div>
     );
 }
 

@@ -1,67 +1,70 @@
 import mongoose from "mongoose";
 import Category from "./categoryModel.js";
 
-const ProductSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-    },
-    brand: {
-        type: String,
-        default: "dl"
-    },
-    price: {
-        type: Number,
-        required: true,
-    },
-    category: {
-        type: String,
-        required: true,
-    },
-    gender: {
-        type: [{
+const ProductSchema = new mongoose.Schema(
+    {
+        title: {
             type: String,
-            enum: ['male', 'female']
-        }],
-        default: ["male", "female"]
-    },
-    size: {
-        type: [{
+            required: true,
+        },
+        brand: {
             type: String,
-            enum: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
-        }],
-        default: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
+            default: "dl"
+        },
+        price: {
+            type: Number,
+            required: true,
+        },
+        category: {
+            type: String,
+            required: true,
+        },
+        gender: {
+            type: [{
+                type: String,
+                enum: ['male', 'female']
+            }],
+            default: ["male", "female"]
+        },
+        size: {
+            type: [{
+                type: String,
+                enum: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
+            }],
+            default: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
+        },
+        inStock: {
+            type: Boolean,
+            default: true
+        },
+        color: {
+            type: String,
+        },
+        averageRating: {
+            type: Number,
+        },
+        totalRatings: {
+            type: Number
+        },
+        image: {
+            type: String,
+            default: "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg"
+        },
+        imageId: {
+            type: String,
+        },
+        images: {
+            type: [String],
+            default: [
+                "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg",
+            ],
+        },
+        description: {
+            type: String,
+        },
     },
-    inStock: {
-        type: Boolean,
-        default: true
-    },
-    color: {
-        type: String,
-    },
-    averageRating: {
-        type: Number,
-    },
-    totalRatings: {
-        type: Number
-    },
-    image: {
-        type: String,
-        default: "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg"
-    },
-    imageId: {
-        type: String,
-    },
-    images: {
-        type: [String],
-        default: [
-            "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg",
-        ],
-    },
-    description: {
-        type: String,
-    },
-});
+    { timestamps: true }
+);
 
 export default mongoose.model("Product", ProductSchema);
 

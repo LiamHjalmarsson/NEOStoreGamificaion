@@ -4,15 +4,16 @@ const Input = ({ input }) => {
     return (
         <div className={`w-full relative`}>
             <label
-                htmlFor={input.id}
+                htmlFor={input.id} 
+                className='absolute left-4 top-4 invisible'
             >
                 {
-                    input.title
+                    input.name
                 }
             </label>
             <input
                 {...input}
-                className={`p-2 w-full mt-2 border-2 border-primary dark:border-_purple outline-none shadow-middle shadow-primary rounded-md bg-transparent`}
+                className={`p-2 w-full my-4 border-2 border-stone-800 dark:border-stone-200 outline-none shadow-middle shadow-stone-800 rounded-md bg-transparent transition duration-300`}
             />
         </div>
     );

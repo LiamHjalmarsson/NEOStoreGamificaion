@@ -8,14 +8,13 @@ export const getProducts = async (req, res) => {
 
 export const createProducts = async (req, res) => {
     let product = await Product.create(req.body);
-    res.status(StatusCodes.OK).json({ product });
+    res.status(StatusCodes.CREATED).json({ product });
 }
 
 export const getProduct = async (req, res) => {
     let { id } = req.params;
-
+    
     let product = await Product.findById(id);
-
     res.status(StatusCodes.OK).json({ product });
 }
 

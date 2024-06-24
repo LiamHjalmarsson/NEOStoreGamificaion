@@ -9,13 +9,13 @@
     "setup-production-app": "npm i && cd client && npm i && npm run build ",
     "server": "nodemon server",
     "client": "cd client && npm run dev",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "watch": "node --watch server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.2.0",
     "cookie-parser": "^1.4.6",

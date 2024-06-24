@@ -7,8 +7,7 @@ export const getUsers = async (req, res) => {
 }
 
 export const getUser = async (req, res) => {
-    let { id } = req.params;
-    let user = await User.findById(id);
+    let user = await User.findOne({ _id: req.user.userId });
     res.status(StatusCodes.OK).json({ user });
 }
 

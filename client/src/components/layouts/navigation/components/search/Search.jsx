@@ -33,7 +33,7 @@ const Search = ({ open, onClose }) => {
                         onChange={searchHandler}
                     />
                     <Button
-                        custom="bg-stone-700 text-stone-200 rounded-md hover:bg-stone-600 border-stone-700 absolute right-4"
+                        custom="absolute right-4"
                     >
                         Search
                     </Button>

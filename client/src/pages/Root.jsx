@@ -8,9 +8,15 @@ export let loader = async () => {
     try {
         let responseCategory = await fetch("/api/category");
         let responsesProducts = await fetch("/api/product");
+        let responsesUser = await fetch("/api/user/current-user");
 
         let recourseCategory = await responseCategory.json();
         let recourseProducts = await responsesProducts.json();
+        let recourseUser = await responsesUser.json();
+
+        console.log(recourseUser);
+        console.log(recourseCategory);
+        console.log(recourseProducts);
 
         return {
             categories: recourseCategory.categories,

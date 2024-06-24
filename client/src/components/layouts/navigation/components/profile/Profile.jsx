@@ -8,7 +8,7 @@ const Profile = ({ open }) => {
             </h3>
             <ul>
                 <li className='p-2 border-stone-700 border'>
-                    Profile
+                    Login
                 </li>
             </ul>
         </div>

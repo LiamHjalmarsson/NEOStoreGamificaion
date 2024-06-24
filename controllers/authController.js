@@ -1,20 +1,34 @@
 import { StatusCodes } from "http-status-codes";
 import User from "../models/userModel.js"
-import { hashPassword } from "../utils/passwordUtils.js";
-import { createJWT } from "../utils/tokenUtils.js";
+import { comparePassword, hashPassword } from "../utils/passwordUtils.js";
+import { cookieToken, createJWT } from "../utils/tokenUtils.js";
+import { UnauthenticatedError } from "../errors/customErrors.js";
 
 export const registerUser = async (req, res) => {
     let hashedPassword = await hashPassword(req.body.password);
     req.body.password = hashedPassword;
 
     let user = await User.create(req.body);
-    res.status(StatusCodes.CREATED).json({ user });
+
+    let token = cookieToken(user, res);
+
+    res.status(StatusCodes.CREATED).json({ token, user });
 }
 
 export const loginUser = async (req, res) => {
-    let user = await User.findOne({
-        email: req.body.email
+    let user = await User.findOne({ 
+        email: req.body.email 
     });
+
+    if (!user) {
+        throw new UnauthenticatedError("Invalid credentials");
+    }
+
+    let passwordCorrect = await comparePassword(req.body.password, user.password);
+
+    if (!passwordCorrect) {
+        throw new UnauthenticatedError("Invalid credentials");
+    }
 
     let token = createJWT({
         userId: user._id,
@@ -26,11 +40,11 @@ export const loginUser = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         expires: new Date(Date.now() + oneDay),
-        secure: process.env.NODE_ENV === "production",
+        secure: process.env.NODE_ENV === "development",
     });
 
-    res.status(StatusCodes.OK).json({
-        token
+    res.status(StatusCodes.OK).json({ 
+        token 
     });
 }
 

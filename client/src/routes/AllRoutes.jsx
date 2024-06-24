@@ -6,6 +6,8 @@ import Root, { loader } from "../pages/Root";
 import Category from "../pages/categories/pages/Category";
 import Product from "../pages/products/pages/Product";
 import Cart from "../pages/cart/Cart";
+import Login, { loginAction } from "../pages/auth/Login";
+import Register, { registerAction } from "../pages/auth/Register";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -16,6 +18,16 @@ const AllRoutes = createBrowserRouter([
             {
                 index: true,
                 element: <Home />
+            },
+            {
+                path: "login",
+                element: <Login />,
+                action: loginAction,
+            },
+            {
+                path: "register",
+                element: <Register />,
+                action: registerAction,
             },
             {
                 path: "categories",
