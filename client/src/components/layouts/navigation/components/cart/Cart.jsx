@@ -6,8 +6,9 @@ import LinkButton from '../../../../elements/LinkButton';
 
 const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
+
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 text-stone-800 dark:text-stone-200  max-w-md w-full p-4 flex flex-col  gap-4 transition transform duration-300 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 text-stone-800 dark:text-stone-200 max-w-md w-full p-8 flex flex-col  gap-4 transition transform duration-300 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
             <div className="flex justify-between items-center my-6">
                 <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-200">Your Cart</h2>
                 <button onClick={onClose} className="text-xl font-semibold">
@@ -23,8 +24,12 @@ const Cart = ({ onClose, open }) => {
 
             <div className="mt-6">
                 <div className="flex justify-between items-center mb-8">
-                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">Total:</span>
-                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">${getCartTotal().toFixed(2)}</span>
+                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">
+                        Total:
+                    </span>
+                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">
+                        {getCartTotal().toFixed(2)} SEK
+                    </span>
                 </div>
                 <div className='flex justify-end'>
                     <LinkButton onclick={onClose} href="/cart">

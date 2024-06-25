@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from '../../../../elements/Image';
 import { Link } from 'react-router-dom';
+import { firstLetter } from '../../../../../utils/textTransformation';
 
 const CartItem = ({ item }) => {
     return (
@@ -8,7 +9,7 @@ const CartItem = ({ item }) => {
             <Link to={`/products/${item.title}`} className='flex gap-4 items-center'>
                 <div className='flex-grow pr-6'>
                     <h3 className='font-semibold text.lg'>
-                        {item.title}
+                        {firstLetter(item.title)}
                     </h3>
                     <div className='flex justify-between mt-2'>
                         <p>

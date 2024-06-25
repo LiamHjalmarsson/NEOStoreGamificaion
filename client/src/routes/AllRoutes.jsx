@@ -1,4 +1,4 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/home/Home";
 import Categories from "../pages/categories/Categories";
 import Products from "../pages/products/Products";
@@ -8,6 +8,7 @@ import Product from "../pages/products/pages/Product";
 import Cart from "../pages/cart/Cart";
 import Login, { loginAction } from "../pages/auth/Login";
 import Register, { registerAction } from "../pages/auth/Register";
+import Dashboard from "../pages/dashboard/Dashboard";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -53,6 +54,11 @@ const AllRoutes = createBrowserRouter([
                 path: "cart",
                 element: <Cart />,
             },
+            {
+                path: "dashboard",
+                element: <Dashboard />,
+            }
+
         ]
     }
 ]);

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Link, redirect } from 'react-router-dom';
+import { Form, Link, redirect, useLoaderData, useNavigation } from 'react-router-dom';
 import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
 import Button from '../../components/elements/Button';
@@ -22,6 +22,7 @@ export const registerAction = async ({ request }) => {
 
         localStorage.setItem("userToken", JSON.stringify(recourse.token));
 
+        // return recourse
         return redirect("/");
     } catch (error) {
         console.log(error);
@@ -30,6 +31,9 @@ export const registerAction = async ({ request }) => {
 }
 
 const Register = () => {
+    let d = useLoaderData();
+
+    console.log(d);
     return (
         <div className='relative min-h-[90vh] w-full flex justify-center items-center'>
             <div className='bg-stone-500 absolute h-full w-full'></div>

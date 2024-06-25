@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Link, redirect } from 'react-router-dom';
+import { Form, Link, redirect, useLoaderData } from 'react-router-dom';
 import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
 import Button from '../../components/elements/Button';
@@ -9,9 +9,6 @@ export const loginAction = async ({ request }) => {
 
     let data = Object.fromEntries(formData);
 
-    console.log(
-        data
-    );
     try {
         let response = await fetch("/api/auth/login", {
             method: "POST",
@@ -21,12 +18,11 @@ export const loginAction = async ({ request }) => {
             body: JSON.stringify(data)
         });
 
-
         let recourse = await response.json();
 
         localStorage.setItem("userToken", JSON.stringify(recourse.token));
 
-        return redirect("/");
+        return redirect("/")
     } catch (error) {
         console.log(error);
         return error;
@@ -34,8 +30,6 @@ export const loginAction = async ({ request }) => {
 }
 
 const Login = () => {
-
-    
     return (
         <div className='relative min-h-[90vh] w-full flex justify-center items-center'>
             <div className='bg-stone-500 absolute h-full w-full'></div>

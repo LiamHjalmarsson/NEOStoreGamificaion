@@ -6,6 +6,6 @@ let router = Router();
 
 router.post("/register", validateRegisterInput, registerUser);
 router.post("/login", validateLoginInput, loginUser);
-router.post("/logout", logoutUser);
+router.get("/logout", logoutUser);
 
 export default router;

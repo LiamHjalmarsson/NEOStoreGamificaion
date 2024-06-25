@@ -13,7 +13,7 @@ const FeaturedProducts = () => {
         <>
             <div className='px-12'>
                 <h2 className='text-center text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider mb-4'>
-                    Poupulare products for men
+                    Popular products for men
                 </h2>
                 <ItemsContainer>
                     {
@@ -26,7 +26,7 @@ const FeaturedProducts = () => {
 
             <div className='px-12'>
                 <h2 className='text-center text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider mb-4'>
-                    Poupulare products for woman
+                    Popular products for woman
                 </h2>
                 <ItemsContainer>
                     {

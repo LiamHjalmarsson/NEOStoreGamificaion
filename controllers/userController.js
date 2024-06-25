@@ -10,14 +10,14 @@ export const getUsers = async (req, res) => {
 
 export const getUser = async (req, res) => {
     let user = await User.findById(req.user.userId);
-    let userNoPassword = user.toJSON();
-    res.status(StatusCodes.OK).json({ userNoPassword });
+    user = user.toJSON(); // remove password from user
+    res.status(StatusCodes.OK).json({ user });
 }
 
 export const updateUser = async (req, res) => {
     let user = await User.findByIdAndUpdate(req.user.userId, req.body);
-    let userNoPassword = user.toJSON();
-    res.status(StatusCodes.OK).json({ userNoPassword });
+    user.toJSON();
+    res.status(StatusCodes.OK).json({ user: userNoPassword });
 }
 
 export const deleteUser = async (req, res) => {
