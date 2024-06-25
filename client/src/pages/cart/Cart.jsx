@@ -15,6 +15,8 @@ export const cartAction = async ({ request }) => {
     let user = JSON.parse(data.user);
     let cart = JSON.parse(data.cart);
     let earnedPoints = JSON.parse(data.earnPoints);
+    let discount = data.discount;
+    let totalToPay = data.totalToPay;
 
     if (cart.length <= 0) {
         toast.error("Cart is empty");
@@ -26,7 +28,7 @@ export const cartAction = async ({ request }) => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            pointsEarned: user.pointsEarned + earnedPoints,
+            pointsEarned: user.pointsEarned - discount + earnedPoints,
             totalPointsEarned: user.totalPointsEarned + earnedPoints
         })
     });

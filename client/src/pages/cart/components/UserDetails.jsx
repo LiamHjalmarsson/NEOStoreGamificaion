@@ -11,7 +11,7 @@ const UserDetails = () => {
     let { getCartTotal, clearCart, cartItems } = useCartContext();
     let { user } = useRootContext();
 
-    let [discount, setDiscount] = useState(null);
+    let [discount, setDiscount] = useState(0);
 
     let discountHandler = (e) => {
         let value = parseInt(e.target.value);
@@ -20,9 +20,9 @@ const UserDetails = () => {
         if (value <= maxDiscount) setDiscount(value);
     }
 
-    let shippingFee = getCartTotal() > 1000 ? 0 : 75;
-    let earnPoints = user ? getCartTotal() - discount : 0;
+    let shippingFee = getCartTotal() >= 1000 ? 0 : 75;
     let totalToPay = getCartTotal() - discount + shippingFee;
+    let earnPoints = user ? getCartTotal() - discount : 0;
 
     return (
         <Form action='/cart' method='patch' className='relative'>
@@ -52,8 +52,9 @@ const UserDetails = () => {
                     </button>
                 </div>
 
-                <input type="hidden" name="totalToPay" value={getCartTotal()} />
-                <input type="hidden" name="earnPoints" value={getCartTotal()} />
+                <input type="hidden" name="shippingFee" value={shippingFee} />
+                <input type="hidden" name="totalToPay" value={totalToPay} />
+                <input type="hidden" name="earnPoints" value={earnPoints} />
                 <input type="hidden" name="cart" value={JSON.stringify(cartItems)} />
                 <input type="hidden" name="user" value={JSON.stringify(user)} />
 
