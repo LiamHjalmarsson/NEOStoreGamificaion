@@ -31,8 +31,8 @@ export const loginAction = async ({ request }) => {
 
 const Login = () => {
     return (
-        <div className='relative min-h-[90vh] w-full flex justify-center items-center'>
-            <div className='bg-stone-500 absolute h-full w-full'></div>
+        <div className='relative min-h-[90vh] w-full flex justify-center items-center bg-stone-800'>
+            <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
 
             <Form method='post' action='/login' className='p-8 bg-stone-200 dark:bg-stone-800 relative z-10 max-w-md w-full rounded-md transition duration-300'>
                 <Heading title="Login" />
@@ -49,9 +49,9 @@ const Login = () => {
                     </Link>
                 </div>
 
-                <div className='flex gap-8 justify-between mt-12'>
+                <div className='flex gap-12 justify-center mt-12'>
                     <Button>
-                        cancel
+                        Cancel
                     </Button>
                     <Button>
                         Login

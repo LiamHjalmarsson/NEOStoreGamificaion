@@ -8,17 +8,17 @@ const Links = () => {
 
     return (
         <>
-            <ul className=' flex-grow hidden lg:flex justify-center items-center gap-6'>
+            <ul className=' flex-grow hidden lg:flex justify-center items-center gap-12'>
                 {
                     links.map((link, index) => (
-                        <li key={index} className='hover:scale-110 transition duration-300'>
+                        <li key={index}>
                             <Link link={link} />
                         </li>
                     ))
                 }
 
                 {user && user.role === "admin" && (
-                    <li className='hover:scale-110 transition duration-300'>
+                    <li>
                         <Link link="dashboard" />
                     </li>
                 )}

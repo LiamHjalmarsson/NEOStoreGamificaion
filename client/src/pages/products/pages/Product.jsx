@@ -12,15 +12,17 @@ const Product = () => {
     let { id } = useParams();
 
     let product = products.find(product => product.title === id);
-    
-    let [selectedSize, setSelectedSize] = useState(null);
-    let [selectedGender, setSelectedGender] = useState(null);
+
+    let [selectedSize, setSelectedSize] = useState("");
+    let [selectedGender, setSelectedGender] = useState("");
 
     let handlerSizeSelection = (size) => {
+        console.log(size);
         setSelectedSize(size);
     };
 
     let handlerGenderSelection = (gender) => {
+        console.log(gender);
         setSelectedGender(gender);
     };
 
@@ -50,16 +52,20 @@ const Product = () => {
 
                         <Items title="Sizes" items={product.size} selected={selectedSize} onclick={handlerSizeSelection} />
                         <Items title="Gender" items={product.gender} selected={selectedGender} onclick={handlerGenderSelection} />
+
                     </div>
 
                     <div className='w-full flex justify-end items-center'>
-                        <Button onclick={() => addToCart({
-                            id: product._id,
-                            title: product.title,
-                            brand: product.brand,
-                            price: product.price,
-                            image: product.image,
-                        })}>
+                        <Button
+                            onclick={() => addToCart({
+                                id: product._id,
+                                title: product.title,
+                                brand: product.brand,
+                                price: product.price,
+                                image: product.image,
+                            })}
+                            custom="w-full py-4 text-xl"
+                        >
                             Add to cart
                         </Button>
                     </div>

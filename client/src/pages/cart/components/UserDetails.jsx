@@ -4,76 +4,77 @@ import { Form } from 'react-router-dom';
 import { useCartContext } from '../../../context/cartContext';
 import Button from '../../../components/elements/Button';
 import Input from '../../../components/elements/Input';
+import Heading from '../../../components/heading/Heading';
+import { useRootContext } from '../../Root';
 
-const UserDetails = ({ discountHandler, discount }) => {
+const UserDetails = () => {
     let { getCartTotal, clearCart, cartItems } = useCartContext();
+    let { user } = useRootContext();
+
+    let [discount, setDiscount] = useState(null);
+
+    let discountHandler = (e) => {
+        let value = parseInt(e.target.value);
+        let maxDiscount = getCartTotal();
+
+        if (value <= maxDiscount) setDiscount(value);
+    }
+
+    let shippingFee = getCartTotal() > 1000 ? 0 : 75;
+    let earnPoints = user ? getCartTotal() - discount : 0;
+    let totalToPay = getCartTotal() - discount + shippingFee;
+
     return (
-        <Form action='/cart' method='patch' className='flex w-1/2 gap-40 overflow-hidden relative'>
-            <div className={`transition duration-300 ease-in-out w-full border-stone-700 bg-opacity-80 shadow-middle min-w-96 rounded-md shadow-primary justify-center items-start flex flex-col gap-8 max-w-lg px-6`}>
-                <h3 className='text-5xl tracking-wider'>
-                    Order
-                </h3>
+        <Form action='/cart' method='patch' className='relative'>
+            <div className={`transition duration-300 bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96`}>
+                <Heading title="Order" />
 
-                <CartDetailRow title="Total: " text={getCartTotal()} />
+                <CartDetailRow title="Total: " text={getCartTotal() + " SEK"} />
 
-                <div className='flex w-full justify-between'>
-                    <p>
-                        Earn
-                    </p>
-                </div>
+                <CartDetailRow title="Shipping fees: " text={shippingFee + " SEK"} />
 
-                <Input
-                    input={{
-                        type: "number",
-                        min: "0",
-                        max: String(getCartTotal()),
-                        name: "discount",
-                        title: "Add your points ",
-                        id: "discount",
-                        onChange: discountHandler,
-                        value: discount
-                    }}
-                />
-
-                <div className='flex-grow flex justify-center items-end gap-8 text-sm'>
+                <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-200'>
                     <Input
                         input={{
-                            type: "text",
+                            type: "number",
                             name: "discount code",
                             title: "Add discount code",
                             id: "discount",
+                            min: 0,
+                            max: getCartTotal(),
+                            value: discount,
+                            onChange: discountHandler
                         }}
                     />
 
-                    <button className='p-4 border border-primary hover:bg-primary hover:text-white dark:hover:bg-_purple dark:hover:text-primary transition duration-300 ease-in-out font-bold dark:border-_purple rounded-md dark:shadow-_purple'>
+                    <button type='button' className='p-4 border border-primary hover:bg-primary hover:text-white transition duration-300 ease-in-out font-bold rounded-md' onClick={discountHandler}>
                         Apply
                     </button>
                 </div>
 
-                <div className='flex flex-wrap gap-4 w-full'>
-                    <Button onclick={clearCart} type="button" custom="text-red-500 border-red-500 hover:bg-red-500">
-                        Clear cart
-                    </Button>
-                    <Button type="button">
-                        Continue
-                    </Button>
+                <input type="hidden" name="totalToPay" value={getCartTotal()} />
+                <input type="hidden" name="earnPoints" value={getCartTotal()} />
+                <input type="hidden" name="cart" value={JSON.stringify(cartItems)} />
+                <input type="hidden" name="user" value={JSON.stringify(user)} />
+
+                <div className='flex w-full justify-between'>
+                    <CartDetailRow title="Earn:" text={user ? `${earnPoints} points` : `Become a member to get ${earnPoints} points`} />
                 </div>
-            </div>
 
-            <div className={`transition duration-300 ease-in-out w-full bg-_white dark:bg-primary bg-opacity-80 shadow-middle min-w-96 rounded-md shadow-primary p-6 justify-center items-start flex flex-col gap-8 max-w-lg`}>
-                <div className='flex flex-wrap gap-4 w-full'>
+                <CartDetailRow title="Total To Pay: " text={totalToPay + " SEK"} />
 
-                    <Input
-                        input={{
-                            type: "text",
-                            name: "name",
-                            title: "Name",
-                            id: "name",
-                        }}
-                    />
+                <Input
+                    input={{
+                        type: "text",
+                        name: "name",
+                        title: "Name",
+                        id: "name",
+                    }}
+                />
 
-                    <Button type="button">
-                        Back
+                <div className='flex flex-wrap justify-between gap-4 w-full'>
+                    <Button onclick={clearCart}>
+                        Clear cart
                     </Button>
                     <Button type="submit">
                         Purchase

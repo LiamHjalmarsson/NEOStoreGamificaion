@@ -4,9 +4,9 @@ import Image from '../../../../../elements/Image';
 
 const SearchItem = ({ item }) => {
     return (
-        <Link to={`/products/${item.title}`} className='p-4 w-full flex items-center gap-12 border border-stone-300 dark:border-stone-700 mt-6'>
+        <Link to={`/products/${item.title}`} className='p-2 w-full flex items-center gap-12 border border-stone-800 dark:border-stone-200 mt-4 transition duration-300'>
             <div className='flex-grow flex justify-between pr-12'>
-                <span>
+                <span className='font-semibold'>
                     {item.title}
                 </span>
                 <span>

@@ -1,54 +1,55 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useRootContext } from '../../../../../pages/Root';
 import { firstLetter } from '../../../../../utils/textTransformation';
+import LinkButton from '../../../../elements/LinkButton';
+import { FiLogOut } from "react-icons/fi";
 
 const Profile = ({ open }) => {
     let { user, logout } = useRootContext();
 
     return (
-        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-300 p-12 bg-stone-200 dark:bg-stone-800 top-32 mt-2 w-full max-w-sm right-0 fixed flex flex-col gap-8`}>
-
+        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-300 p-8 bg-indigo-500 dark:bg-stone-800 top-32 mt-2 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
             {
                 user && (
-                    <h3 className='text-center text-lg tracking-wide'>
+                    <h3 className='text-center text-lg font-bold tracking-wide'>
                         {firstLetter(user.firstName)}
                     </h3>
                 )
             }
 
-            <div className='flex gap-4'>
-                {
-                    !user && (
-                        <div>
-                            <NavLink to="login" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Login
-                            </NavLink>
-                            <NavLink to="register" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Register
-                            </NavLink>
-                        </div>
-                    ) || (
-                        <div className=' flex flex-col gap-8 grow'>
-                            <NavLink to="/" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Account
-                            </NavLink>
-                            <NavLink to="/" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Orders
-                            </NavLink>
-                            <NavLink to="/" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Benefits
-                            </NavLink>
-                            <NavLink to="/" className="border-stone-700 border w-full h-full p-2 text-center">
-                                Settings
-                            </NavLink>
-                            <button onClick={logout}>
+            {
+                !user && (
+                    <div className='flex justify-between items-center gap-6 w-full'>
+                        <LinkButton href="login">
+                            Login
+                        </LinkButton>
+                        <LinkButton href="register">
+                            Register
+                        </LinkButton>
+                    </div>
+                ) || (
+                    <div className=' flex flex-wrap justify-center gap-8 grow'>
+                        <LinkButton href={`user/${user._id}`} custom="dark:hover:text-stone-200 w-fit">
+                            Account
+                        </LinkButton>
+                        <LinkButton href={`user/${user._id}/orders`} custom="dark:hover:text-stone-200 w-fit">
+                            Orders
+                        </LinkButton>
+                        <LinkButton href={`user/${user._id}/benefits`} custom="dark:hover:text-stone-200 w-fit">
+                            Benefits
+                        </LinkButton>
+                        <LinkButton href={`user/${user._id}/settings`} custom="dark:hover:text-stone-200 w-fit">
+                            Settings
+                        </LinkButton>
+                        <button onClick={logout} className='flex gap-2 justify-center items-center'>
+                            <span>
                                 Logout
-                            </button>
-                        </div>
-                    )
-                }
-            </div>
+                            </span>
+                            <FiLogOut />
+                        </button>
+                    </div>
+                )
+            }
 
         </div>
     );

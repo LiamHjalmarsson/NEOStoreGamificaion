@@ -1,23 +1,62 @@
+import { Outlet, useLoaderData } from "react-router-dom";
+import { createContext } from "react";
+import { useContext } from "react";
+import Sidebar from "./components/sidebar/Sidebar";
+
+let dashboardContext = createContext();
+
+export let dashBoardLoader = async () => {
+    try {
+        let response = await fetch("/api/user/stats");
+
+        let recourse = await response.json();
+
+        return recourse;
+    } catch (error) {
+        return error;
+    }
+}
+
+let links = [
+    {
+        path: "",
+        children: []
+    },
+    {
+        path: "categories",
+        children: [
+            {
+                path: "All"
+            },
+            {
+                path: "Add"
+            }
+        ]
+    },
+    {
+        path: "products",
+        children: [
+
+        ]
+    },
+];
+
 const Dashboard = () => {
+    let { stats } = useLoaderData();
+
     return (
-        <div className='flex flex-grow relative'>
-            <div className='w-80 h-full fixed left-0 p-8 bg-stone-800'>
-                <ul className='flex flex-col gap-8'>
-                    <li className='p-4 font-bold cursor-pointer'>
-                        Add Category
-                    </li>
-                    <li className='p-4 font-bold cursor-pointer'>
-                        Add Product
-                    </li>
-                    <li className='p-4 font-bold cursor-pointer'>
-                        Admin
-                    </li>
-                </ul>
+        <dashboardContext.Provider value={{ stats }}>
+            <div className='flex relative'>
+                <Sidebar links={links} />
+
+                <div className='p-12 h-full flex justify-center grow'>
+                    <Outlet />
+                </div>
             </div>
-            <div className='flex-grow'>
-            </div>
-        </div>
+        </dashboardContext.Provider>
     );
 }
+
+export let useDashboard = () => useContext(dashboardContext);
 
 export default Dashboard;

@@ -10,7 +10,7 @@ const items = ({ title, items, selected, onclick }) => {
             <ul className='flex flex-wrap w-full gap-4 mt-1'>
                 {
                     items.map((item, index) => (
-                        <Item item={item} key={index} selected={selected} onclick={onclick} />
+                        <Item item={item} key={index} selected={selected} onclick={() => onclick(item)} />
                     ))
                 }
             </ul>

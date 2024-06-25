@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { checkDarkTheme } from '../../../../../../utils/darkTheme';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import Icon from './Icon';
+import Icon from '../Icon';
 
 const ThemeMode = () => {
     let [isDarkMode, setIsDarkMode] = useState(checkDarkTheme());

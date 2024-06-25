@@ -11,10 +11,15 @@ const FeaturedProducts = () => {
 
     return (
         <>
-            <div className='px-12'>
-                <h2 className='text-center text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider mb-4'>
-                    Popular products for men
-                </h2>
+            <div className='px-4 md:px-12'>
+                <div className='mx-auto w-fit text-center mb-6'>
+                    <h3 className='mb-2 tracking-wider text-sm lg:text-base 2xl:text-lg font-semibold'>
+                        Buy favorites
+                    </h3>
+                    <h2 className='text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider'>
+                        Popular with men
+                    </h2>
+                </div>
                 <ItemsContainer>
                     {
                         manProducts.map((clothing, index) => (
@@ -24,10 +29,15 @@ const FeaturedProducts = () => {
                 </ItemsContainer>
             </div>
 
-            <div className='px-12'>
-                <h2 className='text-center text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider mb-4'>
-                    Popular products for woman
-                </h2>
+            <div className='px-4 md:px-12'>
+                <div className='mx-auto w-fit text-center mb-6'>
+                    <h3 className='mb-2 tracking-wider text-sm lg:text-base 2xl:text-lg font-semibold'>
+                        Buy favorites
+                    </h3>
+                    <h2 className='text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider'>
+                        Popular with women
+                    </h2>
+                </div>
                 <ItemsContainer>
                     {
                         womanProducts.map((clothing, index) => (
