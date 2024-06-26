@@ -5,7 +5,7 @@ const Banner = ({ user }) => {
     return (
         <div className='relative h-[30vh] bg-gradient-to-l from-slate-400 via-slate-600 to-slate-800 flex justify-center items-center'>
             <div className='w-1/2 absolute left-0'>
-                <div className='max-w-md mx-auto'>
+                <div className='max-w-md mx-auto text-stone-200'>
                     <h1 className='font-bold text-3xl'>
                         <span>
                             Välkommen

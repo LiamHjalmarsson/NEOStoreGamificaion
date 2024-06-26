@@ -15,8 +15,7 @@ export const cartAction = async ({ request }) => {
     let user = JSON.parse(data.user);
     let cart = JSON.parse(data.cart);
     let earnedPoints = JSON.parse(data.earnPoints);
-    let discount = data.discount;
-    let totalToPay = data.totalToPay;
+    let discount = JSON.parse(data.discount);
 
     if (cart.length <= 0) {
         toast.error("Cart is empty");
@@ -37,11 +36,10 @@ export const cartAction = async ({ request }) => {
 }
 
 const Cart = () => {
-    let { cartItems, getCartTotal } = useCartContext();
+    let { cartItems } = useCartContext();
 
     return (
-        <section className='w-full min-h-[90vh] flex flex-col text-stone-800 dark:text-stone-200'>
-
+        <section className='w-full min-h-[90vh] flex flex-col'>
             <div className='flex gap-24 w-full mx-auto max-w-7xl mt-24 px-10'>
                 <div className='w-full flex flex-wrap flex-col gap-8 max-w-3xl mx-auto'>
                     <Heading title="Cart" />
@@ -54,7 +52,6 @@ const Cart = () => {
 
                 <UserDetails />
             </div>
-
         </section >
     );
 }

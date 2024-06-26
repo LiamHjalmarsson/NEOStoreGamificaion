@@ -8,7 +8,7 @@ import User from './components/User';
 const Icons = ({ cartHandler, profileHandler, searchHandler}) => {
     return (
         <>
-            <div className='flex gap-6 items-center'>
+            <div className='flex gap-6 items-center w-72'>
                 <ThemeMode />
 
                 <Icon icon={<FaSearch />} onclick={searchHandler} />

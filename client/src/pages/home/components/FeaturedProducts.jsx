@@ -12,7 +12,7 @@ const FeaturedProducts = () => {
     return (
         <>
             <div className='px-4 md:px-12'>
-                <div className='mx-auto w-fit text-center mb-6'>
+                <div className='mx-auto w-fit text-center max-md:mb-6'>
                     <h3 className='mb-2 tracking-wider text-sm lg:text-base 2xl:text-lg font-semibold'>
                         Buy favorites
                     </h3>
@@ -30,7 +30,7 @@ const FeaturedProducts = () => {
             </div>
 
             <div className='px-4 md:px-12'>
-                <div className='mx-auto w-fit text-center mb-6'>
+                <div className='mx-auto w-fit text-center max-md:mb-6'>
                     <h3 className='mb-2 tracking-wider text-sm lg:text-base 2xl:text-lg font-semibold'>
                         Buy favorites
                     </h3>

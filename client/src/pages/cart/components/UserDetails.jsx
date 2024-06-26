@@ -26,19 +26,18 @@ const UserDetails = () => {
 
     return (
         <Form action='/cart' method='patch' className='relative'>
-            <div className={`transition duration-300 bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96`}>
+            <div className={`transition duration-300 bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96`}>
                 <Heading title="Order" />
 
                 <CartDetailRow title="Total: " text={getCartTotal() + " SEK"} />
 
                 <CartDetailRow title="Shipping fees: " text={shippingFee + " SEK"} />
 
-                <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-200'>
+                <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-800 dark:border-stone-200'>
                     <Input
                         input={{
                             type: "number",
-                            name: "discount code",
-                            title: "Add discount code",
+                            name: "discount",
                             id: "discount",
                             min: 0,
                             max: getCartTotal(),
@@ -77,7 +76,7 @@ const UserDetails = () => {
                     <Button onclick={clearCart}>
                         Clear cart
                     </Button>
-                    <Button type="submit">
+                    <Button type="submit" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
                         Purchase
                     </Button>
                 </div>

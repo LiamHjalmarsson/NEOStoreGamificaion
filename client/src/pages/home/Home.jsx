@@ -3,6 +3,7 @@ import { useRootContext } from '../Root';
 import Hero from './components/Hero';
 import FeaturedCategories from './components/FeaturedCategories';
 import FeaturedProducts from './components/FeaturedProducts';
+import NewsLetter from '../../components/newsLetter/NewsLetter';
 
 const Home = () => {
     let { products } = useRootContext();
@@ -14,7 +15,11 @@ const Home = () => {
         <div className='flex flex-col gap-24'>
             <Hero men={menProducts} woman={womanProducts} />
             <FeaturedProducts />
-            <FeaturedCategories />
+
+            <div>
+                <FeaturedCategories />
+                <NewsLetter />
+            </div>
         </div>
     );
 }

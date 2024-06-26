@@ -7,8 +7,8 @@ const router = Router();
 
 router.get("/", getUsers);
 router.get("/current-user", getUser);
-router.patch("/update-user", validateUpdateUserInput, updateUser);
+router.patch("/update-user", updateUser);
 router.delete("/delete-user", deleteUser);
-router.get("/stats", authorizePermission("admin"), getStats);
+router.get("/stats", getStats);
 
 export default router;

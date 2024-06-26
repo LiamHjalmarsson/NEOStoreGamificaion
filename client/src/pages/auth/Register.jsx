@@ -9,6 +9,7 @@ export const registerAction = async ({ request }) => {
 
     let data = Object.fromEntries(formData);
 
+    console.log(data);
     try {
         let response = await fetch("/api/auth/register", {
             method: "POST",
@@ -57,7 +58,7 @@ const Register = () => {
                     <Button>
                         Cancel
                     </Button>
-                    <Button>
+                    <Button type="submit">
                         Register
                     </Button>
                 </div>

@@ -16,7 +16,7 @@ const FeaturedCategories = () => {
                     Popular Categories
                 </h2>
             </div>
-            <div className={`grid-cols-2 grid justify-center items-center `}>
+            <div className={`flex flex-wrap justify-center items-center`}>
                 {
                     amountOfCategories.map((category, index) => (
                         <CategoryCard category={category} key={index} />

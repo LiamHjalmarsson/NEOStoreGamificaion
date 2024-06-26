@@ -90,7 +90,6 @@ export const validateParamsProduct = withValidationErrors([
 ]);
 
 export const validateUpdateUserInput = withValidationErrors([
-    body('firstName').notEmpty().withMessage('First name is required'),
     body('email')
         .notEmpty()
         .withMessage('email is required')

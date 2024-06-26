@@ -8,9 +8,8 @@ let dashboardContext = createContext();
 export let dashBoardLoader = async () => {
     try {
         let response = await fetch("/api/user/stats");
-
         let recourse = await response.json();
-
+        
         return recourse;
     } catch (error) {
         return error;
@@ -25,12 +24,9 @@ let links = [
     {
         path: "categories",
         children: [
-            {
-                path: "All"
-            },
-            {
-                path: "Add"
-            }
+            // {
+            //     path: "Show all"
+            // },
         ]
     },
     {

@@ -16,6 +16,8 @@ import categoryRouter from "./routes/categoryRouter.js";
 import productRouter from "./routes/productRouter.js";
 import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
+import rankRouter from "./routes/rankRouter.js";
+import achievementRouter from "./routes/achievementRouter.js";
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/user", authenticateUser, userRouter);
+app.use("/api/rank", rankRouter);
+app.use("/api/achievement", achievementRouter);
 
 app.use("*", (req, res) => {
     res.status(404).json(

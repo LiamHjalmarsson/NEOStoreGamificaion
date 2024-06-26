@@ -15,9 +15,9 @@ export const getUser = async (req, res) => {
 }
 
 export const updateUser = async (req, res) => {
-    let user = await User.findByIdAndUpdate(req.user.userId, req.body);
-    user.toJSON();
-    res.status(StatusCodes.OK).json({ user: userNoPassword });
+    let user = await User.findByIdAndUpdate(req.user.userId, req.body, { new: true });
+    user = user.toJSON(); // remove password from user
+    res.status(StatusCodes.OK).json({ user });
 }
 
 export const deleteUser = async (req, res) => {
@@ -36,5 +36,7 @@ export const getStats = async (req, res) => {
     let products = await Product.countDocuments();
     let categories = await Category.countDocuments();
 
-    res.status(StatusCodes.OK).json({ users, products, categories });
+    let stats = [users, products, categories];
+
+    res.status(StatusCodes.OK).json({ stats });
 };

@@ -8,7 +8,7 @@ const ShoppingBasket = ({ handelCart }) => {
 
     return (
         <div className='relative'>
-            <div className={`${cartItems ? " visible" : "invisible"} duration-300 transition absolute text-sm font-bold rounded-full bg-green-500 px-2 -top-4 -right-4`}>
+            <div className={`${cartItems.length > 0 ? "opacity-100" : "opacity-0"} duration-300 transition absolute text-sm font-bold rounded-full bg-green-500 px-2 -top-4 -right-4`}>
                 {getTotalItems()}
             </div>
             < Icon icon={<MdShoppingBasket />} onclick={handelCart} />

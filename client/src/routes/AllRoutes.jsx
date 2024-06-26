@@ -10,11 +10,14 @@ import Login, { loginAction } from "../pages/auth/Login";
 import Register, { registerAction } from "../pages/auth/Register";
 import Dashboard, { dashBoardLoader } from "../pages/dashboard/Dashboard";
 import Stats from "../pages/dashboard/pages/Stats";
-import AuthCategories from "../pages/dashboard/pages/Categories";
-import AuthProducts from "../pages/dashboard/pages/Products";
+import AuthCategories, { addCategoryAction } from "../pages/dashboard/pages/Categories";
+import AuthProducts, { addProductAction } from "../pages/dashboard/pages/Products";
 import User from "../pages/user/User";
 import Landing from "../pages/user/pages/Landing";
 import Benefits from "../pages/user/pages/Benefits";
+import Orders from "../pages/user/pages/Orders";
+import Achievements from "../pages/user/pages/Achievements";
+import Settings from "../pages/user/pages/Settings";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -73,11 +76,12 @@ const AllRoutes = createBrowserRouter([
                     {
                         path: "categories",
                         element: <AuthCategories />,
-
+                        action: addCategoryAction
                     },
                     {
                         path: "products",
-                        element: <AuthProducts />
+                        element: <AuthProducts />,
+                        action: addProductAction
                     }
                 ]
             },
@@ -92,7 +96,19 @@ const AllRoutes = createBrowserRouter([
                     {
                         path: "benefits",
                         element: <Benefits />
-                    }
+                    },
+                    {
+                        path: "orders",
+                        element: <Orders />
+                    },
+                    {
+                        path: "achievements",
+                        element: <Achievements />
+                    },
+                    {
+                        path: "settings",
+                        element: <Settings />
+                    },
                 ]
             }
 

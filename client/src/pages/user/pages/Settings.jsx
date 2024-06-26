@@ -2,14 +2,14 @@ import React from 'react';
 import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
 
-const Benefits = () => {
+const Settings = () => {
     return (
         <div className='pt-12 flex flex-col gap-6'>
-            <Heading title="Benefits" />
+            <Heading title="Settings" />
 
             <Navigation />
         </div>
     );
 }
 
-export default Benefits;
+export default Settings;

@@ -7,7 +7,7 @@ const User = ({ profileHandler }) => {
     let { user } = useRootContext();
 
     return (
-        <div className='flex border border-stone-200 dark:border-indigo-500 py-2 px-4 gap-4 items-center cursor-pointer ml-2 hover:bg-stone-200 hover:text-stone-800 dark:hover:text-stone-200 dark:hover:bg-indigo-500 transition duration-500' onClick={profileHandler}>
+        <div className='flex border border-stone-800 rounded-sm dark:border-stone-200 py-2 px-8 gap-4 items-center cursor-pointer ml-2' onClick={profileHandler}>
             <p className='font-semibold text-lg'>
                 {user.firstName ? user.firstName : "Sign in"}
             </p>

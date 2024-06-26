@@ -4,7 +4,6 @@ const UserSchema = mongoose.Schema(
     {
         firstName: {
             type: String,
-            required: true
         },
         lastName: {
             type: String,
@@ -30,14 +29,30 @@ const UserSchema = mongoose.Schema(
             enum: ['bronze', 'silver', "gold"],
             default: "bronze"
         },
-        city: {
-            type: String,
+        location:
+        {
+            city: {
+                type: String,
+                default: "City"
+            },
+            street: {
+                type: String,
+                default: "Street",
+            },
+            postalCode: {
+                type: Number,
+                default: 25431
+            },
+            country: {
+                type: String,
+                default: "Country",
+            }
         },
-        street: {
-            type: String,
+        achievements: {
+
         },
-        postalCode: {
-            type: Number
+        orders: {
+
         },
         role: {
             type: String,

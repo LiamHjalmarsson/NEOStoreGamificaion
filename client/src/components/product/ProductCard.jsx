@@ -8,8 +8,8 @@ const ProductCard = ({ product }) => {
     let { addToCart } = useCartContext();
 
     return (
-        <div className='relative p-4 2xl:p-6 min-w-56 mx-auto flex flex-col justify-center items-center group w-full max-w-96'>
-            <div className='absolute top-0 bg-stone-200 z-10 dark:bg-stone-800 p-4 text-lg font-semibold bg-opacity-80 tracking-wide'>
+        <div className='relative min-w-56 mx-auto flex flex-col justify-center items-center group w-full max-w-96'>
+            <div className='absolute -top-4 bg-stone-200 z-10 dark:bg-stone-800 p-4 text-lg font-semibold bg-opacity-80 tracking-wide'>
                 {product.title}
             </div>
             <div className='shadow-md'>

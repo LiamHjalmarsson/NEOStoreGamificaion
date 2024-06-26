@@ -9,9 +9,11 @@ const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
 
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 text-stone-800 dark:text-stone-300 max-w-md w-full p-8 flex flex-col  gap-4 transition transform duration-300 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-300 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
             <div className="flex justify-between items-center my-6">
-                <h2 className="text-2xl font-bold text-stone-800 dark:text-stone-200">Your Cart</h2>
+                <h2 className="text-2xl font-bold">
+                    Your Cart
+                </h2>
                 <button onClick={onClose} className="text-xl font-semibold">
                     <FaX />
                 </button>
@@ -32,11 +34,11 @@ const Cart = ({ onClose, open }) => {
                         {getCartTotal().toFixed(2)} SEK
                     </span>
                 </div>
-                <div className='flex justify-between'>
-                    <Button custom="dark:hover:bg-red-500 dark:border-red-500">
+                <div className='flex justify-between gap-12'>
+                    <Button>
                         Clear cart
                     </Button>
-                    <LinkButton onclick={onClose} href="/cart">
+                    <LinkButton onclick={onClose} href="/cart" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
                         Checkout
                     </LinkButton>
                 </div>

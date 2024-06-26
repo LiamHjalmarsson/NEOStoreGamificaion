@@ -8,7 +8,7 @@ const Links = () => {
 
     return (
         <>
-            <ul className=' flex-grow hidden lg:flex justify-center items-center gap-12'>
+            <ul className='flex-grow hidden lg:flex justify-center items-center gap-12'>
                 {
                     links.map((link, index) => (
                         <li key={index}>

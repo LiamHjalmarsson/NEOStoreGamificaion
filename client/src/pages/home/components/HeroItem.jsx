@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const HeroItem = ({ genderType }) => {
     return (
         <Link to={`/products/${genderType?.title}`} className='w-full md:w-1/2 h-1/2 md:h-full group relative cursor-pointer bg-stone-800'>
-            <img src={genderType?.image} className='object-cover object-center opacity-50 w-full h-full group-hover:opacity-70 transition duration-300' />
+            <img src={genderType?.image} className='object-cover object-center opacity-90 w-full h-full hover:opacity-60 transition duration-500' />
             <div className='absolute p-16 flex flex-col gap-4 bottom-0 group-hover:scale-110 transition duration-300 text-stone-200'>
                 <div className='pb-4 border-b-2 border-stone-200'>
                     <h2 className='text-base lg:text-xl 2xl:text-3xl'>

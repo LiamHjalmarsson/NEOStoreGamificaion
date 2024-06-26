@@ -12,10 +12,7 @@ const Stats = () => {
             <div className='flex gap-12 max-w-4xl w-full mx-auto'>
                 {
                     stats.map((stat, index) => (
-                        <div key={index} className='bg-indigo-500 text-stone-200 dark:bg-stone-800 p-4 grow text-center h-40 flex justify-center items-center transition duration-300'>
-                            <p>
-
-                            </p>
+                        <div key={index} className='bg-stone-200 rounded-sm shadow dark:bg-stone-800 p-4 grow text-center h-40 flex justify-center items-center transition duration-300'>
                             <p className='text-4xl font-semibold'>
                                 {stat}
                             </p>

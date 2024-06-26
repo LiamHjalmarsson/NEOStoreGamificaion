@@ -12,7 +12,6 @@ const Navigation = () => {
     let [isCartOpen, setIsCartOpen] = useState(false);
     let [isSearchOpen, setIsSearchOpen] = useState(false);
     let [isProfileOpen, setIsProfileOpen] = useState(false);
-
     let [searchTerm, setSearchTerm] = useState([]);
 
     useEffect(() => {
@@ -42,8 +41,8 @@ const Navigation = () => {
 
     return (
         <header className='relative'>
-            <nav className="flex relative items-center w-full h-[10vh] p-12 justify-between transition-colors duration-300 bg-indigo-500 dark:bg-stone-800 text-stone-200">
-                <NavLink to="/" className="text-5xl font-semibold tracking-wider">
+            <nav className="flex relative items-center w-full h-[10vh] px-12 justify-between transition-colors duration-300 bg-stone-200 shadow shadow-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200">
+                <NavLink to="/" className="text-5xl font-semibold tracking-wider w-72">
                     N-E-O
                 </NavLink>
 
@@ -56,8 +55,8 @@ const Navigation = () => {
                 />
 
                 <div className='relative -top-0 z-20'>
-                    <Cart onClose={cartHandler} open={isCartOpen} />
                     <Search open={isSearchOpen} setSearch={setSearchTerm} searchValue={searchTerm} />
+                    <Cart onClose={cartHandler} open={isCartOpen} />
                     <Profile open={isProfileOpen} />
                 </div>
             </nav >
