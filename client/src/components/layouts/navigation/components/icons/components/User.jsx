@@ -8,7 +8,7 @@ const User = ({ profileHandler }) => {
 
     return (
         <div className='flex border border-stone-800 rounded-sm dark:border-stone-200 py-2 px-8 gap-4 items-center cursor-pointer ml-2' onClick={profileHandler}>
-            <p className='font-semibold text-lg'>
+            <p className='font-semibold text-sm'>
                 {user.firstName ? user.firstName : "Sign in"}
             </p>
             <Icon icon={<FaCircleUser />} />

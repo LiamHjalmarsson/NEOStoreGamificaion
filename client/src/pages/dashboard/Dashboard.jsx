@@ -7,10 +7,13 @@ let dashboardContext = createContext();
 
 export let dashBoardLoader = async () => {
     try {
-        let response = await fetch("/api/user/stats");
-        let recourse = await response.json();
-        
-        return recourse;
+        let responseStats = await fetch("/api/user/stats");
+        let recourseStats = await responseStats.json();
+
+        let responseUsers = await fetch("/api/user");
+        let recourse = await responseUsers.json();
+
+        return recourseStats;
     } catch (error) {
         return error;
     }
@@ -19,15 +22,10 @@ export let dashBoardLoader = async () => {
 let links = [
     {
         path: "",
-        children: []
+        children: [],
     },
     {
         path: "categories",
-        children: [
-            // {
-            //     path: "Show all"
-            // },
-        ]
     },
     {
         path: "products",
@@ -35,10 +33,19 @@ let links = [
 
         ]
     },
+    {
+        path: "achievements",
+    },
+    {
+        path: "ranks",
+    },
+    {
+        path: "users",
+    },
 ];
 
 const Dashboard = () => {
-    let { stats } = useLoaderData();
+    let stats = useLoaderData();
 
     return (
         <dashboardContext.Provider value={{ stats }}>

@@ -2,6 +2,8 @@ import { StatusCodes } from "http-status-codes";
 import User from "../models/userModel.js";
 import Product from "../models/productModel.js";
 import Category from "../models/categoryModel.js";
+import Achievement from "../models/achievementModel.js";
+import Rank from "../models/rankModel.js";
 
 export const getUsers = async (req, res) => {
     let users = await User.find({});
@@ -35,8 +37,8 @@ export const getStats = async (req, res) => {
     let users = await User.countDocuments();
     let products = await Product.countDocuments();
     let categories = await Category.countDocuments();
+    let achievements = await Achievement.countDocuments();
+    let ranks = await Rank.countDocuments();
 
-    let stats = [users, products, categories];
-
-    res.status(StatusCodes.OK).json({ stats });
+    res.status(StatusCodes.OK).json({ users, products, categories, achievements, ranks });
 };

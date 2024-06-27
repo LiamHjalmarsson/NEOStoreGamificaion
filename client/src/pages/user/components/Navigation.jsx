@@ -12,9 +12,12 @@ const Navigation = () => {
     return (
         <nav className='mx-auto w-fit'>
             <ul className='flex gap-8 font-bold tracking-wide'>
+                <LinkButton href={`/user/${user._id}`} >
+                    Account
+                </LinkButton>
                 {
                     userLinks.map((link, index) => (
-                        <LinkButton href={`/user/${user._id}/${link.url}`} key={index} custom={`${pathname.includes(link.url) ? "bg-stone-800 text-stone-200" : ""}`} >
+                        <LinkButton key={index} href={`/user/${user._id}/${link.url}`} key={index} custom={`${pathname.includes(link.url) ? "bg-stone-800 text-stone-200" : ""}`} >
                             {firstLetter(link.url)}
                         </LinkButton>
                     ))

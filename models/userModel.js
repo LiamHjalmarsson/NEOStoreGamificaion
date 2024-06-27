@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import Achievement from "./achievementModel.js";
+import Rank from "./rankModel.js";
 
 const UserSchema = mongoose.Schema(
     {
@@ -24,11 +26,10 @@ const UserSchema = mongoose.Schema(
             type: Number,
             default: 0,
         },
-        rank: {
-            type: String,
-            enum: ['bronze', 'silver', "gold"],
-            default: "bronze"
-        },
+        rank: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: Rank
+        }],
         location:
         {
             city: {
@@ -49,11 +50,17 @@ const UserSchema = mongoose.Schema(
             }
         },
         achievements: {
-
+            type: [
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: Achievement,
+                }
+            ],
         },
-        orders: {
-
-        },
+        orders: [{
+            type: Number,
+            default: 0
+        }],
         role: {
             type: String,
             enum: ['user', 'admin'],

@@ -37,7 +37,7 @@ const Register = () => {
         <div className='relative min-h-[90vh] w-full flex justify-center items-center bg-stone-800'>
             <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
 
-            <Form method='post' action='/register' className='p-8 bg-stone-200 dark:bg-stone-800 relative z-10 max-w-md w-full rounded-md transition duration-300'>
+            <Form method='post' action='/register' className='p-8 bg-stone-200 dark:bg-stone-800 relative z-10 max-w-md w-full rounded-md transition duration-300 flex flex-col gap-12'>
                 <Heading title="Register" />
 
                 <Input input={{ id: "firstName", placeholder: "Enter first name", name: "firstName" }} />
@@ -45,7 +45,7 @@ const Register = () => {
                 <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} />
                 <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} />
 
-                <div className='text-center my-8'>
+                <div className='text-center'>
                     <p>
                         Already member?
                     </p>
@@ -54,11 +54,11 @@ const Register = () => {
                     </Link>
                 </div>
 
-                <div className='flex gap-12 justify-center mt-12'>
+                <div className='flex gap-12 justify-center'>
                     <Button>
                         Cancel
                     </Button>
-                    <Button type="submit">
+                    <Button type="submit" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
                         Register
                     </Button>
                 </div>

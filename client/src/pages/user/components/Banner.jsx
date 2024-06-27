@@ -2,6 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 
 const Banner = ({ user }) => {
+    
     return (
         <div className='relative h-[30vh] bg-gradient-to-l from-slate-400 via-slate-600 to-slate-800 flex justify-center items-center'>
             <div className='w-1/2 absolute left-0'>

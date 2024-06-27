@@ -34,6 +34,7 @@ let cards = [
 
 const Landing = () => {
     let { user } = useRootContext();
+    
     return (
         <>
             <Banner user={user} />

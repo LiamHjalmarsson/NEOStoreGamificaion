@@ -12,12 +12,15 @@ import Dashboard, { dashBoardLoader } from "../pages/dashboard/Dashboard";
 import Stats from "../pages/dashboard/pages/Stats";
 import AuthCategories, { addCategoryAction } from "../pages/dashboard/pages/Categories";
 import AuthProducts, { addProductAction } from "../pages/dashboard/pages/Products";
-import User from "../pages/user/User";
+import User, { userProfileLoader } from "../pages/user/User";
 import Landing from "../pages/user/pages/Landing";
 import Benefits from "../pages/user/pages/Benefits";
 import Orders from "../pages/user/pages/Orders";
 import Achievements from "../pages/user/pages/Achievements";
-import Settings from "../pages/user/pages/Settings";
+import Settings, { updateUser } from "../pages/user/pages/Settings";
+import AuthAchievements, { addAchievementAction } from "../pages/dashboard/pages/achievements";
+import AuthRanks, { addRankAction } from "../pages/dashboard/pages/Ranks";
+import AuthUsers from "../pages/dashboard/pages/Users";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -82,12 +85,27 @@ const AllRoutes = createBrowserRouter([
                         path: "products",
                         element: <AuthProducts />,
                         action: addProductAction
+                    },
+                    {
+                        path: "achievements",
+                        element: <AuthAchievements />,
+                        action: addAchievementAction
+                    },
+                    {
+                        path: "ranks",
+                        element: <AuthRanks />,
+                        action: addRankAction
+                    },
+                    {
+                        path: "users",
+                        element: <AuthUsers />
                     }
                 ]
             },
             {
                 path: "user/:id",
                 element: <User />,
+                loader: userProfileLoader,
                 children: [
                     {
                         index: true,
@@ -107,13 +125,13 @@ const AllRoutes = createBrowserRouter([
                     },
                     {
                         path: "settings",
-                        element: <Settings />
+                        element: <Settings />,
+                        action: updateUser
                     },
                 ]
             }
-
         ]
-    }
+    },
 ]);
 
 export default AllRoutes;

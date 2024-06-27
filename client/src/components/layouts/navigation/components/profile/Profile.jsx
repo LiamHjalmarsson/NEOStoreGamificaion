@@ -21,11 +21,11 @@ const Profile = ({ open }) => {
             {
                 !user && (
                     <div className='flex justify-between items-center gap-6 w-full'>
-                        <LinkButton href="login">
-                            Login
-                        </LinkButton>
                         <LinkButton href="register">
                             Register
+                        </LinkButton>
+                        <LinkButton href="login">
+                            Login
                         </LinkButton>
                     </div>
                 ) || (
