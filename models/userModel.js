@@ -18,6 +18,12 @@ const UserSchema = mongoose.Schema(
             type: String,
             required: true
         },
+        avatar: {
+            type: String,
+        },
+        avatarPublicId: {
+            type: String,
+        },
         pointsEarned: {
             type: Number,
             default: 0,

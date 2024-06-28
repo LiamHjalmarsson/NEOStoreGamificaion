@@ -9,7 +9,7 @@ const ProductSchema = new mongoose.Schema(
         },
         brand: {
             type: String,
-            default: "dl"
+            default: "NEO"
         },
         price: {
             type: Number,
@@ -19,26 +19,9 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        gender: {
-            type: [{
-                type: String,
-                enum: ['male', 'female']
-            }],
-            default: ["male", "female"]
-        },
-        size: {
-            type: [{
-                type: String,
-                enum: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
-            }],
-            default: ['xxs', 'xs', 's', 'm', 'l', 'xl', 'xxl']
-        },
         inStock: {
             type: Boolean,
             default: true
-        },
-        color: {
-            type: String,
         },
         averageRating: {
             type: Number,

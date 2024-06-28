@@ -37,11 +37,6 @@ const User = () => {
         }
     }, []);
 
-    let sortedRanks = ranks.sort((a, b) => a.unlockAt - b.unlockAt);
-
-    let nexy = sortedRanks.find(rank => rank.unlockAt > user.totalPointsEarned);
-
-    console.log(nexy);
     return (
         <userContext.Provider value={{ ranks }}>
             <Outlet />

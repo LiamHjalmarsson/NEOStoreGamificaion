@@ -6,10 +6,11 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
+import { v2 as cloudinary } from 'cloudinary'
 
-// Middleware
-import errorHandlerMiddleware from './middleware/ErrorHandlerMiddleware.js';
-import {authenticateUser} from './middleware/authMiddleware.js';
+// public
+import { fileURLToPath } from 'url';
+import path, { dirname }  from 'path';
 
 // Routers
 import categoryRouter from "./routes/categoryRouter.js";
@@ -19,14 +20,28 @@ import userRouter from "./routes/userRouter.js";
 import rankRouter from "./routes/rankRouter.js";
 import achievementRouter from "./routes/achievementRouter.js";
 
+// Middleware
+import errorHandlerMiddleware from './middleware/ErrorHandlerMiddleware.js';
+import {authenticateUser} from './middleware/authMiddleware.js';
+
 const app = express();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET,
+});
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(morgan("dev"));
 }
 
+app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.json());
 app.use(cookieParser());
+
 
 app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);

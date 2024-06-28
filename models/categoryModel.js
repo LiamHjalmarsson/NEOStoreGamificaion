@@ -6,13 +6,6 @@ const CategorySchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        gender: {
-            type: [{
-                type: String,
-                enum: ['male', 'female']
-            }],
-            default: ["male", "female"]
-        },
         image: {
             type: String,
             default: "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg",

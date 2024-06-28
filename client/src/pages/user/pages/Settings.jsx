@@ -8,17 +8,25 @@ import Button from '../../../components/elements/Button';
 
 export let updateUser = async ({ request }) => {
     let formData = await request.formData();
-    let data = Object.fromEntries(formData);
+
+    let file = formData.get("avatar");
+
+    if (file && file.size > 500000) {
+        toast.error("Image to large");
+        return null
+    }
 
     let response = await fetch("/api/user/update-user", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        headers: {},
+        body: formData
     });
 
     console.log(response);
+    let recourse = await response.json();
+    console.log(recourse);
 
-    return response;
+    return recourse;
 }
 
 const Settings = () => {
@@ -51,7 +59,7 @@ const Settings = () => {
 
             <Navigation />
 
-            <Form action={`/user/${user._id}/settings`} method='patch' className='p-8 bg-stone-200 max-w-xl mx-auto mt-12 px-12'>
+            <Form action={`/user/${user._id}/settings`} method='post' encType='multipart/form-data' className='p-8 bg-stone-200 max-w-xl mx-auto mt-12 px-12'>
                 <div className='flex flex-wrap gap-8'>
                     {
                         inputs.map((input, index) => (
@@ -60,6 +68,18 @@ const Settings = () => {
                             </div>
                         ))
                     }
+                    <div>
+                        <label htmlFor="image">
+                            Image
+                        </label>
+                        <input
+                            type='file'
+                            id='avatar'
+                            name='avatar'
+                            className='form-input'
+                            accept='image/*'
+                        />
+                    </div>
                 </div>
 
                 <Button type="submit" custom="mt-8 mx-auto">

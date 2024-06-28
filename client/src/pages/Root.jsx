@@ -15,7 +15,6 @@ export let loader = async () => {
         let recourseProducts = await responsesProducts.json();
         let recourseUser = await responseUser.json();
 
-        console.log(recourseUser);
         return {
             categories: recourseCategory.categories,
             products: recourseProducts.products,

@@ -13,7 +13,7 @@ export let dashBoardLoader = async () => {
         let responseUsers = await fetch("/api/user");
         let recourse = await responseUsers.json();
 
-        return recourseStats;
+        return { stats: recourseStats, users: recourse };
     } catch (error) {
         return error;
     }
@@ -45,10 +45,10 @@ let links = [
 ];
 
 const Dashboard = () => {
-    let stats = useLoaderData();
+    let { stats, users } = useLoaderData();
 
     return (
-        <dashboardContext.Provider value={{ stats }}>
+        <dashboardContext.Provider value={{ stats, users }}>
             <div className='flex relative'>
                 <Sidebar links={links} />
 
