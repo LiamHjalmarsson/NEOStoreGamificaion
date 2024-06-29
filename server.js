@@ -6,11 +6,11 @@ import express from "express";
 import mongoose from "mongoose";
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import { v2 as cloudinary } from 'cloudinary'
+import { v2 as cloudinary } from 'cloudinary';
 
 // public
+import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
-import path, { dirname }  from 'path';
 
 // Routers
 import categoryRouter from "./routes/categoryRouter.js";
@@ -26,11 +26,12 @@ import {authenticateUser} from './middleware/authMiddleware.js';
 
 const app = express();
 
-cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.CLOUD_API_SECRET,
+cloudinary.config({ 
+    cloud_name: 'dx6tdy5de', 
+    api_key: '588636721221673', 
+    api_secret: 'XlSeLHd3ZDEMaiHPmm3RJXavvm0'
 });
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -41,7 +42,6 @@ if (process.env.NODE_ENV === 'production') {
 app.use(express.static(path.resolve(__dirname, './public')));
 app.use(express.json());
 app.use(cookieParser());
-
 
 app.use("/api/auth", authRouter);
 app.use("/api/category", categoryRouter);

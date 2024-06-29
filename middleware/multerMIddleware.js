@@ -1,13 +1,13 @@
 import multer from "multer";
 
 const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
+    destination: (req, file, cb) => {
         // set the directory where uploaded files will be stored
-        callback(null, "public/uploads");
+        cb(null, "public/uploads");
     },
-    filename: (req, file, callback) => {
+    filename: (req, file, cb) => {
         // set the name of the uploaded file
-        callback(null, file.originalname);
+        cb(null, file.originalname);
     },
 
 });

@@ -42,7 +42,7 @@ export const loginUser = async (req, res) => {
     res.cookie("token", token, {
         httpOnly: true,
         expires: new Date(Date.now() + oneDay),
-        secure: process.env.NODE_ENV === "development",
+        secure: process.env.NODE_ENV === "production",
     });
 
     res.status(StatusCodes.OK).json({

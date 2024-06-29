@@ -6,10 +6,8 @@ import Button from '../../components/elements/Button';
 
 export const registerAction = async ({ request }) => {
     let formData = await request.formData();
-
     let data = Object.fromEntries(formData);
 
-    console.log(data);
     try {
         let response = await fetch("/api/auth/register", {
             method: "POST",

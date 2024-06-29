@@ -6,7 +6,6 @@ import Button from '../../components/elements/Button';
 
 export const loginAction = async ({ request }) => {
     let formData = await request.formData();
-
     let data = Object.fromEntries(formData);
 
     try {
@@ -37,8 +36,8 @@ const Login = () => {
             <Form method='post' action='/login' className='p-8 bg-stone-200 dark:bg-stone-800 relative z-10 max-w-md w-full rounded-md transition duration-300 flex flex-col gap-12'>
                 <Heading title="Login" />
 
-                <Input input={{ id: "email", title: "email", placeholder: "Enter email", name: "email" }} />
-                <Input input={{ id: "password", title: "password", placeholder: "Enter password", name: "password" }} />
+                <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} />
+                <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} />
 
                 <div className='text-center'>
                     <p>

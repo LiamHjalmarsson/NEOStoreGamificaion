@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
-import { Form } from 'react-router-dom';
 import Input from '../../../components/elements/Input';
 import { useRootContext } from '../../Root';
-import Button from '../../../components/elements/Button';
+import { toast } from 'react-toastify';
+import Form from '../../../components/form/Form';
 
 export let updateUser = async ({ request }) => {
     let formData = await request.formData();
@@ -22,9 +22,7 @@ export let updateUser = async ({ request }) => {
         body: formData
     });
 
-    console.log(response);
     let recourse = await response.json();
-    console.log(recourse);
 
     return recourse;
 }
@@ -34,8 +32,7 @@ const Settings = () => {
     let [firstName, setFirstName] = useState(user.firstName);
     let [lastName, setLastName] = useState(user.lastName);
     let [email, setEmail] = useState(user.email);
-
-    let [imagePreview, setImagePreview] = useState(null);
+    let [avatar, setAvatar] = useState(user.avatar ? user.avatar : "");
 
     let inputs = [
         {
@@ -55,19 +52,38 @@ const Settings = () => {
         },
     ];
 
-    let handleImageChange = (e) => {
+    let handleAvatar = (e) => {
         let file = e.target.files[0];
-        setImagePreview(URL.createObjectURL(file));
+        setAvatar(URL.createObjectURL(file));
     };
 
     return (
-        <div className='pt-12 flex flex-col gap-6'>
+        <div className='pt-12 flex flex-col gap-6 justify-center items-center'>
             <Heading title="Settings" />
 
             <Navigation />
 
-            <Form action={`/user/${user._id}/settings`} method='post' encType='multipart/form-data' className='p-8 bg-stone-200 max-w-xl mx-auto mt-12 px-12'>
+            <Form action={`/user/${user._id}/settings`} method='post' enctype="multipart/form-data" button='Update'>
                 <div className='flex flex-wrap gap-8'>
+                    <div className='flex flex-col gap-2 w-full items-center'>
+                        {avatar && (
+                            <img src={avatar} alt="Image Preview" className="w-20 h-20 object-cover rounded-full" />
+                        )}
+
+                        <div className="flex items-center justify-center w-full">
+                            <label for="avatar" className="text-center w-1/2 cursor-pointer border-b border-stone-800 mx-auto ">
+                                <p className="">Upload new avatar</p>
+                                <input
+                                    type='file'
+                                    id='avatar'
+                                    name='avatar'
+                                    accept='image/*'
+                                    className='hidden'
+                                    onChange={handleAvatar}
+                                />
+                            </label>
+                        </div>
+                    </div>
                     {
                         inputs.map((input, index) => (
                             <div className='grow' key={index}>
@@ -75,29 +91,7 @@ const Settings = () => {
                             </div>
                         ))
                     }
-                    <div>
-                        <label htmlFor="image">
-                            Image
-                        </label>
-                        <input
-                            type='file'
-                            id='avatar'
-                            name='avatar'
-                            className='form-input'
-                            accept='image/*'
-                            onChange={handleImageChange}
-                        />
-                    </div>
-                    {imagePreview && (
-                        <div className="mt-4">
-                            <img src={imagePreview} alt="Image Preview" className="w-20 h-20 object-cover rounded-full" />
-                        </div>
-                    )}
                 </div>
-
-                <Button type="submit" custom="mt-8 mx-auto">
-                    Update
-                </Button>
             </Form>
         </div>
     );
