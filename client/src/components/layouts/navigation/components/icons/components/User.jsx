@@ -15,7 +15,7 @@ const User = ({ profileHandler }) => {
                 user.avatar && (
                     <img src={user.avatar} alt="avatar" className=' object-cover rounded-full h-8 w-8' />
                 ) || (
-                    <Icon icon={<UserIcon />} />
+                    <Icon icon={<FaCircleUser />} />
                 )
             }
         </div>

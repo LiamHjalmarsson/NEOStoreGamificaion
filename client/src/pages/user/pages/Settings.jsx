@@ -35,6 +35,8 @@ const Settings = () => {
     let [lastName, setLastName] = useState(user.lastName);
     let [email, setEmail] = useState(user.email);
 
+    let [imagePreview, setImagePreview] = useState(null);
+
     let inputs = [
         {
             id: "firstName",
@@ -52,6 +54,11 @@ const Settings = () => {
             onChange: (e) => setEmail(e.target.value)
         },
     ];
+
+    let handleImageChange = (e) => {
+        let file = e.target.files[0];
+        setImagePreview(URL.createObjectURL(file));
+    };
 
     return (
         <div className='pt-12 flex flex-col gap-6'>
@@ -78,8 +85,14 @@ const Settings = () => {
                             name='avatar'
                             className='form-input'
                             accept='image/*'
+                            onChange={handleImageChange}
                         />
                     </div>
+                    {imagePreview && (
+                        <div className="mt-4">
+                            <img src={imagePreview} alt="Image Preview" className="w-20 h-20 object-cover rounded-full" />
+                        </div>
+                    )}
                 </div>
 
                 <Button type="submit" custom="mt-8 mx-auto">
