@@ -5,16 +5,17 @@ import ThemeMode from './components/ThemeMode';
 import ShoppingBasket from './components/ShoppingBasket';
 import User from './components/User';
 
-const Icons = ({ cartHandler, profileHandler, searchHandler}) => {
+const Icons = ({ cartHandler, profileHandler, searchHandler }) => {
     return (
         <>
-            <div className='flex gap-6 items-center w-72'>
-                <ThemeMode />
+            <div className='flex gap-6 items-center justify-between w-72 transition duration-500'>
+                <div className='flex gap-6 grow'>
+                    <ThemeMode />
 
-                <Icon icon={<FaSearch />} onclick={searchHandler} />
+                    <Icon icon={<FaSearch />} onclick={searchHandler} />
 
-                <ShoppingBasket handelCart={cartHandler} />
-
+                    <ShoppingBasket handelCart={cartHandler} />
+                </div>
                 <User profileHandler={profileHandler} />
             </div>
         </>

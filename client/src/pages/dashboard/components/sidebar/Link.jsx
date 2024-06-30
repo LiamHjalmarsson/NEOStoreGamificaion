@@ -1,20 +1,18 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { firstLetter } from '../../../../utils/textTransformation';
 
 const Link = ({ link }) => {
+    let { pathname } = useLocation();
+
     return (
         <li className="flex flex-col">
-            <NavLink to={link.path} className='p-4 font-bold cursor-pointer'>
-                {firstLetter(link.path === "" ? "stats" : link.path)}
+            <NavLink to={link.path} className={`p-4 font-bold cursor-pointer flex gap-2 items-center ${pathname.includes(link.path) && link.path !== "" ? "text-rose-600 border-rose-400 dark:text-rose-500 dark:border-rose-500 border-r-4" : "border-r-4 dark:border-stone-800"} transition duration-300`}>
+                {link.icon}
+                <span className='grow'>
+                    {firstLetter(link.path === "" ? "stats" : link.path)}
+                </span>
             </NavLink>
-            {
-                link.children && link.children.map((child, index) => (
-                    <NavLink to={child.path} className="py-2 px-8 font-bold" key={index}>
-                        {child.path}
-                    </NavLink>
-                ))
-            }
         </li>
     );
 }

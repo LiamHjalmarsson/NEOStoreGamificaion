@@ -23,13 +23,13 @@ const Search = ({ open, setSearch, searchValue }) => {
                 </label>
 
                 <div className="relative flex justify-center items-center z-30">
-                    <div className=' absolute right-12'>
-                        <FaSearch />
+                    <div className=' absolute right-0 p-6 bg-stone-300 dark:bg-stone-900 bg-opacity-50 shadow h-full'>
+                        <FaSearch className='text-xl' />
                     </div>
                     <input
                         type="search"
                         id="search"
-                        className="block w-full p-6 pl-12 pr-36 bg-stone-200 shadow shadow-stone-200 dark:bg-stone-800 rounded-md outline-none transition duration-500"
+                        className="block w-full p-6 pl-12 pr-36 bg-stone-200 dark:bg-stone-800 shadow-lg rounded-md outline-none transition duration-500"
                         placeholder="Search for products..."
                         onChange={searchHandler}
                     />

@@ -8,8 +8,8 @@ const User = ({ profileHandler }) => {
     let { user } = useRootContext();
 
     return (
-        <div className='flex border-2 border-stone-800 dark:border-stone-200 py-2 px-8 gap-4 items-center cursor-pointer' onClick={profileHandler}>
-            <p className='font-semibold text-sm'>
+        <div className='flex bg-rose-500 text-stone-100 py-2 px-6 gap-4 items-center justify-between cursor-pointer transition duration-500' onClick={profileHandler}>
+            <p className='font-bold text-sm'>
                 {user.firstName ? firstLetter(user.firstName) : "Sign in"}
             </p>
             {

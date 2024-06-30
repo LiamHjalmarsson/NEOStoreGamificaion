@@ -40,9 +40,9 @@ const Navigation = () => {
     }
 
     return (
-        <header className='relative h-32 bg-stone-200 shadow shadow-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200'>
-            <nav className="flex relative items-center w-full h-full px-12 justify-between transition-colors duration-500">
-                <NavLink to="/" className="text-4xl font-bold tracking-wider w-72">
+        <header className='transition-colors duration-500 fixed z-40 w-full h-32 bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-rose-500'>
+            <nav className="flex relative items-center w-full h-full px-6 lg:px-12 justify-between">
+                <NavLink to="/" className="text-4xl font-bold tracking-wider lg:w-72">
                     N-E-O
                 </NavLink>
 
@@ -54,7 +54,7 @@ const Navigation = () => {
                     profileHandler={profileHandler}
                 />
 
-                <div className='relative -top-0 z-20'>
+                <div className='relative z-20'>
                     <Search open={isSearchOpen} setSearch={setSearchTerm} searchValue={searchTerm} />
                     <Cart onClose={cartHandler} open={isCartOpen} />
                     <Profile open={isProfileOpen} />

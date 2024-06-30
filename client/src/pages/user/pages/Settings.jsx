@@ -53,7 +53,7 @@ const Settings = () => {
     ];
 
     return (
-        <div className='pt-12 flex flex-col gap-6 justify-center items-center'>
+        <div className='pt-24 flex flex-col gap-6 justify-center items-center'>
             <Heading title="Settings" />
 
             <Navigation />

@@ -7,7 +7,7 @@ const CartProduct = ({ item }) => {
     let { removeFromCart, addToCart } = useCartContext();
 
     return (
-        <div className='border flex justify-between items-center gap-6 p-2 text-lg bg-stone-200 dark:bg-stone-800 transition-colors duration-500'>
+        <div className='flex justify-between items-center gap-6 p-2 text-lg bg-stone-200 dark:bg-stone-800 transition-colors duration-500'>
             <div className='flex items-center w-1/2 p-2'>
                 <div className='w-32 h-32 group'>
                     <Image img={item.image} className='shadow-sm' />

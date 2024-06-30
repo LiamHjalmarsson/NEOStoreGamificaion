@@ -2,6 +2,12 @@ import { Outlet, useLoaderData } from "react-router-dom";
 import { createContext } from "react";
 import { useContext } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
+import { IoStatsChart } from "react-icons/io5";
+import { FaRankingStar } from "react-icons/fa6";
+import { HiUsers } from "react-icons/hi";
+import { FaTrophy } from "react-icons/fa";
+import { TbCategoryFilled } from "react-icons/tb";
+import { AiOutlineProduct } from "react-icons/ai";
 
 let dashboardContext = createContext();
 
@@ -13,7 +19,16 @@ export let dashBoardLoader = async () => {
         let responseUsers = await fetch("/api/user");
         let recourse = await responseUsers.json();
 
-        return { stats: recourseStats, users: recourse };
+        let responseAchievement = await fetch("/api/achievement");
+        let recourseAchievement = await responseAchievement.json();
+
+        let responseRank = await fetch("/api/rank");
+        let recourseRank = await responseRank.json();
+
+        let responseOrder = await fetch("/api/purchase");
+        let recourseOrders = await responseOrder.json();
+
+        return { stats: recourseStats, users: recourse, achievements: recourseAchievement, ranks: recourseRank, orders: recourseOrders };
     } catch (error) {
         return error;
     }
@@ -22,37 +37,39 @@ export let dashBoardLoader = async () => {
 let links = [
     {
         path: "",
-        children: [],
+        icon: <IoStatsChart />
     },
     {
         path: "categories",
+        icon: <TbCategoryFilled />
     },
     {
         path: "products",
-        children: [
-
-        ]
+        icon: <AiOutlineProduct />
     },
     {
         path: "achievements",
+        icon: <FaTrophy />
     },
     {
         path: "ranks",
+        icon: <FaRankingStar />
     },
     {
         path: "users",
+        icon: <HiUsers />
     },
 ];
 
 const Dashboard = () => {
-    let { stats, users } = useLoaderData();
+    let { stats, users, achievements, ranks, orders } = useLoaderData();
 
     return (
-        <dashboardContext.Provider value={{ stats, users }}>
-            <div className='flex relative'>
+        <dashboardContext.Provider value={{ stats, users, achievements, ranks, orders }}>
+            <div className='flex relative pt-12'>
                 <Sidebar links={links} />
 
-                <div className='p-12 h-full flex justify-center grow'>
+                <div className='min-h-[80vh] w-[90vw] flex justify-center grow'>
                     <Outlet />
                 </div>
             </div>

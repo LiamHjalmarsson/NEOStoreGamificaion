@@ -43,7 +43,7 @@ let ranks = [
 
 const Benefits = () => {
     return (
-        <div className='pt-12 flex flex-col gap-6'>
+        <div className='pt-24 flex flex-col gap-6'>
             <Heading title="Benefits" />
 
             <Navigation />

@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect } from 'react';
 import { Outlet, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { useRootContext } from '../Root';
 
-
 let userContext = createContext();
 
 export let userProfileLoader = async () => {
@@ -22,7 +21,7 @@ export let userProfileLoader = async () => {
 }
 
 const User = () => {
-    let { ranks, achievement } = useLoaderData();
+    let { ranks } = useLoaderData();
     let { user } = useRootContext();
     let { id } = useParams();
     let navigation = useNavigate();

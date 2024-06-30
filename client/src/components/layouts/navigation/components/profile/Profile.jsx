@@ -4,16 +4,27 @@ import { firstLetter } from '../../../../../utils/textTransformation';
 import LinkButton from '../../../../elements/LinkButton';
 import { FiLogOut } from "react-icons/fi";
 import { userLinks } from '../../../../../utils/links';
+import { useNavigate } from 'react-router-dom';
+
 
 const Profile = ({ open }) => {
-    let { user, logout } = useRootContext();
+    let { user } = useRootContext();
+    let navigate = useNavigate();
+    
+    let logout = async (e) => {
+        await fetch("/api/auth/logout");
+
+        navigate("/");
+    }
 
     return (
-        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 dark:bg-stone-800 top-24 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
+        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-stone-200 top-32 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
             {
                 user && (
-                    <div className='flex flex-col gap-4 justify-center items-center mt-4'>
-                        <img src={user.avatar} alt="avatar" className=' object-cover object-center rounded-full h-12 w-12' />
+                    <div className='flex flex-col gap-4 justify-center items-center'>
+                        {
+                            user.avatar && <img src={user.avatar} alt="avatar" className=' object-cover object-center rounded-full h-12 w-12' />
+                        }
                         <h3 className='text-center text-lg font-bold tracking-wide'>
                             {firstLetter(user.firstName)}
                         </h3>
@@ -45,7 +56,7 @@ const Profile = ({ open }) => {
                                 ))
                             }
                         </ul>
-                        <button onClick={logout} className='flex gap-2 justify-center items-center'>
+                        <button onClick={logout} className='flex gap-2 justify-center items-center dark:text-rose-500'>
                             <span>
                                 Logout
                             </span>

@@ -1,17 +1,28 @@
-export const customFetch = async (path, request, method) => {
+export const customFetch = async (path, request, method = "POST", isMultiPart = false) => {
     let formData = await request.formData();
+    let options = {
+        method,
+        headers: {},
+    };
 
-    try {
-        let response = await fetch(`/api/${path}`, {
-            method: method ? method : "POST",
-            headers: {},
-            body: formData
-        });
-
-        let recourse = await response.json();
-
-        return recourse;
-    } catch (error) {
-        return error;
+    if (isMultiPart) {
+        options.body = formData;
+    } else {
+        let data = Object.fromEntries(formData);
+        options.headers["Content-Type"] = "application/json";
+        options.body = JSON.stringify(data);
     }
+
+    let response = await fetch(`/api/${path}`, options);
+    let recourse = await response.json();
+
+    return recourse;
+};
+
+
+export const fetchData = async (path) => {
+    let response = await fetch(`/api/${path}`);
+    let recourse = await response.json();
+
+    return recourse;
 }

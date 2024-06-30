@@ -1,24 +1,23 @@
 import React, { createContext, useContext } from 'react';
-import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
+import { Outlet, useLoaderData } from 'react-router-dom';
 import Navigation from '../components/layouts/navigation/Navigation';
+import { toast } from 'react-toastify';
+import { fetchData } from '../utils/customFetch';
 
 const rootContext = createContext();
 
 export let loader = async () => {
     try {
-        let responseCategory = await fetch("/api/category");
-        let responsesProducts = await fetch("/api/product");
-
-        let responseUser = await fetch("/api/user/current-user");
-
-        let recourseCategory = await responseCategory.json();
-        let recourseProducts = await responsesProducts.json();
-        let recourseUser = await responseUser.json();
+        let { categories } = await fetchData("category");
+        let { products } = await fetchData("product");
+        let { user } = await fetchData("user/current-user");
+        let { achievements } = await fetchData("achievement");
 
         return {
-            categories: recourseCategory.categories,
-            products: recourseProducts.products,
-            user: recourseUser.user || false
+            categories,
+            products,
+            user: user || false,
+            achievements
         };
     } catch (error) {
         return error;
@@ -26,23 +25,33 @@ export let loader = async () => {
 }
 
 const Root = () => {
-    let { categories, products, user } = useLoaderData();
-    let navigate = useNavigate();
+    let { categories, products, user, achievements } = useLoaderData();
 
     let logout = async (e) => {
-        navigate("/");
-        
         await fetch("/api/auth/logout");
     }
 
+    let deleteItem = async (path) => {
+        try {
+            let response = await fetch(`/api/${path}`, {
+                method: 'DELETE',
+            });
+
+            await response.json();
+
+            toast.success("Item was deleted successfully");
+        } catch (error) {
+            toast.error(error);
+        }
+    }
+
     return (
-        <rootContext.Provider value={{ categories, products, user, logout }}>
+        <rootContext.Provider value={{ categories, products, user, achievements, logout, deleteItem }}>
             <Navigation />
 
-            <main className='min-h-[91vh] bg-stone-100 dark:bg-stone-700 text-stone-800 dark:text-stone-200 duration-500 transition-colors relative'>
+            <main className='min-h-screen bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200 duration-500 transition-colors relative pt-24'>
                 <Outlet />
             </main>
-
         </rootContext.Provider>
     );
 }

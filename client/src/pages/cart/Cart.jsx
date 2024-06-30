@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useCartContext } from '../../context/cartContext';
-import Heading from '../../components/heading/Heading';
 import CartForm from './components/CartForm';
-import { redirect, useActionData, useNavigate } from 'react-router-dom';
+import { useActionData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CartDetails from './components/CartDetails';
 import CartConfirmation from './components/CartConfirmation';
-
+import { useRootContext } from '../Root';
 
 export const cartAction = async ({ request }) => {
     let formData = await request.formData();
@@ -22,30 +21,52 @@ export const cartAction = async ({ request }) => {
         toast.error("Cart is empty");
     }
 
-    await fetch(`/api/user/update-user`, {
-        method: "PATCH",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            pointsEarned: user.pointsEarned - discount + earnedPoints,
-            totalPointsEarned: user.totalPointsEarned + earnedPoints
-        })
+    let purchaseObject = {
+        userId: user._id,
+        items: cart.map(item => ({
+            productId: item._id,
+            quantity: item.quantity,
+            price: item.price
+        })),
+    };
+
+    let purchaseResponse = await fetch(`/api/purchase`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(purchaseObject)
     });
 
-    return true;
+    let { purchase } = await purchaseResponse.json();
+
+    let achievementUpdate = [...user.achievements];
+    let ordersCount = user.orders.length + 1;
+
+    if (ordersCount === 1) {
+        achievementUpdate.push('6681828a064778b8918cfebd'); 
+    }
+
+    let userResponses = await fetch(`/api/user/update-user`, {
+        method: "PATCH",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            pointsEarned: user.pointsEarned - discount + earnedPoints,
+            totalPointsEarned: user.totalPointsEarned + earnedPoints,
+            orders: [...user.orders, purchase._id],
+            achievements: achievementUpdate
+        })
+    });
+    
+    let userRecourse = await userResponses.json();
+
+    return userRecourse;
 }
 
 const Cart = () => {
     let { clearCart } = useCartContext();
-
-    let navigate = useNavigate();
-
     let confirmation = useActionData();
 
     let confirmationHandler = () => {
         clearCart();
-        navigate(`/`);
     }
 
     return (
@@ -55,10 +76,7 @@ const Cart = () => {
                 <CartForm />
             </div>
 
-
-            {
-                confirmation && <CartConfirmation confirmationHandler={confirmationHandler} />
-            }
+            {confirmation && <CartConfirmation confirmationHandler={confirmationHandler} />}
         </section >
     );
 }

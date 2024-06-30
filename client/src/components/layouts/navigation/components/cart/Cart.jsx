@@ -9,7 +9,7 @@ const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
 
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 shadow-lg z-20  max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
             <div className="flex justify-between items-center my-6">
                 <h2 className="text-2xl font-bold">
                     Your Cart
@@ -19,7 +19,7 @@ const Cart = ({ onClose, open }) => {
                 </button>
             </div>
 
-            <ul className='flex flex-col gap-6'>
+            <ul className='flex flex-col gap-6 dark:text-stone-200'>
                 {cartItems.map((item, index) => (
                     <CartItem key={index} item={item} />
                 ))}
@@ -27,10 +27,10 @@ const Cart = ({ onClose, open }) => {
 
             <div className="mt-6">
                 <div className="flex justify-between items-center mb-8">
-                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">
+                    <span className="text-lg font-semibold text-stone-800">
                         Total:
                     </span>
-                    <span className="text-lg font-semibold text-stone-800 dark:text-stone-200">
+                    <span className="text-lg font-semibold text-stone-800">
                         {getCartTotal().toFixed(2)} SEK
                     </span>
                 </div>
@@ -38,7 +38,7 @@ const Cart = ({ onClose, open }) => {
                     <Button>
                         Clear cart
                     </Button>
-                    <LinkButton onclick={onClose} href="/cart" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
+                    <LinkButton onclick={onClose} href="/cart" custom="dark:bg-rose-500 dark:text-stone-200">
                         Checkout
                     </LinkButton>
                 </div>

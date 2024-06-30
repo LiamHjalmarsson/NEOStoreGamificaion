@@ -9,7 +9,7 @@ const CartItem = ({ item }) => {
     let { removeFromCart, addToCart } = useCartContext();
 
     return (
-        <li className='border-stone-500 dark:border-indigo-500 border-b-2 p-2 relative'>
+        <li className='border-stone-500 dark:border-rose-800 border-b-2 p-2 relative'>
             <div className='flex gap-4 items-center'>
                 <Link to={`/products/${item.title}`} className='flex-grow p-2'>
                     <h3 className='font-semibold text-lg'>
