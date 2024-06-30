@@ -39,7 +39,7 @@ const Root = () => {
         <rootContext.Provider value={{ categories, products, user, logout }}>
             <Navigation />
 
-            <main className='min-h-[90vh] bg-stone-100 dark:bg-stone-700 text-stone-800 dark:text-stone-200 duration-300 transition-colors relative'>
+            <main className='min-h-[91vh] bg-stone-100 dark:bg-stone-700 text-stone-800 dark:text-stone-200 duration-500 transition-colors relative'>
                 <Outlet />
             </main>
 

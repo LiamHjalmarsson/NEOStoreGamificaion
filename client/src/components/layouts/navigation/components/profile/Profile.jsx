@@ -9,12 +9,15 @@ const Profile = ({ open }) => {
     let { user, logout } = useRootContext();
 
     return (
-        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-300 p-8 bg-stone-200 dark:bg-stone-800 top-24 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
+        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 dark:bg-stone-800 top-24 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
             {
                 user && (
-                    <h3 className='text-center text-lg font-bold tracking-wide'>
-                        {firstLetter(user.firstName)}
-                    </h3>
+                    <div className='flex flex-col gap-4 justify-center items-center mt-4'>
+                        <img src={user.avatar} alt="avatar" className=' object-cover object-center rounded-full h-12 w-12' />
+                        <h3 className='text-center text-lg font-bold tracking-wide'>
+                            {firstLetter(user.firstName)}
+                        </h3>
+                    </div>
                 )
             }
 

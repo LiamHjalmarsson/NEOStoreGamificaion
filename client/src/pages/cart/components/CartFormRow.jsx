@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CartDetailRow = ({ title, text }) => {
+const CartFormRow = ({ title, text }) => {
     return (
         <div className='flex w-full pb-2 border-b-2 border-stone-800 dark:border-stone-200'>
             <div className='flex-grow'>
@@ -15,4 +15,4 @@ const CartDetailRow = ({ title, text }) => {
     );
 }
 
-export default CartDetailRow;
+export default CartFormRow;

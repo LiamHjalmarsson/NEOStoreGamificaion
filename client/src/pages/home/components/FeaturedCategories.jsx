@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRootContext } from '../../Root';
 import CategoryCard from '../../../components/category/CategoryCard';
+import Headings from '../../../components/heading/Headings';
 
 const FeaturedCategories = () => {
     let { categories } = useRootContext();
@@ -8,14 +9,8 @@ const FeaturedCategories = () => {
 
     return (
         <div className='flex flex-col gap-12'>
-            <div className='mx-auto w-fit text-center'>
-                <h3 className='mb-2 tracking-wider text-sm lg:text-base 2xl:text-lg font-semibold'>
-                    Need something
-                </h3>
-                <h2 className='text-lg lg:text-2xl 2xl:text-4xl font-bold tracking-wider'>
-                    Popular Categories
-                </h2>
-            </div>
+            <Headings subHeading="Need something" heading="Our Popular Categories" />
+
             <div className={`flex flex-wrap justify-center items-center`}>
                 {
                     amountOfCategories.map((category, index) => (

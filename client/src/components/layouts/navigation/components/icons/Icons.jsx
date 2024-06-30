@@ -4,7 +4,6 @@ import { FaSearch } from "react-icons/fa";
 import ThemeMode from './components/ThemeMode';
 import ShoppingBasket from './components/ShoppingBasket';
 import User from './components/User';
-import { useRootContext } from '../../../../../pages/Root';
 
 const Icons = ({ cartHandler, profileHandler, searchHandler}) => {
     return (

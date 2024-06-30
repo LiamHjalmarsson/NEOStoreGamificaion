@@ -1,20 +1,22 @@
 import React from 'react';
-import { useRootContext } from '../Root';
 import Hero from './components/Hero';
 import FeaturedCategories from './components/FeaturedCategories';
-import FeaturedProducts from './components/FeaturedProducts';
 import NewsLetter from '../../components/newsLetter/NewsLetter';
+import Headings from '../../components/heading/Headings';
+import ProductsContainer from '../../components/product/Products';
+import { useRootContext } from '../Root';
 
 const Home = () => {
     let { products } = useRootContext();
 
-    let menProducts = products?.filter(item => item.gender.includes("male"))[0];
-    let womanProducts = products?.filter(item => item.gender.includes("female"))[0];
-
     return (
         <div className='flex flex-col gap-24'>
-            <Hero men={menProducts} woman={womanProducts} />
-            <FeaturedProducts />
+            <Hero />
+
+            <div className='px-4 md:px-12'>
+                <Headings heading="Favorites" subHeading="The most bought" />
+                <ProductsContainer products={products} />
+            </div>
 
             <div>
                 <FeaturedCategories />

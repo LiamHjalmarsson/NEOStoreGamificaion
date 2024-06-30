@@ -59,10 +59,6 @@ const AllRoutes = createBrowserRouter([
                 element: <Product />
             },
             {
-                path: "categories/:id/:id",
-                element: <Product />
-            },
-            {
                 path: "cart",
                 element: <Cart />,
                 action: cartAction

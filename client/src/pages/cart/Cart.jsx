@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useCartContext } from '../../context/cartContext';
 import Heading from '../../components/heading/Heading';
-import CartProduct from './components/CartProduct';
-import UserDetails from './components/UserDetails';
+import CartForm from './components/CartForm';
 import { redirect, useActionData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import CartDetails from './components/CartDetails';
+import CartConfirmation from './components/CartConfirmation';
 
 
 export const cartAction = async ({ request }) => {
@@ -36,7 +37,7 @@ export const cartAction = async ({ request }) => {
 }
 
 const Cart = () => {
-    let { cartItems, clearCart } = useCartContext();
+    let { clearCart } = useCartContext();
 
     let navigate = useNavigate();
 
@@ -49,39 +50,14 @@ const Cart = () => {
 
     return (
         <section className='w-full min-h-[90vh] flex flex-col relative'>
-
             <div className='flex gap-24 w-full mx-auto max-w-7xl mt-24 px-10'>
-                <div className='w-full flex flex-wrap flex-col gap-8 max-w-3xl mx-auto'>
-                    {
-                        cartItems.length > 0 && (
-                            <>
-                                <Heading title="Cart" />
-                                {
-                                    cartItems.map((item, index) => (
-                                        <CartProduct item={item} key={index} />
-                                    ))
-                                }
-                            </>
-                        ) || (
-                            <>
-                                <Heading title="No items in cart" />
-                            </>
-                        )
-                    }
-                </div>
-
-                { cartItems.length > 0 && <UserDetails /> }
+                <CartDetails />
+                <CartForm />
             </div>
 
 
             {
-                confirmation && (
-                    <div className={`absolute w-full h-full top-0 left-0 bg-stone-800 bg-opacity-50 flex justify-center items-center`} onClick={confirmationHandler}>
-                        <div className={`transition duration-300 bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-1/2 text-center min-w-96`}>
-                            <Heading title="Your order is now placed" />
-                        </div>
-                    </div>
-                )
+                confirmation && <CartConfirmation confirmationHandler={confirmationHandler} />
             }
         </section >
     );

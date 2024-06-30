@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import CartDetailRow from './CartDetailRow';
+import CartFormRow from './CartFormRow';
 import { Form } from 'react-router-dom';
 import { useCartContext } from '../../../context/cartContext';
 import Button from '../../../components/elements/Button';
@@ -7,7 +7,7 @@ import Input from '../../../components/elements/Input';
 import Heading from '../../../components/heading/Heading';
 import { useRootContext } from '../../Root';
 
-const UserDetails = () => {
+const CartForm = () => {
     let { getCartTotal, clearCart, cartItems } = useCartContext();
     let { user } = useRootContext();
 
@@ -29,9 +29,9 @@ const UserDetails = () => {
             <div className={`transition duration-300 bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96`}>
                 <Heading title="Order" />
 
-                <CartDetailRow title="Total: " text={getCartTotal() + " SEK"} />
+                <CartFormRow title="Total: " text={getCartTotal() + " SEK"} />
 
-                <CartDetailRow title="Shipping fees: " text={shippingFee + " SEK"} />
+                <CartFormRow title="Shipping fees: " text={shippingFee + " SEK"} />
 
                 <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-800 dark:border-stone-200'>
                     <Input
@@ -46,7 +46,7 @@ const UserDetails = () => {
                         }}
                     />
 
-                    <button type='button' className='p-4 border border-primary hover:bg-primary hover:text-white transition duration-300 ease-in-out font-bold rounded-md' onClick={discountHandler}>
+                    <button type='button' className='p-4 border border-stone-800 hover:bg-primary transition duration-500 ease-in-out font-bold' onClick={discountHandler}>
                         Apply
                     </button>
                 </div>
@@ -58,10 +58,10 @@ const UserDetails = () => {
                 <input type="hidden" name="user" value={JSON.stringify(user)} />
 
                 <div className='flex w-full justify-between'>
-                    <CartDetailRow title="Earn:" text={user ? `${earnPoints} points` : `Become a member to get ${earnPoints} points`} />
+                    <CartFormRow title="Earn:" text={user ? `${earnPoints} points` : `Become a member to get ${earnPoints} points`} />
                 </div>
 
-                <CartDetailRow title="Total To Pay: " text={totalToPay + " SEK"} />
+                <CartFormRow title="Total To Pay: " text={totalToPay + " SEK"} />
 
                 <Input
                     input={{
@@ -85,4 +85,4 @@ const UserDetails = () => {
     );
 }
 
-export default UserDetails;
+export default CartForm;

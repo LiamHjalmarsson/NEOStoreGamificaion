@@ -1,12 +1,14 @@
 import React from 'react';
 import HeroItem from './HeroItem';
+import { useRootContext } from '../../Root';
 
-const Hero = ({ men, woman }) => {
+const Hero = () => {
+    let { products } = useRootContext();
     return (
-        <div className="relative h-[90vh] md:h-[50vh] lg:h-[70vh] 2xl:h-[90vh]">
+        <div className="relative h-[100vh] md:h-[60vh]">
             <div className='w-full h-full absolute top-0 left-0 flex max-md:flex-col'>
-                <HeroItem genderType={men} />
-                <HeroItem genderType={woman} />
+                <HeroItem item={products[6]} />
+                <HeroItem item={products[5]} />
             </div>
         </div>
     );

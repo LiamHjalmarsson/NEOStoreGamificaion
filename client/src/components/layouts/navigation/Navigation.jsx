@@ -7,7 +7,7 @@ import Search from "./components/search/Search";
 import Profile from "./components/profile/Profile";
 
 const Navigation = () => {
-    let { pathname } = useLocation(); 
+    let { pathname } = useLocation();
 
     let [isCartOpen, setIsCartOpen] = useState(false);
     let [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -40,9 +40,9 @@ const Navigation = () => {
     }
 
     return (
-        <header className='relative'>
-            <nav className="flex relative items-center w-full h-[10vh] px-12 justify-between transition-colors duration-300 bg-stone-200 shadow shadow-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200">
-                <NavLink to="/" className="text-5xl font-semibold tracking-wider w-72">
+        <header className='relative h-32 bg-stone-200 shadow shadow-stone-200 dark:bg-stone-800 text-stone-800 dark:text-stone-200'>
+            <nav className="flex relative items-center w-full h-full px-12 justify-between transition-colors duration-500">
+                <NavLink to="/" className="text-4xl font-bold tracking-wider w-72">
                     N-E-O
                 </NavLink>
 

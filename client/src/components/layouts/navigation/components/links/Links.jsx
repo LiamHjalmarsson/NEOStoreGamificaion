@@ -22,7 +22,6 @@ const Links = () => {
                         <Link link="dashboard" />
                     </li>
                 )}
-
             </ul>
         </>
     );

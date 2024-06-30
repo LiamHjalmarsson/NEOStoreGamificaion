@@ -5,6 +5,7 @@ import Input from '../../../components/elements/Input';
 import { useRootContext } from '../../Root';
 import { toast } from 'react-toastify';
 import Form from '../../../components/form/Form';
+import FileUpload from '../../../components/form/FileUpload';
 
 export let updateUser = async ({ request }) => {
     let formData = await request.formData();
@@ -32,7 +33,6 @@ const Settings = () => {
     let [firstName, setFirstName] = useState(user.firstName);
     let [lastName, setLastName] = useState(user.lastName);
     let [email, setEmail] = useState(user.email);
-    let [avatar, setAvatar] = useState(user.avatar ? user.avatar : "");
 
     let inputs = [
         {
@@ -52,37 +52,26 @@ const Settings = () => {
         },
     ];
 
-    let handleAvatar = (e) => {
-        let file = e.target.files[0];
-        setAvatar(URL.createObjectURL(file));
-    };
-
     return (
         <div className='pt-12 flex flex-col gap-6 justify-center items-center'>
             <Heading title="Settings" />
 
             <Navigation />
 
-            <Form action={`/user/${user._id}/settings`} method='post' enctype="multipart/form-data" button='Update'>
+            <Form action={`/user/${user._id}/settings`} method='post' enctype={true} button='Update'>
                 <div className='flex flex-wrap gap-8'>
                     <div className='flex flex-col gap-2 w-full items-center'>
-                        {avatar && (
-                            <img src={avatar} alt="Image Preview" className="w-20 h-20 object-cover rounded-full" />
-                        )}
+                        <FileUpload
+                            input={{
+                                type: 'file',
+                                id: 'avatar',
+                                name: 'avatar',
+                                accept: 'image/*',
+                            }}
+                            text="Upload new avatar"
+                            context={user.avatar}
+                        />
 
-                        <div className="flex items-center justify-center w-full">
-                            <label for="avatar" className="text-center w-1/2 cursor-pointer border-b border-stone-800 mx-auto ">
-                                <p className="">Upload new avatar</p>
-                                <input
-                                    type='file'
-                                    id='avatar'
-                                    name='avatar'
-                                    accept='image/*'
-                                    className='hidden'
-                                    onChange={handleAvatar}
-                                />
-                            </label>
-                        </div>
                     </div>
                     {
                         inputs.map((input, index) => (

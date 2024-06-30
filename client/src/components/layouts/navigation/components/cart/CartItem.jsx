@@ -30,7 +30,7 @@ const CartItem = ({ item }) => {
                         <FaPlus />
                     </span>
                 </div>
-                <div className='w-14'>
+                <div className='w-16 h-16'>
                     <Image img={item.image} />
                 </div>
             </div>

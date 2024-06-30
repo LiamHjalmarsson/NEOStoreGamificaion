@@ -1,8 +1,8 @@
 import React from 'react';
-import { Form, Link, redirect, useLoaderData, useNavigation } from 'react-router-dom';
+import { Link, redirect, useActionData } from 'react-router-dom';
 import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
-import Button from '../../components/elements/Button';
+import Form from '../../components/form/Form';
 
 export const registerAction = async ({ request }) => {
     let formData = await request.formData();
@@ -19,9 +19,13 @@ export const registerAction = async ({ request }) => {
 
         let recourse = await response.json();
 
-        localStorage.setItem("userToken", JSON.stringify(recourse.token));
+        if (recourse.error) {
+            return recourse.error
+        } else {
+            localStorage.setItem("userToken", JSON.stringify(recourse.token));
 
-        return redirect("/");
+            return redirect("/");
+        }
     } catch (error) {
         console.log(error);
         return error;
@@ -29,38 +33,31 @@ export const registerAction = async ({ request }) => {
 }
 
 const Register = () => {
-    let d = useLoaderData();
+    let error = useActionData();
 
     return (
-        <div className='relative min-h-[90vh] w-full flex justify-center items-center bg-stone-800'>
+        <div className='relative min-h-[92vh] w-full flex justify-center items-center bg-stone-800'>
             <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
 
-            <Form method='post' action='/register' className='p-8 bg-stone-200 dark:bg-stone-800 relative z-10 max-w-md w-full rounded-md transition duration-300 flex flex-col gap-12'>
-                <Heading title="Register" />
+            <div className='relative'>
+                <Form method='post' action='/register' enctype={false} button='Register'>
+                    <Heading title="Register" />
 
-                <Input input={{ id: "firstName", placeholder: "Enter first name", name: "firstName" }} />
-                <Input input={{ id: "lastName", placeholder: "Enter last name", name: "lastName" }} />
-                <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} />
-                <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} />
+                    <Input input={{ id: "firstName", placeholder: "Enter first name", name: "firstName" }} error={error} />
+                    <Input input={{ id: "lastName", placeholder: "Enter last name", name: "lastName" }} error={error} />
+                    <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} />
+                    <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} />
 
-                <div className='text-center'>
-                    <p>
-                        Already member?
-                    </p>
-                    <Link to="/login" className='text-blue-500 underline'>
-                        Login
-                    </Link>
-                </div>
-
-                <div className='flex gap-12 justify-center'>
-                    <Button>
-                        Cancel
-                    </Button>
-                    <Button type="submit" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
-                        Register
-                    </Button>
-                </div>
-            </Form>
+                    <div className='text-center'>
+                        <p>
+                            Already member?
+                        </p>
+                        <Link to="/login" className='text-blue-500 underline'>
+                            Login
+                        </Link>
+                    </div>
+                </Form>
+            </div>
         </div>
     );
 }

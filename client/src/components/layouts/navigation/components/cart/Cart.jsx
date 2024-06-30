@@ -9,7 +9,7 @@ const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal } = useCartContext();
 
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-300 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 z-20 dark:bg-stone-800 max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
             <div className="flex justify-between items-center my-6">
                 <h2 className="text-2xl font-bold">
                     Your Cart
