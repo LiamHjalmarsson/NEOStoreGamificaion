@@ -5,7 +5,6 @@ import { useActionData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CartDetails from './components/CartDetails';
 import CartConfirmation from './components/CartConfirmation';
-import { useRootContext } from '../Root';
 
 export const cartAction = async ({ request }) => {
     let formData = await request.formData();
@@ -38,13 +37,13 @@ export const cartAction = async ({ request }) => {
     });
 
     let { purchase } = await purchaseResponse.json();
-    
+
 
     let achievementUpdate = [...user.achievements];
     let ordersCount = user.orders.length + 1;
 
     if (ordersCount === 1) {
-        achievementUpdate.push('6681828a064778b8918cfebd'); 
+        achievementUpdate.push('6681828a064778b8918cfebd');
     }
 
     let userResponses = await fetch(`/api/user/update-user`, {
@@ -57,10 +56,10 @@ export const cartAction = async ({ request }) => {
             achievements: achievementUpdate
         })
     });
-    
+
     let userRecourse = await userResponses.json();
 
-    return purchase;
+    return { cart, purchase };
 }
 
 const Cart = () => {
@@ -68,7 +67,7 @@ const Cart = () => {
     let confirmationPurchase = useActionData();
 
     let confirmationHandler = () => {
-        // clearCart();
+        clearCart();
     }
 
     return (

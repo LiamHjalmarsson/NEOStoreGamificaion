@@ -2,6 +2,7 @@ import { StatusCodes } from "http-status-codes";
 import User from "../models/userModel.js";
 import Product from "../models/productModel.js";
 import Category from "../models/categoryModel.js";
+import Purchase from "../models/purchaseModel.js";
 import { v2 as cloudinary } from 'cloudinary';
 import { promises as fs } from "fs";
 
@@ -51,6 +52,7 @@ export const getStats = async (req, res) => {
     let users = await User.countDocuments();
     let products = await Product.countDocuments();
     let categories = await Category.countDocuments();
+    let purchases = await Purchase.countDocuments();
 
-    res.status(StatusCodes.OK).json({ users, products, categories });
+    res.status(StatusCodes.OK).json({ users, products, categories, purchases });
 };

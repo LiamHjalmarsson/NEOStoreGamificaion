@@ -4,7 +4,7 @@ import Detail from './Detail';
 
 const ProductCard = ({ product }) => {
     return (
-        <div className='relative min-w-56 mx-auto flex flex-col justify-center items-center max-w-xl w-full shadow-md'>
+        <div className='relative min-w-56 mx-auto flex flex-col justify-center items-center max-w-lg w-full shadow-md'>
             <div className='absolute -top-4 bg-rose-500 text-stone-100 z-10 p-4 text-lg font-bold bg-opacity-90 tracking-wider uppercase line-clamp-1'>
                 <h2>
                     {product.title}

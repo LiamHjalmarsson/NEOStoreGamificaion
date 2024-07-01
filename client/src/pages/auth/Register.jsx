@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, redirect, useActionData } from 'react-router-dom';
-import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
 import Form from '../../components/form/Form';
+import Heading from '../../components/heading/Heading';
 
 export const registerAction = async ({ request }) => {
     let formData = await request.formData();
@@ -27,7 +27,6 @@ export const registerAction = async ({ request }) => {
             return redirect("/");
         }
     } catch (error) {
-        console.log(error);
         return error;
     }
 }

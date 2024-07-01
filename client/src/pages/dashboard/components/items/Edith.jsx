@@ -9,23 +9,22 @@ const Edith = ({ item, close, path }) => {
     let { deleteItem } = useRootContext();
     let [formData, setFormData] = useState({ ...item });
 
-    console.log(item);
     let submitUpdate = async (e) => {
         e.preventDefault();
     }
 
     return (
         <div className='absolute w-full h-full flex justify-center items-center top-0'>
-            <form method='patch' encType='multipart/form-data' className={`shadow max-w-3xl w-full p-6 bg-stone-200 dark:bg-stone-800 fixed transition duration-500 z-20`} onSubmit={submitUpdate}>
+            <form method='patch' encType='multipart/form-data' className={`shadow max-w-3xl w-full p-4 lg:p-6 bg-stone-200 dark:bg-stone-800 fixed transition duration-500 z-20`} onSubmit={submitUpdate}>
                 <div className='relative'>
-                    <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
+                    <div className='absolute -top-6 lg:top-4 left-2 lg:left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
                         <FaTrashCan />
                     </div>
-                    <div className='absolute top-2 right-2 p-4 z-10 rounded-full bg-blue-400 text-stone-200' onClick={close} >
+                    <div className='absolute -top-6 lg:top-4 right-2 lg:right-4 p-4 z-10 rounded-full bg-blue-400 text-stone-200' onClick={close} >
                         <FaX />
                     </div>
                 </div>
-                <img src={item?.image} className='object-cover w-full object-center h-[500px]' alt={"no alt"} />
+                <img src={item?.image} className='object-cover w-full object-center hidden lg:h-[500px]' alt={"no alt"} />
                 <div className='flex flex-wrap gap-8 items-center justify-center p-4 mt-4'>
                     {Object.keys(formData).map((key) => (
                         key !== '_id' && key !== '__v' && key !== 'createdAt' && key !== 'updatedAt' && key !== "imageId" && (

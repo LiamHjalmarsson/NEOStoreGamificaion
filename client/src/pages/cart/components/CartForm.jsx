@@ -20,7 +20,6 @@ const CartForm = () => {
         if (value <= maxDiscount) setDiscount(value);
     }
 
-    console.log(user);
     let shippingFee = getCartTotal() >= 1000 ? 0 : 75;
     let totalToPay = getCartTotal() - discount + shippingFee;
     let earnPoints = user ? getCartTotal() - discount : 0;

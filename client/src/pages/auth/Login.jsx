@@ -28,7 +28,6 @@ export const loginAction = async ({ request }) => {
         }
 
     } catch (error) {
-        console.log(error);
         return error;
     }
 }

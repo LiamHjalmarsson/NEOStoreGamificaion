@@ -24,7 +24,7 @@ const AuthCategories = () => {
     }
 
     return (
-        <div className='relative grow pr-12'>
+        <div className='relative grow lg:pr-12'>
             {
                 showForm && (
                     <div className='absolute z-20 h-full w-full flex justify-center items-center'>

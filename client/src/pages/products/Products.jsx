@@ -6,7 +6,7 @@ const Products = () => {
     let { products } = useRootContext();
 
     return (
-        <section className='pt-12'>
+        <section className='max-lg:pt-24 pt-12 px-6'>
             <ProductsContainer products={products} />
         </section>
     );
