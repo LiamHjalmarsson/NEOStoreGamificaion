@@ -52,7 +52,7 @@ const Navigation = () => {
     return (
         <header className='transition-colors duration-500 fixed z-40 w-full h-32 bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-rose-500'>
             <nav className="flex relative items-center w-full h-full px-6 lg:px-12 justify-between">
-                <NavLink to="/" className="text-4xl font-bold tracking-wider max-lg:order-2 max-lg:w-full text-start sm:text-center z-10">
+                <NavLink to="/" className="text-4xl font-bold tracking-wider max-lg:hidden text-start sm:text-center z-10">
                     N-E-O
                 </NavLink>
 
