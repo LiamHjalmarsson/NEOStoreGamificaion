@@ -1,9 +1,20 @@
 import React from 'react';
 import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
-import { FaTrophy } from 'react-icons/fa';
+import { FaLock, FaTrophy } from 'react-icons/fa';
+import { useUserContext } from '../User';
+import { useRootContext } from '../../Root';
+import { firstLetter } from '../../../utils/textTransformation';
 
 const Achievements = () => {
+    let { achievements } = useUserContext();
+    let { user } = useRootContext();
+
+    let hasAchievement = (id) => {
+        return user.achievements.some((achievement) => achievement !== id);
+    };
+
+
     return (
         <div className='pt-24 flex flex-col gap-6'>
             <Heading title="Achievements" />
@@ -11,14 +22,21 @@ const Achievements = () => {
             <Navigation />
 
             <div className='flex flex-col gap-12 mx-auto max-w-3xl w-full mt-12'>
-                <div className='bg-stone-200 dark:bg-stone-800 p-6 flex relative justify-center items-center w-52 h-52 shadow transition duration-500'>
-                    <FaTrophy className='text-5xl' />
-                    <div className=' absolute bottom-0 p-4'>
-                        <h3 className='font-semibold text-xl'>
-                            Achievement
-                        </h3>
-                    </div>
-                </div>
+                {
+                    achievements.map((achievement, index) => (
+                        <div className='bg-stone-200 dark:bg-stone-800 flex flex-col relative justify-center items-center w-52 h-52 shadow transition duration-500' key={index}>
+                            <img src={achievement.image} alt='achievement image' className='w-24' />
+                            {hasAchievement(achievement._id) && (
+                                <div className=' absolute w-full h-full justify-center items-center flex bg-stone-800 bg-opacity-70'>
+                                    <FaLock size={46} className='text-stone-200' />
+                                </div>
+                            )}
+                            <h3 className='font-semibold text-xl mt-2'>
+                                {firstLetter(achievement.title)}
+                            </h3>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     );

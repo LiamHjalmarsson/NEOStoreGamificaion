@@ -21,7 +21,7 @@ export let userProfileLoader = async () => {
 }
 
 const User = () => {
-    let { ranks } = useLoaderData();
+    let { ranks, achievements } = useLoaderData();
     let { user } = useRootContext();
     let { id } = useParams();
     let navigation = useNavigate();
@@ -37,7 +37,7 @@ const User = () => {
     }, []);
 
     return (
-        <userContext.Provider value={{ ranks }}>
+        <userContext.Provider value={{ ranks, achievements }}>
             <Outlet />
         </userContext.Provider>
     );

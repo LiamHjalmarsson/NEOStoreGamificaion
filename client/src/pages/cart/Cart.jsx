@@ -21,7 +21,7 @@ export const cartAction = async ({ request }) => {
     }
 
     let purchaseObject = {
-        userId: user._id ? user._id : "guest",
+        userId: user._id ? user._id : false,
         items: cart.map(item => ({
             productId: item.id,
             quantity: item.quantity,
@@ -38,26 +38,26 @@ export const cartAction = async ({ request }) => {
 
     let { purchase } = await purchaseResponse.json();
 
-
-    let achievementUpdate = [...user.achievements];
-    let ordersCount = user.orders.length + 1;
-
-    if (ordersCount === 1) {
-        achievementUpdate.push('6681828a064778b8918cfebd');
+    if (user) {
+        let achievementUpdate = [...user.achievements];
+        let ordersCount = user.orders.length + 1;
+    
+        if (ordersCount === 1) {
+            achievementUpdate.push('6681828a064778b8918cfebd');
+        }
+    
+        await fetch(`/api/user/update-user`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                pointsEarned: user.pointsEarned - discount + earnedPoints,
+                totalPointsEarned: user.totalPointsEarned + earnedPoints,
+                orders: [...user.orders, purchase._id],
+                achievements: achievementUpdate
+            })
+        });
     }
 
-    let userResponses = await fetch(`/api/user/update-user`, {
-        method: "PATCH",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            pointsEarned: user.pointsEarned - discount + earnedPoints,
-            totalPointsEarned: user.totalPointsEarned + earnedPoints,
-            orders: [...user.orders, purchase._id],
-            achievements: achievementUpdate
-        })
-    });
-
-    let userRecourse = await userResponses.json();
 
     return { cart, purchase };
 }
@@ -77,7 +77,7 @@ const Cart = () => {
                 <CartForm />
             </div>
 
-            {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
+            {/* {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />} */}
         </section >
     );
 }

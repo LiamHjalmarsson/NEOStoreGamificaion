@@ -6,7 +6,7 @@ import LinkButton from '../../../../elements/LinkButton';
 import Button from '../../../../elements/Button';
 
 const Cart = ({ onClose, open }) => {
-    let { cartItems, getCartTotal } = useCartContext();
+    let { cartItems, getCartTotal, clearCart } = useCartContext();
 
     return (
         <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 shadow-lg z-20  max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
@@ -35,7 +35,7 @@ const Cart = ({ onClose, open }) => {
                     </span>
                 </div>
                 <div className='flex justify-between gap-12'>
-                    <Button>
+                    <Button onclick={clearCart}>
                         Clear cart
                     </Button>
                     <LinkButton onclick={onClose} href="/cart" custom="dark:bg-rose-500 dark:text-stone-200">
