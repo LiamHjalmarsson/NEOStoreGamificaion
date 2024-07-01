@@ -9,27 +9,23 @@ import { FaTrophy } from "react-icons/fa";
 import { TbCategoryFilled } from "react-icons/tb";
 import { AiOutlineProduct } from "react-icons/ai";
 import { useRootContext } from "../Root";
+import { fetchData } from "../../utils/customFetch";
 
 let dashboardContext = createContext();
 
 export let dashBoardLoader = async () => {
     try {
-        let responseStats = await fetch("/api/user/stats");
-        let recourseStats = await responseStats.json();
+        let stats = await fetchData("user/stats");
 
-        let responseUsers = await fetch("/api/user");
-        let recourse = await responseUsers.json();
+        let users = await fetchData("user");
 
-        let responseAchievement = await fetch("/api/achievement");
-        let recourseAchievement = await responseAchievement.json();
+        let achievements = await fetchData("achievement");
 
-        let responseRank = await fetch("/api/rank");
-        let recourseRank = await responseRank.json();
+        let ranks = await fetchData("rank");
 
-        let responseOrder = await fetch("/api/purchase");
-        let recourseOrders = await responseOrder.json();
+        let { purchase } = await fetchData("purchase");
 
-        return { stats: recourseStats, users: recourse, achievements: recourseAchievement, ranks: recourseRank, orders: recourseOrders };
+        return { stats, users, achievements, ranks, orders: purchase };
     } catch (error) {
         return error;
     }
@@ -64,6 +60,7 @@ let links = [
 
 const Dashboard = () => {
     let { stats, users, achievements, ranks, orders } = useLoaderData();
+
     let { user } = useRootContext();
 
     let { id } = useParams();

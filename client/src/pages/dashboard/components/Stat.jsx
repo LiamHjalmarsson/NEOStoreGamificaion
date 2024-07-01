@@ -2,6 +2,7 @@ import React from 'react';
 import { AiOutlineProduct } from 'react-icons/ai';
 import { HiUsers } from 'react-icons/hi';
 import { TbCategoryFilled } from 'react-icons/tb';
+import { BiSolidPurchaseTag } from "react-icons/bi";
 
 const Stat = ({ stat }) => {
     return (
@@ -10,6 +11,7 @@ const Stat = ({ stat }) => {
                 {stat[0] === "users" && <HiUsers />}
                 {stat[0] === "products" && <AiOutlineProduct />}
                 {stat[0] === "categories" && <TbCategoryFilled />}
+                {stat[0] === "purchases" && <BiSolidPurchaseTag />}
             </div>
             <div className='mt-12 text-stone-800 dark:text-stone-200'>
                 <p className='text-2xl font-semibold'>
