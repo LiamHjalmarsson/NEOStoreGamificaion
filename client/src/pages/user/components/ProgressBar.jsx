@@ -8,7 +8,7 @@ const ProgressBar = ({ totalUserPoints, unlockNextRank }) => {
 
     return (
         <div>
-            <div className={`w-full h-8 bg-stone-800 dark:bg-stone-200 bg-opacity-80 mt-2`}>
+            <div className={`w-full h-8 bg-stone-800 dark:bg-stone-200 bg-opacity-80 mt-2 duration-500 transition`}>
                 <div className={`h-full bg-green-400 max-w-full`} style={{ width: `${fillWidth}%` }}></div>
             </div>
             <div className='flex justify-between px-2 mt-2'>

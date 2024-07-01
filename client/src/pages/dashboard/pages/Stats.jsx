@@ -15,7 +15,7 @@ const Stats = () => {
                 }
             </div>
 
-            <div className='p-4 bg-stone-800 w-full flex justify-center text-stone-200 items-center'>
+            <div className='p-4 bg-stone-800 w-full flex justify-center text-stone-200 items-center grow'>
                 ORDERS, Purschases
             </div>
         </div>

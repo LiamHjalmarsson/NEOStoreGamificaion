@@ -1,7 +1,7 @@
     import mongoose from "mongoose";
 
 const AchievementSchema = new mongoose.Schema({
-    achievement: {
+    title: {
         type: String,
         required: true
     },
@@ -13,7 +13,7 @@ const AchievementSchema = new mongoose.Schema({
         type: String,
     },
     imageId: {
-        
+        type: String,
     }
 });
 

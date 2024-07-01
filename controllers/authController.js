@@ -33,17 +33,7 @@ export const loginUser = async (req, res) => {
         throw new UnauthenticatedError("Invalid credentials");
     }
 
-    let token = createJWT(
-        { userId: user._id, role: user.role }
-    );
-
-    let oneDay = 1000 * 60 * 60 * 24;
-
-    res.cookie("token", token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + oneDay),
-        secure: process.env.NODE_ENV === "production",
-    });
+    let token = cookieToken(user, res);
 
     res.status(StatusCodes.OK).json({
         token

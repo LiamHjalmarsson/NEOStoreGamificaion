@@ -34,7 +34,7 @@ const UserSchema = mongoose.Schema(
         },
         rank: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: Rank
+            ref: Rank,
         }],
         location:
         {
@@ -60,18 +60,23 @@ const UserSchema = mongoose.Schema(
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: Achievement,
+                    default: "6681ac48bd51b7c7af2e0d10"
                 }
             ],
         },
         orders: [{
-            type: Number,
-            default: 0
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Purchase'
         }],
         role: {
             type: String,
             enum: ['user', 'admin'],
             default: 'user',
         },
+        partOfNewsLetter: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamp: true

@@ -19,6 +19,7 @@ import authRouter from "./routes/authRouter.js";
 import userRouter from "./routes/userRouter.js";
 import rankRouter from "./routes/rankRouter.js";
 import achievementRouter from "./routes/achievementRouter.js";
+import purchaseRouter from "./routes/purchaseRouter.js";
 
 // Middleware
 import errorHandlerMiddleware from './middleware/ErrorHandlerMiddleware.js';
@@ -27,9 +28,9 @@ import {authenticateUser} from './middleware/authMiddleware.js';
 const app = express();
 
 cloudinary.config({ 
-    cloud_name: 'dx6tdy5de', 
-    api_key: '588636721221673', 
-    api_secret: 'XlSeLHd3ZDEMaiHPmm3RJXavvm0'
+    cloud_name: process.env.CLOUD_NAME, 
+    api_key: process.env.CLOUD_API_KEY, 
+    api_secret: process.env.CLOUD_API_SECRET,
 });
 
 
@@ -49,6 +50,7 @@ app.use("/api/product", productRouter);
 app.use("/api/user", authenticateUser, userRouter);
 app.use("/api/rank", rankRouter);
 app.use("/api/achievement", achievementRouter);
+app.use("/api/purchase", purchaseRouter);
 
 app.use("*", (req, res) => {
     res.status(404).json(

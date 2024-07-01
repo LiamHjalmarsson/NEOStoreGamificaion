@@ -10,15 +10,15 @@ const Orders = () => {
 
             <Navigation />
 
-            <div className='flex flex-col gap-12 mx-auto max-w-3xl w-full mt-12'>
-                <div className='bg-stone-200 dark:bg-stone-800 p-6 flex justify-between items-center'>
+            <div className='flex flex-col gap-12 mx-auto max-w-3xl w-full mt-12 '>
+                <div className='bg-stone-200 dark:bg-stone-800 p-6 flex justify-between items-center transition duration-500'>
                     <h3 className='font-semibold text-xl'>
                         Order Purchase 2023/01/01
                     </h3>
                     <div className='flex items-center gap-6'>
                         <span>Items: </span>
                         <span className='font-semibold'>10</span>
-                        <span className='p-3 bg-stone-300 dark:bg-stone-700 round-sm text-rose-500 rounded-full'>
+                        <span className='p-3 bg-stone-300 dark:bg-stone-700 round-sm text-rose-500 rounded-full transition duration-500'>
                             <FaArrowDown className='' />
                         </span>
                     </div>

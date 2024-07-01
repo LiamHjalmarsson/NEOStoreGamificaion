@@ -16,7 +16,7 @@ export let addCategoryAction = async ({ request }) => {
 }
 
 const AuthCategories = () => {
-    let { categories, deleteItem } = useRootContext();
+    let { categories } = useRootContext();
     let [showForm, setShowForm] = useState(false);
 
     let showHandler = () => {
@@ -24,10 +24,10 @@ const AuthCategories = () => {
     }
 
     return (
-        <div className='relative'>
+        <div className='relative grow pr-12'>
             {
                 showForm && (
-                    <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
+                    <div className='absolute z-20 h-full w-full flex justify-center items-center'>
                         <Form action='/dashboard/categories' method='post' enctype={true}>
                             <Input input={{ id: "category", name: "title" }} />
                             <FileUpload
@@ -46,7 +46,7 @@ const AuthCategories = () => {
 
             <AddButton showHandler={showHandler} show={showForm} />
 
-            <Items items={categories} onDelete={deleteItem} />
+            <Items items={categories} path="category" />
         </div>
     );
 }

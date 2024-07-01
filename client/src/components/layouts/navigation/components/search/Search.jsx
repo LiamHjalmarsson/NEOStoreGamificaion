@@ -23,7 +23,7 @@ const Search = ({ open, setSearch, searchValue }) => {
                 </label>
 
                 <div className="relative flex justify-center items-center z-30">
-                    <div className=' absolute right-0 p-6 bg-stone-300 dark:bg-stone-900 bg-opacity-50 shadow h-full'>
+                    <div className=' absolute right-0 p-6 bg-stone-300 dark:bg-stone-900 bg-opacity-50 shadow h-full duration-500 transition-colors'>
                         <FaSearch className='text-xl' />
                     </div>
                     <input

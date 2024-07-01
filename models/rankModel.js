@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const RankSchema = new mongoose.Schema({
-    rank: {
+    title: {
         type: String,
         required: true
     },

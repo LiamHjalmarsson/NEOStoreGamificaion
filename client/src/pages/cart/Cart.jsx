@@ -22,12 +22,13 @@ export const cartAction = async ({ request }) => {
     }
 
     let purchaseObject = {
-        userId: user._id,
+        userId: user._id ? user._id : "guest",
         items: cart.map(item => ({
-            productId: item._id,
+            productId: item.id,
             quantity: item.quantity,
             price: item.price
         })),
+        name: data.name
     };
 
     let purchaseResponse = await fetch(`/api/purchase`, {
@@ -37,6 +38,7 @@ export const cartAction = async ({ request }) => {
     });
 
     let { purchase } = await purchaseResponse.json();
+    
 
     let achievementUpdate = [...user.achievements];
     let ordersCount = user.orders.length + 1;
@@ -58,15 +60,15 @@ export const cartAction = async ({ request }) => {
     
     let userRecourse = await userResponses.json();
 
-    return userRecourse;
+    return purchase;
 }
 
 const Cart = () => {
     let { clearCart } = useCartContext();
-    let confirmation = useActionData();
+    let confirmationPurchase = useActionData();
 
     let confirmationHandler = () => {
-        clearCart();
+        // clearCart();
     }
 
     return (
@@ -76,7 +78,7 @@ const Cart = () => {
                 <CartForm />
             </div>
 
-            {confirmation && <CartConfirmation confirmationHandler={confirmationHandler} />}
+            {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
         </section >
     );
 }

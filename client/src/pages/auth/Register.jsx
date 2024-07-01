@@ -36,7 +36,7 @@ const Register = () => {
     let error = useActionData();
 
     return (
-        <div className='relative min-h-[92vh] w-full flex justify-center items-center bg-stone-800'>
+        <div className='relative min-h-[93.5vh] w-full flex justify-center items-center bg-stone-800'>
             <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
 
             <div className='relative'>

@@ -2,9 +2,12 @@ import React, { useState } from 'react';
 import { FaPen } from 'react-icons/fa';
 import { FaTrashCan } from 'react-icons/fa6';
 import { firstLetter } from '../../../../utils/textTransformation';
+import { useRootContext } from '../../../Root';
+import Edith from "./Edith";
 
-const Items = ({ items, onDelete }) => {
+const Items = ({ items, path }) => {
     let [edithItem, setEdithItem] = useState(null);
+    let { deleteItem } = useRootContext();
 
     let edithHandler = (item) => {
         if (item._id === edithItem?._id) {
@@ -22,7 +25,7 @@ const Items = ({ items, onDelete }) => {
                         <div className='absolute top-4 right-4 p-4 z-10 rounded-full bg-blue-400 hover:bg-blue-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => edithHandler(item)}>
                             <FaPen />
                         </div>
-                        <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => onDelete(`category/${item._id}`)}>
+                        <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
                             <FaTrashCan />
                         </div>
                         <div className='flex-grow min-w-64 relative group bg-stone-800 flex justify-center items-center overflow-hidden rounded-3xl'>
@@ -34,6 +37,8 @@ const Items = ({ items, onDelete }) => {
                     </div>
                 ))}
             </div>
+
+            { edithItem && <Edith item={edithItem} close={() => setEdithItem(false)} delete={deleteItem} path={path}/>}
         </>
     );
 }

@@ -9,7 +9,6 @@ const withValidationErrors = (values) => {
     return [
         values,
         (req, res, next) => {
-
             let errors = validationResult(req);
 
             if (!errors.isEmpty()) {
@@ -25,7 +24,7 @@ const withValidationErrors = (values) => {
 
 export const validateCategoryInput = withValidationErrors([
     body("title")
-        .notEmpty().withMessage("Title is required"),
+        .notEmpty().withMessage("Title is required")
 ]);
 
 export const validateProductInput = withValidationErrors([
@@ -59,8 +58,6 @@ export const validateRegisterInput = withValidationErrors([
     body("password")
         .notEmpty().withMessage("Password is required ")
         .isLength({ min: 8 }).withMessage("Password must be at least 8 characters "),
-    body("firstName")
-        .notEmpty().withMessage("First name is required"),
 ]);
 
 export const validateParamsCategory = withValidationErrors([

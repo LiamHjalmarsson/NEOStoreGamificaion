@@ -20,35 +20,48 @@ const CartForm = () => {
         if (value <= maxDiscount) setDiscount(value);
     }
 
+    console.log(user);
     let shippingFee = getCartTotal() >= 1000 ? 0 : 75;
     let totalToPay = getCartTotal() - discount + shippingFee;
     let earnPoints = user ? getCartTotal() - discount : 0;
 
     return (
-        <Form action='/cart' method='patch' className='relative'>
-            <div className={`transition duration-300 bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96`}>
+        <Form action='/cart' method='post' className='relative'>
+            <div className={`bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96 transition duration-500`}>
                 <Heading title="Order" />
 
                 <CartFormRow title="Total: " text={getCartTotal() + " SEK"} />
 
                 <CartFormRow title="Shipping fees: " text={shippingFee + " SEK"} />
 
-                <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-800 dark:border-stone-200'>
-                    <Input
-                        input={{
-                            type: "number",
-                            name: "discount",
-                            id: "discount",
-                            min: 0,
-                            max: getCartTotal(),
-                            value: discount,
-                            onChange: discountHandler
-                        }}
-                    />
+                <div className='w-full'>
+                    {user && (
+                            <p className='text-sm text-rose-500'>
+                                You have {user.pointsEarned} points to use
+                            </p>
+                        ) || (
+                            <p className='text-sm text-rose-500'>
+                                Log in to use your points
+                            </p>
+                        )
+                    }
+                    <div className='flex w-full justify-center items-end gap-8 text-sm pb-4 border-b-2 border-stone-800 dark:border-stone-200'>
+                        <Input
+                            input={{
+                                type: "number",
+                                name: "discount",
+                                id: "discount",
+                                min: 0,
+                                max: getCartTotal(),
+                                value: discount,
+                                onChange: discountHandler
+                            }}
+                        />
 
-                    <button type='button' className='p-4 border border-stone-800 hover:bg-primary transition duration-500 ease-in-out font-bold' onClick={discountHandler}>
-                        Apply
-                    </button>
+                        <button type='button' className='p-4 border border-stone-800 dark:border-rose-500 transition duration-500 ease-in-out font-bold' onClick={discountHandler}>
+                            Apply
+                        </button>
+                    </div>
                 </div>
 
                 <input type="hidden" name="shippingFee" value={shippingFee} />
@@ -70,6 +83,7 @@ const CartForm = () => {
                         title: "Name",
                         id: "name",
                     }}
+                    custom="w-full"
                 />
 
                 <div className='flex flex-wrap justify-between gap-4 w-full'>

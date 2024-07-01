@@ -6,7 +6,7 @@ const Detail = ({ product }) => {
     let { addToCart } = useCartContext();
 
     return (
-        <div className='w-full p-6 bg-opacity-80 bg-stone-100 dark:bg-stone-800'>
+        <div className='w-full p-6 bg-opacity-80 bg-stone-100 dark:bg-stone-800 transition-colors duration-500'>
             <div className='flex items-center'>
                 <p className='font-semibold text-lg flex-grow'>
                     ${product.price} SEK

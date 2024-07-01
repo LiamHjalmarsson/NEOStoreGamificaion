@@ -13,8 +13,11 @@ export const customFetch = async (path, request, method = "POST", isMultiPart = 
         options.body = JSON.stringify(data);
     }
 
+    console.log(options);
     let response = await fetch(`/api/${path}`, options);
     let recourse = await response.json();
+    console.log(response);
+    console.log(recourse);
 
     return recourse;
 };

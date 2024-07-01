@@ -1,5 +1,5 @@
-import { Outlet, useLoaderData } from "react-router-dom";
-import { createContext } from "react";
+import { Outlet, useLoaderData, useNavigate, useParams } from "react-router-dom";
+import { createContext, useEffect } from "react";
 import { useContext } from "react";
 import Sidebar from "./components/sidebar/Sidebar";
 import { IoStatsChart } from "react-icons/io5";
@@ -8,6 +8,7 @@ import { HiUsers } from "react-icons/hi";
 import { FaTrophy } from "react-icons/fa";
 import { TbCategoryFilled } from "react-icons/tb";
 import { AiOutlineProduct } from "react-icons/ai";
+import { useRootContext } from "../Root";
 
 let dashboardContext = createContext();
 
@@ -63,13 +64,23 @@ let links = [
 
 const Dashboard = () => {
     let { stats, users, achievements, ranks, orders } = useLoaderData();
+    let { user } = useRootContext();
+
+    let { id } = useParams();
+    let navigation = useNavigate();
+
+    useEffect(() => {
+        if (user.role !== "admin") {
+            navigation("/");
+        }
+    }, []);
 
     return (
         <dashboardContext.Provider value={{ stats, users, achievements, ranks, orders }}>
             <div className='flex relative pt-12'>
                 <Sidebar links={links} />
 
-                <div className='min-h-[80vh] w-[90vw] flex justify-center grow'>
+                <div className='px-12 min-h-[80vh] w-[90vw] flex justify-center grow'>
                     <Outlet />
                 </div>
             </div>

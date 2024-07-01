@@ -16,23 +16,38 @@ export let addProductAction = async ({ request }) => {
 }
 
 const AuthProducts = () => {
-    let { products } = useRootContext();
+    let { products, categories } = useRootContext();
     let [showForm, setShowForm] = useState(false);
-
     let showHandler = () => {
         setShowForm(!showForm);
     }
 
     return (
-        <div className='relative'>
+        <div className='relative grow pr-12'>
             {
                 showForm && (
                     <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
                         <Form action='/dashboard/products' method='post'>
-                            <Input input={{ id: "product name", name: "title" }} />
-                            <Input input={{ id: "brand", name: "brand" }} />
-                            <Input input={{ id: "price", name: "price", type: "number" }} />
-                            <Input input={{ id: "category", name: "category", }} />
+                            <div className='flex gap-12 w-full'>
+                                <Input input={{ id: "product name", name: "title" }} />
+                                <Input input={{ id: "brand", name: "brand" }} />
+                            </div>
+
+                            <div className='flex gap-12 w-full'>
+                                <Input input={{ id: "price", name: "price", type: "number" }} />
+                                <div className='flex flex-col relative text-stone-800 w-full'>
+                                    <label for="category" className='absolute -top-4 left-4 bg-stone-200 dark:bg-stone-800 px-2 text-stone-200'>
+                                        Category
+                                    </label>
+                                    <select name="category" className='rounded-md border-2 border-stone-200 bg-transparent text-stone-200 px-3 py-2 outline-none '>
+                                        {categories.map((category) => (
+                                            <option value={category._id} name="category" key={category._id}>
+                                                {category.title}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
 
                             <FileUpload
                                 input={{
@@ -50,7 +65,7 @@ const AuthProducts = () => {
 
             <AddButton showHandler={showHandler} show={showForm} />
 
-            <Items items={products} />
+            <Items items={products} path="product" />
         </div>
     );
 }

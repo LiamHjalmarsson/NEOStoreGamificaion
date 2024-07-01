@@ -2,6 +2,7 @@ import React from 'react';
 import { useCartContext } from '../../../context/cartContext';
 import Image from '../../../components/elements/Image';
 import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
+import { firstLetter } from '../../../utils/textTransformation';
 
 const CartProduct = ({ item }) => {
     let { removeFromCart, addToCart } = useCartContext();
@@ -14,7 +15,7 @@ const CartProduct = ({ item }) => {
                 </div>
                 <div className='py-2 px-4'>
                     <h3 className='font-bold tracking-wide text-xl'>
-                        {item.title}
+                        {firstLetter(item.title)}
                     </h3>
                 </div>
             </div>

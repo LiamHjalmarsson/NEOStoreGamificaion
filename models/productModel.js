@@ -16,8 +16,8 @@ const ProductSchema = new mongoose.Schema(
             required: true,
         },
         category: {
-            type: String,
-            required: true,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Category",
         },
         inStock: {
             type: Boolean,
@@ -31,32 +31,24 @@ const ProductSchema = new mongoose.Schema(
         },
         image: {
             type: String,
-            default: "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg"
         },
         imageId: {
             type: String,
         },
-        images: {
-            type: [String],
-            default: [
-                "https://res.cloudinary.com/dx6tdy5de/image/upload/v1710247670/dl-clothing/kzifiwkrz73k6bx4qpv2.jpg",
-            ],
-        },
         description: {
             type: String,
+            default: "A high-quality product, designed to meet your needs and exceed your expectations."
         },
     },
     { timestamps: true }
 );
 
-export default mongoose.model("Product", ProductSchema);
-
 ProductSchema.pre('save', async function (next) {
     try {
-        let existingCategory = await Category.findOne({ title: this.category });
+        let existingCategory = await Category.findOne({ _id: this.category });
 
         if (!existingCategory) {
-            let newCategory = new Category({ title: this.category, image: this.image, imageId: this.imageId, gender: this.gender });
+            let newCategory = new Category({ title: this.category, image: this.image, imageId: this.imageId });
             await newCategory.save();
         } else {
             existingCategory.itemCount += 1;
@@ -67,3 +59,5 @@ ProductSchema.pre('save', async function (next) {
         next(error);
     }
 });
+
+export default mongoose.model("Product", ProductSchema);
