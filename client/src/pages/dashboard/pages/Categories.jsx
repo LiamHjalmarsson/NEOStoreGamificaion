@@ -10,7 +10,12 @@ import AddButton from '../components/AddButton';
 
 export let addCategoryAction = async ({ request }) => {
     let recourse = await customFetch("category", request, "POST", true);
-    toast.success("Category added successfully");
+
+    if (recourse.error) {
+        toast.error(recourse.error);
+    } else {
+        toast.success("Category added successfully");
+    }
 
     return recourse;
 }

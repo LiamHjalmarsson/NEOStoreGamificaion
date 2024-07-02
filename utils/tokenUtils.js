@@ -13,7 +13,6 @@ export const verifyJWT = (token) => {
 };
 
 export const cookieToken = (value, res) => {
-
     let token = createJWT({
         userId: value._id,
         role: value.role

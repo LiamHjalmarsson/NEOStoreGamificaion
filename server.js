@@ -33,7 +33,6 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET,
 });
 
-
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 if (process.env.NODE_ENV === 'production') {

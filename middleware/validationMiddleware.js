@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import Category from '../models/categoryModel.js';
 import Product from '../models/productModel.js';
 import User from '../models/userModel.js';
+import Achievement from '../models/achievementModel.js';
 
 const withValidationErrors = (values) => {
     return [
@@ -25,6 +26,11 @@ const withValidationErrors = (values) => {
 export const validateCategoryInput = withValidationErrors([
     body("title")
         .notEmpty().withMessage("Title is required")
+        .custom(async (title) => {
+            let category = await Category.findOne({ title });
+
+            if (category) throw new BadRequestError("category already exists");
+        })
 ]);
 
 export const validateProductInput = withValidationErrors([
@@ -34,6 +40,17 @@ export const validateProductInput = withValidationErrors([
         .notEmpty().withMessage("Price is required"),
     body("category")
         .notEmpty().withMessage("Category is required"),
+]);
+
+export const validateAchievementInput = withValidationErrors([
+    body("title")
+        .notEmpty()
+        .withMessage("Title is required")
+        .custom(async (title) => {
+            let achievement = await Achievement.findOne({ title });
+
+            if (achievement) throw new BadRequestError("achievement already exists");
+        })
 ]);
 
 export const validateLoginInput = withValidationErrors([

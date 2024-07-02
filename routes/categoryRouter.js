@@ -6,7 +6,7 @@ import upload from "../middleware/multerMIddleware.js";
 const router = Router();
 
 router.get("/", getAllCategories);
-router.post("/", upload.single("image"), createCategory);
+router.post("/", upload.single("image"), validateCategoryInput, createCategory);
 router.get("/:id", validateParamsCategory, getCategory);
 router.patch("/:id", validateParamsCategory, updateCategory);
 router.delete("/:id", validateParamsCategory, deleteCategory);

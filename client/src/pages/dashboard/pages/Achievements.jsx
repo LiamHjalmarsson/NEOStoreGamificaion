@@ -7,10 +7,17 @@ import { useDashboard } from '../Dashboard';
 import Items from '../components/items/Items';
 import { useRootContext } from '../../Root';
 import AddButton from '../components/AddButton';
+import { toast } from 'react-toastify';
 
 export let addAchievementAction = async ({ request }) => {
-    let data = customFetch("achievement", request, "POST", true);
-    return data;
+    let recourse = await customFetch("achievement", request, "POST", true);
+
+    if (recourse.error) {
+        toast.error(recourse.error);
+    } else {
+        toast.success("Successfully added achievement");
+    }
+    return recourse;
 }
 
 const AuthAchievements = () => {

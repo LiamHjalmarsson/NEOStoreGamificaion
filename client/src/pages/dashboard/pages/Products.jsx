@@ -10,7 +10,12 @@ import AddButton from '../components/AddButton';
 
 export let addProductAction = async ({ request }) => {
     let recourse = await customFetch("product", request, "POST", true);
-    toast.success("Product was added successfully");
+
+    if (recourse.error) {
+        toast.error(recourse.error);
+    } else {
+        toast.success("Product added successfully");
+    }
 
     return recourse;
 }

@@ -8,8 +8,15 @@ import { FaPen, FaTrash } from 'react-icons/fa';
 import AddButton from '../components/AddButton';
 
 export let addRankAction = async ({ request }) => {
-    let data = await customFetch("rank", request);
-    return data;
+    let recourse = await customFetch("rank", request);
+
+    if (recourse.error) {
+        toast.error(recourse.error);
+    } else {
+        toast.success("Product added successfully");
+    }
+
+    return recourse;
 }
 
 const AuthRanks = () => {
