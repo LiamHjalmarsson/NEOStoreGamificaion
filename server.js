@@ -52,6 +52,10 @@ app.use("/api/rank", rankRouter);
 app.use("/api/achievement", achievementRouter);
 app.use("/api/purchase", purchaseRouter);
 
+app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "./public", "index.html"))
+})
+
 app.use("*", (req, res) => {
     res.status(404).json(
         {
