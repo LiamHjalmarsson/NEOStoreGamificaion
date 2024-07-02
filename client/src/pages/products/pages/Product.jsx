@@ -41,7 +41,7 @@ const Product = () => {
                                 price: product.price,
                                 image: product.image,
                             })}
-                            custom="w-full py-4 text-xl"
+                            custom="w-full py-4 text-xl border-rose-600 text-rose-600 hover:text-stone-200 hover:bg-rose-600"
                         >
                             Add to cart
                         </Button>

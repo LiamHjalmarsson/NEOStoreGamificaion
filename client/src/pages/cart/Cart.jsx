@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useCartContext } from '../../context/cartContext';
 import CartForm from './components/CartForm';
 import { useActionData } from 'react-router-dom';
@@ -22,7 +22,7 @@ export const cartAction = async ({ request }) => {
     }
 
     let purchaseObject = {
-        userId: user._id ? user._id : false,
+        userId: user._id ? user._id : "66844a6aa1134d308362685a",
         items: cart.map(item => ({
             productId: item._id,
             quantity: item.quantity,
@@ -37,8 +37,10 @@ export const cartAction = async ({ request }) => {
         body: JSON.stringify(purchaseObject)
     });
 
+    console.log(purchaseResponse);
     let { purchase } = await purchaseResponse.json();
 
+    console.log(purchase);
     if (user) {
         let achievementUpdate = [...user.achievements];
         let ordersCount = user.orders.length + 1;
@@ -69,9 +71,11 @@ const Cart = () => {
     let { clearCart } = useCartContext();
     let { user, ranks } = useRootContext();
     let confirmationPurchase = useActionData();
+    let [showConfirmation, setShowConfirmation] = useState(false);
 
     let confirmationHandler = () => {
         clearCart();
+        setShowConfirmation(false);
     }
 
     let updateRanks = useCallback(async (unlockRankId) => {
@@ -90,13 +94,17 @@ const Cart = () => {
     }, [user.ranks]);
 
     useEffect(() => {
-        if (confirmationPurchase) {
+        
+        if(confirmationPurchase) setShowConfirmation(true)
+            
+        if (confirmationPurchase && user) {
             let upcomingRank = ranks.find(rank => confirmationPurchase.totalPointsEarned < rank.unlockAt);
             let unlockRank = ranks.find(rank => confirmationPurchase.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
 
             if (unlockRank) {
                 updateRanks(unlockRank._id);
             }
+            
         }
     }, [confirmationPurchase, user.ranks]);
 
@@ -107,7 +115,7 @@ const Cart = () => {
                 <CartForm />
             </div>
 
-            {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
+            {showConfirmation && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
         </section >
     );
 }

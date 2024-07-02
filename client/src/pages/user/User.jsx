@@ -5,15 +5,18 @@ import { fetchData } from '../../utils/customFetch';
 
 let userContext = createContext();
 
-export let userProfileLoader = async () => {
+export let userProfileLoader = async ({ params }) => {
+    let { id } = params;
+
     try {
         let { ranks } = await fetchData("rank");
         let achievements = await fetchData("achievement");
-        let { purchase } = await fetchData("purchase");
+        let purchase = await fetchData(`purchase/${id}`);
 
         return {
             ranks,
             achievements,
+            purchase
         }
     } catch (error) {
         return error
@@ -21,7 +24,7 @@ export let userProfileLoader = async () => {
 }
 
 const User = () => {
-    let { ranks, achievements } = useLoaderData();
+    let { ranks, achievements, purchase } = useLoaderData();
     let { user } = useRootContext();
     let { id } = useParams();
     let navigation = useNavigate();
@@ -39,7 +42,7 @@ const User = () => {
     }, []);
 
     return (
-        <userContext.Provider value={{ ranks, achievements, upcomingRank }}>
+        <userContext.Provider value={{ ranks, achievements, upcomingRank, purchase }}>
             <Outlet />
         </userContext.Provider>
     );

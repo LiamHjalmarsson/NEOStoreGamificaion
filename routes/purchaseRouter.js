@@ -1,9 +1,11 @@
 import { Router } from 'express';
 const router = Router();
 
-import {createPurchase, getPurchase } from '../controllers/purchaseController.js';
+import {createPurchase, getPurchases, getPurchase } from '../controllers/purchaseController.js';
 
-router.get('/', getPurchase);
+router.get('/', getPurchases);
 router.post('/', createPurchase);
+
+router.get('/:id', getPurchase);
 
 export default router;

@@ -3,6 +3,7 @@ import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
 import Benefit from '../components/Benefit';
 import { useUserContext } from '../User';
+import { useRootContext } from '../../Root';
 
 let ranks = [
     {
@@ -43,7 +44,6 @@ let ranks = [
 const Benefits = () => {
     let { ranks } = useUserContext();
 
-    console.log(ranks);
     return (
         <div className='pt-24 flex flex-col gap-6'>
             <Heading title="Benefits" />

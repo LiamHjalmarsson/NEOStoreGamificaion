@@ -35,11 +35,14 @@ const Register = () => {
     let error = useActionData();
 
     return (
-        <div className='relative min-h-[93.5vh] w-full flex justify-center items-center bg-stone-800'>
-            <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
+        <div className='relative min-h-[93.5vh] w-full flex justify-center items-center'>
+            <div className='bg-gradient-to-l from-rose-500 to-stone-800 absolute top-0 left-0 w-full h-full'>
+                <img src='/placeholder.png' className='absolute h-full w-full opacity-40' />
+            </div>
+
 
             <div className='relative w-full max-w-md'>
-                    <Form method='post' action='/register' enctype={false} button='Register'>
+                <Form method='post' action='/register' enctype={false} button='Register'>
                     <Heading title="Register" />
 
                     <Input input={{ id: "firstName", placeholder: "Enter first name", name: "firstName" }} error={error} custom="w-full" />
