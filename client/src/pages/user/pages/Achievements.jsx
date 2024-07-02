@@ -21,7 +21,7 @@ const Achievements = () => {
 
             <Navigation />
 
-            <div className='flex flex-col gap-12 mx-auto max-w-3xl w-full mt-12'>
+            <div className='flex gap-12 mx-auto max-w-3xl w-full mt-12'>
                 {
                     achievements.map((achievement, index) => (
                         <div className='bg-stone-200 dark:bg-stone-800 flex flex-col relative justify-center items-center w-52 h-52 shadow transition duration-500' key={index}>

@@ -12,7 +12,7 @@ const FileUpload = ({ text, input, context }) => {
         <>
             {image && <img src={image} alt="Image Preview" className="w-full h-56 object-cover" />}
             <div className="flex items-center justify-center w-full">
-                <label for={input.id} className="text-center w-fit p-4 border border-stone-800 dark:border-stone-200 cursor-pointer mx-auto transition duration-500">
+                <label htmlFor={input.id} className="text-center w-fit p-4 border border-stone-800 dark:border-stone-200 cursor-pointer mx-auto transition duration-500">
                     <p className="">{text}</p>
                     <input
                         {...input}

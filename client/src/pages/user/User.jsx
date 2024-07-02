@@ -1,19 +1,20 @@
 import React, { createContext, useContext, useEffect } from 'react';
 import { Outlet, useLoaderData, useNavigate, useParams } from 'react-router-dom';
 import { useRootContext } from '../Root';
+import { fetchData } from '../../utils/customFetch';
 
 let userContext = createContext();
 
 export let userProfileLoader = async () => {
     try {
-        let responseRank = await fetch("/api/rank");
-        let recourseRank = await responseRank.json();
-        let responseAchievement = await fetch("/api/achievement");
-        let recourseAchievement = await responseAchievement.json();
+        let ranks = await fetchData("rank");
+        let achievements = await fetchData("achievement");
+        let { purchase } = await fetchData("purchase");
 
+        console.log(purchase);
         return {
-            ranks: recourseRank,
-            achievements: recourseAchievement
+            ranks,
+            achievements,
         }
     } catch (error) {
         return error
