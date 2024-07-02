@@ -1,6 +1,6 @@
 import Category from "../models/categoryModel.js"
 import StatusCodes from "http-status-codes";
-import { v2 as cloudinary } from "cloudinary";
+import { addItemWithImage, deleteImage, updateImage } from "../utils/imageUtils.js";
 
 export const getAllCategories = async (req, res) => {
     let categories = await Category.find({});
@@ -8,18 +8,15 @@ export const getAllCategories = async (req, res) => {
 }
 
 export const createCategory = async (req, res) => {
-    let newCategory = { ...req.body };
+    let newCategory = { ...req.body }
 
     if (req.file) {
-        let response = await cloudinary.uploader.upload(req.file.path, { folder: "categories" });
-
-        newCategory.image = response.secure_url;
-        newCategory.imageId = response.public_id;
+        newCategory = await addItemWithImage(req, newCategory, "categories");
     }
 
     let category = await Category.create(newCategory);
 
-    res.status(StatusCodes.CREATED).json(newCategory);
+    res.status(StatusCodes.CREATED).json(category);
 }
 
 export const getCategory = async (req, res) => {
@@ -32,19 +29,15 @@ export const getCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
     let newCategory = { ...req.body };
-
+    
     if (req.file) {
-        let response = await cloudinary.uploader.upload(req.file.path, { folder: "categories" });
-        await fstat.unlink(req.file.path);
-
-        newCategory.image = response.secure_url;
-        newCategory.imageId = response.public_id;
+        newCategory = updateImage(req, newCategory, "categories");
     }
 
     let updateCategory = await Category.findByIdAndUpdate(req.params.id, newCategory);
 
     if (req.file && updateCategory.imageId) {
-        await cloudinary.uploader.destroy(updateCategory.imageId)
+        deleteImage(updateCategory.imageId)
     }
 
     res.status(StatusCodes.OK).json({ message: "category updated" });
@@ -55,7 +48,7 @@ export const deleteCategory = async (req, res) => {
     let category = await Category.findByIdAndDelete(id);
 
     if (category.imageId) {
-        await cloudinary.uploader.destroy(category.imageId);
+        deleteImage(category.imageId)
     }
 
     res.status(StatusCodes.OK).json({ message: "Category was deleted successfully" });

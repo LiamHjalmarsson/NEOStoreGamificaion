@@ -19,9 +19,7 @@ export const registerUser = async (req, res) => {
 }
 
 export const loginUser = async (req, res) => {
-    let user = await User.findOne({
-        email: req.body.email
-    });
+    let user = await User.findOne({ email: req.body.email });
 
     if (!user) {
         throw new UnauthenticatedError("Invalid credentials");
@@ -35,9 +33,7 @@ export const loginUser = async (req, res) => {
 
     let token = cookieToken(user, res);
 
-    res.status(StatusCodes.OK).json({
-        token
-    });
+    res.status(StatusCodes.OK).json({ token });
 }
 
 export const logoutUser = async (req, res) => {

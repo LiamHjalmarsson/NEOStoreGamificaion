@@ -8,10 +8,13 @@ export const getAchievements = async (req, res) => {
 }
 
 export const createAchievement = async (req, res) => {
-    let newAchievement = await addItemWithImage(req, {...req.body}, "achievements");
-    
+    let newAchievement = {...req.body }
+
+    if (req.file) {
+        newAchievement = await addItemWithImage(req, newAchievement, "achievements");
+    }
+
     let achievement = await Achievement.create(newAchievement);
-    
     res.status(StatusCodes.OK).json(achievement);
 }
 
@@ -28,7 +31,8 @@ export const updateAchievement = async (req, res) => {
 export const deleteAchievement = async (req, res) => {
     let achievement = await Achievement.findByIdAndDelete(req.params.id);
 
-    deleteImage(achievement.imageId);
-
+    if (achievement.imageId) {
+        deleteImage(achievement.imageId);
+    }
     res.status(StatusCodes.OK).json(achievement);
 }

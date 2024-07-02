@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes";
 import Product from "../models/productModel.js"
-import { v2 as cloudinary } from "cloudinary";
+import { addItemWithImage, deleteImage } from "../utils/imageUtils.js";
 
 export const getProducts = async (req, res) => {
     let products = await Product.find({});
@@ -11,10 +11,7 @@ export const createProducts = async (req, res) => {
     let newProduct = { ...req.body };
 
     if (req.file) {
-        let response = await cloudinary.uploader.upload(req.file.path, { folder: "products" });
-
-        newProduct.image = response.secure_url;
-        newProduct.imageId = response.public_id;
+        newProduct = await addItemWithImage(req, newProduct, "product");
     }
 
     await Product.create(newProduct);
@@ -43,7 +40,7 @@ export const deleteProduct = async (req, res) => {
     let product = await Product.findByIdAndDelete(id);
 
     if (product.imageId) {
-        await cloudinary.uploader.destroy(category.imageId);
+        deleteImage(product.imageId);
     }
 
     res.status(StatusCodes.OK).json({ message: "Product was deleted successfully" });

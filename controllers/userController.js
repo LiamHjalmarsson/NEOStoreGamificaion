@@ -5,6 +5,7 @@ import Category from "../models/categoryModel.js";
 import Purchase from "../models/purchaseModel.js";
 import { v2 as cloudinary } from 'cloudinary';
 import { promises as fs } from "fs";
+import { deleteImage } from "../utils/imageUtils.js";
 
 export const getUsers = async (req, res) => {
     let users = await User.find({});
@@ -31,15 +32,19 @@ export const updateUser = async (req, res) => {
     let updatedUser = await User.findByIdAndUpdate(req.user.userId, newUser);
 
     if (req.file && updatedUser.avatarPublicId) {
-        await cloudinary.uploader.destroy(updatedUser.avatarPublicId);
+        deleteImage(updatedUser.avatarPublicId)
     }
 
     res.status(StatusCodes.OK).json({ message: "user updated" });
 }
 
 export const deleteUser = async (req, res) => {
-    await User.findByIdAndDelete({ _id: req.user.userId });
+    let user = await User.findByIdAndDelete({ _id: req.user.userId });
 
+    if (user.avatarPublicId) {
+        deleteImage(user.avatarPublicId);
+    }
+    
     res.cookie("token", "logout", {
         httpOnly: true,
         expires: new Date(Date.now())
