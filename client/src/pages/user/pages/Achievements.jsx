@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
-import { FaLock, FaTrophy } from 'react-icons/fa';
+import { FaLock } from 'react-icons/fa';
 import { useUserContext } from '../User';
 import { useRootContext } from '../../Root';
 import { firstLetter } from '../../../utils/textTransformation';

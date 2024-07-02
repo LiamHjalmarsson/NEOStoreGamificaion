@@ -15,5 +15,3 @@ export const getPurchase = async (req, res) => {
     let purchase = await Purchase.find({ userId: req.params.id });
     res.status(StatusCodes.OK).json(purchase);
 }
-
-export default createPurchase;

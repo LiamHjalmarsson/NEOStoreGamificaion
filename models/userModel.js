@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import Achievement from "./achievementModel.js";
 import Rank from "./rankModel.js";
-import { type } from "os";
 
 const UserSchema = mongoose.Schema(
     {
