@@ -1,7 +1,10 @@
 import React from 'react';
 import ProgressBar from './ProgressBar';
+import { useUserContext } from '../User';
 
 const Banner = ({ user }) => {
+    let { upcomingRank } = useUserContext();
+
     return (
         <div className='relative h-[30vh] bg-gradient-to-l from-slate-400 via-slate-600 to-slate-800 flex justify-center items-center'>
             <div className='w-1/2 absolute left-0'>
@@ -36,7 +39,7 @@ const Banner = ({ user }) => {
                     </span>
                 </div>
 
-                <ProgressBar totalUserPoints={user.totalPointsEarned} unlockNextRank={20000} />
+                <ProgressBar totalUserPoints={user.totalPointsEarned} unlockNextRank={upcomingRank.unlockAt} />
             </div>
         </div>
     );

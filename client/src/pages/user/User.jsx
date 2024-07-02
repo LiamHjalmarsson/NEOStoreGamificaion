@@ -7,11 +7,10 @@ let userContext = createContext();
 
 export let userProfileLoader = async () => {
     try {
-        let ranks = await fetchData("rank");
+        let { ranks } = await fetchData("rank");
         let achievements = await fetchData("achievement");
         let { purchase } = await fetchData("purchase");
 
-        console.log(purchase);
         return {
             ranks,
             achievements,
@@ -27,6 +26,8 @@ const User = () => {
     let { id } = useParams();
     let navigation = useNavigate();
 
+    let upcomingRank = ranks.find(rank => user.totalPointsEarned < rank.unlockAt);
+
     useEffect(() => {
         if (!user) {
             navigation("/register");
@@ -38,7 +39,7 @@ const User = () => {
     }, []);
 
     return (
-        <userContext.Provider value={{ ranks, achievements }}>
+        <userContext.Provider value={{ ranks, achievements, upcomingRank }}>
             <Outlet />
         </userContext.Provider>
     );
