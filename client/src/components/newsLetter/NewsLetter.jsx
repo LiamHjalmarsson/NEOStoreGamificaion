@@ -66,22 +66,13 @@ const NewsLetter = () => {
 
                         <input type="hidden" name="user" value={JSON.stringify(user)} />
 
-                        <Input input={{ id: "email", placeholder: "Enter email" }} custom="w-full" />
+                        {
+                            data && <p className='font-bold text-lg text-rose-600'> YOUR CODE {data} </p>
+                        }
+                        <Input input={{ id: "email", placeholder: "Enter email" }} custom="" />
                     </Form>
                 </div>
             )}
-            {
-                data && (
-                    <div>
-                        <h1>
-                            Your now part of our newsletter
-                        </h1>
-                        <p>
-                            {data}
-                        </p>
-                    </div>
-                )
-            }
         </>
     );
 }
