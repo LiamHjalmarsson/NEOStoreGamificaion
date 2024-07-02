@@ -22,7 +22,7 @@ import achievementRouter from "./routes/achievementRouter.js";
 import purchaseRouter from "./routes/purchaseRouter.js";
 
 // Middleware
-import errorHandlerMiddleware from './middleware/ErrorHandlerMiddleware.js';
+import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 import {authenticateUser} from './middleware/authMiddleware.js';
 
 const app = express();
