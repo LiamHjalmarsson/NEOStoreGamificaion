@@ -3,7 +3,7 @@ import Rank from "../models/rankModel.js"
 
 export const getRanks = async (req, res) => {
     let ranks = await Rank.find({});
-    res.status(StatusCodes.OK).json(ranks);
+    res.status(StatusCodes.OK).json({ranks});
 }
 
 export const createRank = async (req, res) => {

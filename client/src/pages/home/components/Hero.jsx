@@ -4,7 +4,6 @@ import { useRootContext } from '../../Root';
 
 const Hero = () => {
     let { products } = useRootContext();
-
     let randomIndex = Math.floor(Math.random() * products.length);
     
     return (

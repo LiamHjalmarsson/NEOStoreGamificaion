@@ -8,7 +8,7 @@ const Category = () => {
     let { categories, products } = useRootContext();
 
     let category = categories.find(category => category.title === id);
-    let categoryProducts = products.filter(product => product.category === category.title);
+    let categoryProducts = products.filter(product => product.category === category._id);
 
     return (
         <section className='pt-12'>

@@ -21,7 +21,7 @@ export let dashBoardLoader = async () => {
 
         let achievements = await fetchData("achievement");
 
-        let ranks = await fetchData("rank");
+        let { ranks } = await fetchData("rank");
 
         let { purchase } = await fetchData("purchase");
 

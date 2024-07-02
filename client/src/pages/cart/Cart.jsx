@@ -5,6 +5,7 @@ import { useActionData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import CartDetails from './components/CartDetails';
 import CartConfirmation from './components/CartConfirmation';
+import { useRootContext } from '../Root';
 
 export const cartAction = async ({ request }) => {
     let formData = await request.formData();
@@ -23,7 +24,7 @@ export const cartAction = async ({ request }) => {
     let purchaseObject = {
         userId: user._id ? user._id : false,
         items: cart.map(item => ({
-            productId: item.id,
+            productId: item._id,
             quantity: item.quantity,
             price: item.price
         })),
@@ -36,39 +37,69 @@ export const cartAction = async ({ request }) => {
         body: JSON.stringify(purchaseObject)
     });
 
+    console.log(cart);
+    console.log(purchaseResponse);
     let { purchase } = await purchaseResponse.json();
 
     if (user) {
         let achievementUpdate = [...user.achievements];
         let ordersCount = user.orders.length + 1;
-    
+
         if (ordersCount === 1) {
             achievementUpdate.push('6681828a064778b8918cfebd');
         }
-    
-        await fetch(`/api/user/update-user`, {
+
+        let response = await fetch(`/api/user/update-user`, {
             method: "PATCH",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 pointsEarned: user.pointsEarned - discount + earnedPoints,
                 totalPointsEarned: user.totalPointsEarned + earnedPoints,
                 orders: [...user.orders, purchase._id],
-                achievements: achievementUpdate
+                achievements: achievementUpdate,
             })
         });
-    }
 
+        let updatedUser = await response.json();
+
+        return { cart, purchase, updatedUser };
+    }
 
     return { cart, purchase };
 }
 
 const Cart = () => {
     let { clearCart } = useCartContext();
+    let { user, ranks } = useRootContext();
     let confirmationPurchase = useActionData();
+
 
     let confirmationHandler = () => {
         clearCart();
     }
+
+    useEffect(() => {
+        let upcomingRank = ranks.find(rank => user.totalPointsEarned < rank.unlockAt);
+        let unlockRank = ranks.find(rank => user.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
+
+        if (unlockRank) {
+            let fetch = async () => {
+                let response = await fetch(`/api/user/update-user`, {
+                    method: "PATCH",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        ranks: [...ranks, unlockRank._id],
+                    })
+                });
+
+                console.log(response.json());
+
+            }
+
+            fetch();
+        }
+
+    }, [confirmationPurchase]);
 
     return (
         <section className='w-full min-h-[90vh] flex flex-col relative'>

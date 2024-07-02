@@ -33,7 +33,7 @@ const UserSchema = mongoose.Schema(
             type: Number,
             default: 0,
         },
-        rank: [{
+        ranks: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: Rank,
         }],

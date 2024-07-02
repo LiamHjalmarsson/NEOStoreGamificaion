@@ -12,12 +12,14 @@ export let loader = async () => {
         let { products } = await fetchData("product");
         let { user } = await fetchData("user/current-user");
         let { achievements } = await fetchData("achievement");
+        let { ranks } = await fetchData("rank");
 
         return {
             categories,
             products,
             user: user || false,
-            achievements
+            achievements,
+            ranks
         };
     } catch (error) {
         return error;
@@ -25,7 +27,7 @@ export let loader = async () => {
 }
 
 const Root = () => {
-    let { categories, products, user, achievements } = useLoaderData();
+    let { categories, products, user, achievements, ranks } = useLoaderData();
 
     let logout = async (e) => {
         await fetch("/api/auth/logout");
@@ -46,7 +48,7 @@ const Root = () => {
     }
 
     return (
-        <rootContext.Provider value={{ categories, products, user, achievements, logout, deleteItem }}>
+        <rootContext.Provider value={{ categories, products, user, achievements, ranks, logout, deleteItem }}>
             <Navigation />
             <main className='min-h-screen bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200 duration-500 transition-colors relative pt-24'>
                 <Outlet />
