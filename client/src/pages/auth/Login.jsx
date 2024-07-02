@@ -43,8 +43,8 @@ const Login = () => {
                 <Form method='post' action='/login' button='Login' enctype={false}>
                     <Heading title="Login" />
 
-                    <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} />
-                    <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} />
+                    <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} custom="w-full"/>
+                    <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} custom="w-full"/>
 
                     <div className='text-center'>
                         <p>

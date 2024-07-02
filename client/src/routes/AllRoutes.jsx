@@ -21,6 +21,7 @@ import Settings, { updateUser } from "../pages/user/pages/Settings";
 import AuthAchievements, { addAchievementAction } from "../pages/dashboard/pages/achievements";
 import AuthRanks, { addRankAction } from "../pages/dashboard/pages/Ranks";
 import AuthUsers from "../pages/dashboard/pages/Users";
+import { newsLetterAction } from "../components/newsLetter/NewsLetter";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -30,7 +31,8 @@ const AllRoutes = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <Home />
+                element: <Home />,
+                action: newsLetterAction
             },
             {
                 path: "login",

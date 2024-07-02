@@ -1,22 +1,36 @@
 import React, { useState } from 'react';
 import Input from '../elements/Input';
-import Button from '../elements/Button';
-import { customFetch } from '../../utils/customFetch';
+import Form from '../form/Form';
+import Gifts from './Gifts';
+import { useRootContext } from '../../pages/Root';
+import { redirect, useActionData } from 'react-router-dom';
+
+export const newsLetterAction = async ({ request }) => {
+    let formData = await request.formData();
+    let discount = formData.get("discount");
+    let user = JSON.parse(formData.get("user"));
+
+    if (!user) {
+
+    } else {
+        await fetch(`/api/user/update-user`, {
+            method: "PATCH",
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                partOfNewsLetter: true,
+                discounts: [...user.discounts, discount],
+                achievements: [...user.achievements, "66833a96b7df31f5d3fb7a82"]
+            })
+        });
+    }
+
+    return discount;
+}
 
 const NewsLetter = () => {
+    let { user } = useRootContext();
+    let data = useActionData();
     let [open, setOpen] = useState(false);
-
-    let signUpHandler = async (e) => {
-        e.preventDefault();
-
-        let update = {
-            partOfNewsLetter: true
-        }
-
-        let recourse = await customFetch("user/update-user", update, "PATCH");
-
-        console.log(recourse);
-    }
 
     return (
         <>
@@ -38,14 +52,36 @@ const NewsLetter = () => {
 
             {open && (
                 <div className='fixed bottom-0 -left-0 h-full w-full bg-stone-800 z-20 bg-opacity-70 flex justify-center items-center'>
-                    <form className='bg-slate-200 p-12 flex flex-col gap-6' onSubmit={signUpHandler}>
-                        <Input input={{ id: "email", placeholder: "Enter email" }} />
-                        <Button type="submit">
-                            Sign up
-                        </Button>
-                    </form>
+                    <Form action="" method="post" className='bg-slate-200 p-12 flex flex-col gap-6'>
+                        <div className='text-center'>
+                            <h3 className='text-3xl font-semibold mb-2'>
+                                Join our newsletter
+                            </h3>
+                            <p className='text-lg tracking-wide font-semibold text-rose-600'>
+                                Chose a mystery gift to get when you sign up!
+                            </p>
+                        </div>
+
+                        <Gifts />
+
+                        <input type="hidden" name="user" value={JSON.stringify(user)} />
+
+                        <Input input={{ id: "email", placeholder: "Enter email" }} custom="w-full" />
+                    </Form>
                 </div>
             )}
+            {
+                data && (
+                    <div>
+                        <h1>
+                            Your now part of our newsletter
+                        </h1>
+                        <p>
+                            {data}
+                        </p>
+                    </div>
+                )
+            }
         </>
     );
 }
