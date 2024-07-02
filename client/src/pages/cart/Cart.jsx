@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useCartContext } from '../../context/cartContext';
 import CartForm from './components/CartForm';
 import { useActionData } from 'react-router-dom';
@@ -37,32 +37,29 @@ export const cartAction = async ({ request }) => {
         body: JSON.stringify(purchaseObject)
     });
 
-    console.log(cart);
-    console.log(purchaseResponse);
     let { purchase } = await purchaseResponse.json();
 
     if (user) {
         let achievementUpdate = [...user.achievements];
         let ordersCount = user.orders.length + 1;
 
+        let totalPointsEarned = user.totalPointsEarned + earnedPoints
         if (ordersCount === 1) {
             achievementUpdate.push('6681828a064778b8918cfebd');
         }
 
-        let response = await fetch(`/api/user/update-user`, {
+        await fetch(`/api/user/update-user`, {
             method: "PATCH",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 pointsEarned: user.pointsEarned - discount + earnedPoints,
-                totalPointsEarned: user.totalPointsEarned + earnedPoints,
+                totalPointsEarned,
                 orders: [...user.orders, purchase._id],
                 achievements: achievementUpdate,
             })
         });
 
-        let updatedUser = await response.json();
-
-        return { cart, purchase, updatedUser };
+        return { cart, purchase, totalPointsEarned };
     }
 
     return { cart, purchase };
@@ -73,33 +70,35 @@ const Cart = () => {
     let { user, ranks } = useRootContext();
     let confirmationPurchase = useActionData();
 
-
     let confirmationHandler = () => {
         clearCart();
     }
 
-    useEffect(() => {
-        let upcomingRank = ranks.find(rank => user.totalPointsEarned < rank.unlockAt);
-        let unlockRank = ranks.find(rank => user.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
+    let updateRanks = useCallback(async (unlockRankId) => {
+        try {
+            await fetch(`/api/user/update-user`, {
+                method: "PATCH",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    ranks: [...user.ranks, unlockRankId],
+                }),
+            });
 
-        if (unlockRank) {
-            let fetch = async () => {
-                let response = await fetch(`/api/user/update-user`, {
-                    method: "PATCH",
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        ranks: [...ranks, unlockRank._id],
-                    })
-                });
-
-                console.log(response.json());
-
-            }
-
-            fetch();
+        } catch (error) {
+            console.error("Error updating ranks:", error);
         }
+    }, [user.ranks]);
 
-    }, [confirmationPurchase]);
+    useEffect(() => {
+        if (confirmationPurchase) {
+            let upcomingRank = ranks.find(rank => confirmationPurchase.totalPointsEarned < rank.unlockAt);
+            let unlockRank = ranks.find(rank => confirmationPurchase.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
+
+            if (unlockRank) {
+                updateRanks(unlockRank._id);
+            }
+        }
+    }, [confirmationPurchase, user.ranks]);
 
     return (
         <section className='w-full min-h-[90vh] flex flex-col relative'>
@@ -108,7 +107,7 @@ const Cart = () => {
                 <CartForm />
             </div>
 
-            {/* {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />} */}
+            {confirmationPurchase && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
         </section >
     );
 }

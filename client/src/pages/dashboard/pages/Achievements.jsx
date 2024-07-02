@@ -28,8 +28,8 @@ const AuthAchievements = () => {
                 showForm && (
                     <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
                         <Form action='/dashboard/achievements' method='post'>
-                            <Input input={{ id: "title", name: "title" }} />
-                            <Input input={{ id: "points", name: "points", type: "number" }} />
+                            <Input input={{ id: "title", name: "title" }} custom="w-full"/>
+                            <Input input={{ id: "points", name: "points", type: "number" }} custom="w-full"/>
 
                             <FileUpload
                                 input={{
@@ -47,7 +47,7 @@ const AuthAchievements = () => {
 
             <AddButton showHandler={showHandler} show={showForm} />
 
-            <Items items={achievements} onDelete={deleteItem} />
+            <Items items={achievements} path="achievement" />
         </div>
     );
 }

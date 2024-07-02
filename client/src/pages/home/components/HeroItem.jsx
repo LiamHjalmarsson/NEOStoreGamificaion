@@ -10,7 +10,7 @@ const HeroItem = ({ item }) => {
                     <h2 className='text-xl 2xl:text-3xl'>
                         New Product
                     </h2>
-                    <h1 className='text-3xl 2xl:text-5xl font-semibold text-rose-500'>
+                    <h1 className='text-3xl 2xl:text-5xl font-semibold text-rose-600'>
                         {
                             item.title.slice(0, 1).toUpperCase() + item.title.slice(1)
                         }

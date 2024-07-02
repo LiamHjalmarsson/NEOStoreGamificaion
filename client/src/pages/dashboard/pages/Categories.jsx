@@ -29,7 +29,7 @@ const AuthCategories = () => {
                 showForm && (
                     <div className='absolute z-20 h-full w-full flex justify-center items-center'>
                         <Form action='/dashboard/categories' method='post' enctype={true}>
-                            <Input input={{ id: "category", name: "title" }} />
+                            <Input input={{ id: "category", name: "title" }} custom="w-full" />
                             <FileUpload
                                 input={{
                                     type: 'file',

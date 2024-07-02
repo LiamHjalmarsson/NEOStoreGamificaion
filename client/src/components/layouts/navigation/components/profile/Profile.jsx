@@ -18,7 +18,7 @@ const Profile = ({ open }) => {
     }
 
     return (
-        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 text-stone-800 dark:bg-stone-800 dark:text-stone-200 top-32 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
+        <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 text-stone-800 dark:bg-stone-800 shadow shadow-rose-600 dark:text-stone-200 top-32 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>
             {
                 user && (
                     <div className='flex flex-col gap-4 justify-center items-center'>

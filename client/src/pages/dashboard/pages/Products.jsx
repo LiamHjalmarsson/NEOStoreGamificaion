@@ -28,10 +28,8 @@ const AuthProducts = () => {
                 showForm && (
                     <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
                         <Form action='/dashboard/products' method='post'>
-                            <div className='flex gap-12 w-full'>
-                                <Input input={{ id: "product name", name: "title" }} />
-                                <Input input={{ id: "brand", name: "brand" }} />
-                            </div>
+                            <Input input={{ id: "product name", name: "title" }} custom="w-full" />
+                            <Input input={{ id: "brand", name: "brand" }} custom="w-full" />
 
                             <div className='flex gap-12 w-full'>
                                 <Input input={{ id: "price", name: "price", type: "number" }} />

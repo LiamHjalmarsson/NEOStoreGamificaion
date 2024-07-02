@@ -22,10 +22,10 @@ const Items = ({ items, path }) => {
             <div className={`grid-cols-1 lg:grid-cols-2 2xl:grid-cols-4 gap-6 xl:gap-12 grid justify-center items-center px-6 xl:px-12 pb-12 mt-12`}>
                 {items.map((item, index) => (
                     <div key={index} className='relative'>
-                        <div className='absolute top-4 right-4 p-4 z-10 rounded-full bg-blue-400 hover:bg-blue-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => edithHandler(item)}>
+                        <div className='absolute top-4 right-4 p-4 z-10 rounded-full bg-blue-500 hover:bg-blue-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => edithHandler(item)}>
                             <FaPen />
                         </div>
-                        <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
+                        <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-500 hover:bg-red-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
                             <FaTrashCan />
                         </div>
                         <div className='flex-grow min-w-64 relative group bg-stone-800 flex justify-center items-center overflow-hidden rounded-3xl'>

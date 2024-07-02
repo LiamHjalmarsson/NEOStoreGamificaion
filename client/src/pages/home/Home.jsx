@@ -7,9 +7,8 @@ import ProductsContainer from '../../components/product/Products';
 import { useRootContext } from '../Root';
 
 const Home = () => {
-    let { products, user } = useRootContext();
+    let { products } = useRootContext();
 
-    console.log(user);
     return (
         <div className='flex flex-col gap-24'>
             <Hero />
@@ -21,7 +20,7 @@ const Home = () => {
 
             <div>
                 <FeaturedCategories />
-                {!user.partOfNewsLetter && <NewsLetter />}
+                <NewsLetter />
             </div>
         </div>
     );

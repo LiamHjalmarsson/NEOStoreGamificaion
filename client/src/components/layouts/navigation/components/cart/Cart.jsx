@@ -38,7 +38,7 @@ const Cart = ({ onClose, open }) => {
                     <Button onclick={clearCart}>
                         Clear cart
                     </Button>
-                    <LinkButton onclick={onClose} href="/cart" custom="dark:bg-rose-500 dark:text-stone-200">
+                    <LinkButton onclick={onClose} href="/cart" custom="dark:bg-rose-600 dark:text-stone-200">
                         Checkout
                     </LinkButton>
                 </div>

@@ -14,7 +14,7 @@ const Stats = () => {
     let maxOrders = Math.max(...ordersPerMonth);
 
     return (
-        <div className='w-full flex flex-col gap-6 p-4 md:p-6'>
+        <div className='w-full flex flex-col gap-6 p-4 md:px-6 md:pt-12'>
             <div className='flex flex-wrap gap-6 w-full justify-center'>
                 {
                     Object.entries(stats).map((stat, index) => (
@@ -23,7 +23,7 @@ const Stats = () => {
                 }
             </div>
 
-            <div className='p-4 md:p-8 bg-stone-200 dark:bg-stone-800 w-full flex flex-col grow rounded-2xl'>
+            <div className='p-4 md:px-8 bg-stone-200 dark:bg-stone-800 w-full flex flex-col grow rounded-2xl'>
                 <div className='h-full grow hidden lg:flex justify-between w-full pt-4 md:pt-8 gap-4 min-h-96'>
                     {
                         months.map((month, index) => (

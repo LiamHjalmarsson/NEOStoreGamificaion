@@ -16,11 +16,11 @@ const Edith = ({ item, close, path }) => {
     return (
         <div className='absolute w-full h-full flex justify-center items-center top-0'>
             <form method='patch' encType='multipart/form-data' className={`shadow max-w-3xl w-full p-4 lg:p-6 bg-stone-200 dark:bg-stone-800 fixed transition duration-500 z-20`} onSubmit={submitUpdate}>
-                <div className='relative'>
-                    <div className='absolute -top-6 lg:top-4 left-2 lg:left-4 p-4 z-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
+                <div className='relative p-2 flex justify-between'>
+                    <div className='p-4 z-10 w-fit rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-500 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
                         <FaTrashCan />
                     </div>
-                    <div className='absolute -top-6 lg:top-4 right-2 lg:right-4 p-4 z-10 rounded-full bg-blue-400 text-stone-200' onClick={close} >
+                    <div className='p-4 z-10 w-fit rounded-full bg-blue-400 hover:bg-blue-500 text-stone-200 cursor-pointer duration-500' onClick={close} >
                         <FaX />
                     </div>
                 </div>

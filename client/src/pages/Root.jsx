@@ -39,6 +39,8 @@ const Root = () => {
                 method: 'DELETE',
             });
 
+            console.log(response);
+
             await response.json();
 
             toast.success("Item was deleted successfully");
