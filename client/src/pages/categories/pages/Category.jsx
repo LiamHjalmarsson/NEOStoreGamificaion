@@ -11,9 +11,9 @@ const Category = () => {
     let categoryProducts = products.filter(product => product.category === category._id);
 
     return (
-        <section className='pt-12'>
+        <div className='pt-12'>
             <ProductsContainer products={categoryProducts} />
-        </section>
+        </div>
     );
 }
 
