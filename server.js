@@ -44,9 +44,9 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
+app.use("/api/user", authenticateUser, userRouter);
 app.use("/api/category", categoryRouter);
 app.use("/api/product", productRouter);
-app.use("/api/user", authenticateUser, userRouter);
 app.use("/api/rank", rankRouter);
 app.use("/api/achievement", achievementRouter);
 app.use("/api/purchase", purchaseRouter);

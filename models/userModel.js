@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Achievement from "./achievementModel.js";
 import Rank from "./rankModel.js";
+import Purchase from "./purchaseModel.js";
 
 const UserSchema = mongoose.Schema(
     {
@@ -66,7 +67,7 @@ const UserSchema = mongoose.Schema(
         },
         orders: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'Purchase'
+            ref: Purchase
         }],
         role: {
             type: String,

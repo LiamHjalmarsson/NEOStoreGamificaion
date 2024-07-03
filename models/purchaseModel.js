@@ -6,12 +6,12 @@ const PurchaseSchema = new mongoose.Schema(
     {
         userId: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'User',
+            ref: "User"
         },
         items: [{
             productId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Product',
+                ref: Product,
                 required: true
             },
             quantity: {

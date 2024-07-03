@@ -15,7 +15,7 @@ const CategorySchema = new mongoose.Schema(
         },
         imageId: {
             type: String,
-        }
+        },
     },
     { timestamps: true }
 );
