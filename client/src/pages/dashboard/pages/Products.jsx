@@ -40,7 +40,7 @@ const AuthProducts = () => {
                             <div className='flex gap-12 w-full'>
                                 <Input input={{ id: "price", name: "price", type: "number" }} />
                                 <div className='flex flex-col relative text-stone-800 w-full'>
-                                    <label for="category" className='absolute -top-4 left-4 bg-stone-200 dark:bg-stone-800 px-2 text-stone-200'>
+                                    <label htmlFor="category" className='absolute -top-4 left-4 bg-stone-200 dark:bg-stone-800 px-2 text-stone-200'>
                                         Category
                                     </label>
                                     <select name="category" className='rounded-md border-2 border-stone-200 bg-transparent text-stone-200 px-3 py-2 outline-none '>

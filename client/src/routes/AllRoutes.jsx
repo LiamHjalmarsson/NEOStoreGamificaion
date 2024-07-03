@@ -22,6 +22,7 @@ import AuthAchievements, { addAchievementAction } from "../pages/dashboard/pages
 import AuthRanks, { addRankAction } from "../pages/dashboard/pages/Ranks";
 import AuthUsers from "../pages/dashboard/pages/Users";
 import { newsLetterAction } from "../components/newsLetter/NewsLetter";
+import Errors from "../pages/errors/Errors";
 
 const AllRoutes = createBrowserRouter([
     {
@@ -32,7 +33,7 @@ const AllRoutes = createBrowserRouter([
             {
                 index: true,
                 element: <Home />,
-                action: newsLetterAction
+                action: newsLetterAction,
             },
             {
                 path: "login",
@@ -124,12 +125,16 @@ const AllRoutes = createBrowserRouter([
                     {
                         path: "settings",
                         element: <Settings />,
-                        action: updateUser
+                        action: updateUser,
                     },
                 ]
             }
         ]
     },
+    {
+        path: "*",
+        element: <Errors />
+    }
 ]);
 
 export default AllRoutes;

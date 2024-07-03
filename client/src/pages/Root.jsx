@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { Outlet, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import Navigation from '../components/layouts/navigation/Navigation';
 import { toast } from 'react-toastify';
 import { fetchData } from '../utils/customFetch';
@@ -40,7 +40,6 @@ const Root = () => {
 
     let deleteItem = async (path) => {
         try {
-            navigate(pathname);
             let response = await fetch(`/api/${path}`, {
                 method: 'DELETE',
             });

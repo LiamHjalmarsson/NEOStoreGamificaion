@@ -1,8 +1,8 @@
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
 
-export const addItemWithImage = async (req, obj, folderName) => {
-    let response = await cloudinary.uploader.upload(req.file.path, { folder: folderName });
+export const addItemWithImage = async (req, obj, folderName, width = 1400, height=900) => {
+    let response = await cloudinary.uploader.upload(req.file.path, { folder: folderName, width, height, crop: "limit" });
     await fs.unlink(req.file.path);
 
     obj.image = response.secure_url;
@@ -21,6 +21,6 @@ export const updateImage = async (req, obj, folderName) => {
 
     obj.image = response.secure_url;
     obj.imageId = response.public_id;
-    
+
     return obj;
 }

@@ -4,7 +4,7 @@ import { FaTrashCan } from 'react-icons/fa6';
 import { firstLetter } from '../../../../utils/textTransformation';
 import { useRootContext } from '../../../Root';
 
-const Item = ({ item, openEdith }) => {
+const Item = ({ item, openEdith, path }) => {
     let { deleteItem } = useRootContext();
 
     return (

@@ -3,11 +3,10 @@ import Input from '../../../components/elements/Input';
 import Form from '../../../components/form/Form';
 import { customFetch } from '../../../utils/customFetch';
 import { useDashboard } from '../Dashboard';
-import { useRootContext } from '../../Root';
-import { FaPen, FaTrash } from 'react-icons/fa';
 import AddButton from '../components/AddButton';
 import Item from '../components/items/Item';
 import Edith from '../components/items/Edith';
+import { toast } from 'react-toastify';
 
 export let addRankAction = async ({ request }) => {
     let recourse = await customFetch("rank", request);
