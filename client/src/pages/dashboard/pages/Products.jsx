@@ -23,6 +23,7 @@ export let addProductAction = async ({ request }) => {
 const AuthProducts = () => {
     let { products, categories } = useRootContext();
     let [showForm, setShowForm] = useState(false);
+    
     let showHandler = () => {
         setShowForm(!showForm);
     }

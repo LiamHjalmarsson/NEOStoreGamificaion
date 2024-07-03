@@ -1,34 +1,18 @@
 import React from 'react';
-import { Link, redirect, useActionData, useLoaderData, useNavigate } from 'react-router-dom';
+import { Link, redirect, useActionData } from 'react-router-dom';
 import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
 import Form from '../../components/form/Form';
+import { customFetch } from '../../utils/customFetch';
 
 export const loginAction = async ({ request }) => {
-    let formData = await request.formData();
-    let data = Object.fromEntries(formData);
+    let recourse = await customFetch("auth/login", request);
 
-    try {
-        let response = await fetch("/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-
-        let recourse = await response.json();
-
-        if (recourse.error) {
-            return recourse.error
-        } else {
-            localStorage.setItem("userToken", JSON.stringify(recourse.token));
-
-            return redirect("/");
-        }
-
-    } catch (error) {
-        return error;
+    if (recourse.error) {
+        return recourse.error;
+    } else {
+        localStorage.setItem("userToken", JSON.stringify(recourse.token));
+        return redirect("/");
     }
 }
 
@@ -43,8 +27,8 @@ const Login = () => {
                 <Form method='post' action='/login' button='Login' enctype={false}>
                     <Heading title="Login" />
 
-                    <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} custom="w-full"/>
-                    <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} custom="w-full"/>
+                    <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} custom="w-full" />
+                    <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} custom="w-full" />
 
                     <div className='text-center'>
                         <p>

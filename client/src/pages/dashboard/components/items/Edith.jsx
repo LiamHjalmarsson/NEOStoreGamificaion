@@ -25,6 +25,7 @@ const Edith = ({ item, close, path }) => {
                     </div>
                 </div>
                 <img src={item?.image} className='object-cover w-full object-center hidden lg:h-[500px]' alt={"no alt"} />
+
                 <div className='flex flex-wrap gap-8 items-center justify-center p-4 mt-4'>
                     {Object.keys(formData).map((key) => (
                         key !== '_id' && key !== '__v' && key !== 'createdAt' && key !== 'updatedAt' && key !== "imageId" && (
@@ -53,6 +54,7 @@ const Edith = ({ item, close, path }) => {
                         )
                     ))}
                 </div>
+                
                 <div className='flex gap-8 p-4'>
                     <Button type="submit" custom="w-full">
                         Cancel

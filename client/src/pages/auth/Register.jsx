@@ -3,31 +3,16 @@ import { Link, redirect, useActionData } from 'react-router-dom';
 import Input from '../../components/elements/Input';
 import Form from '../../components/form/Form';
 import Heading from '../../components/heading/Heading';
+import { customFetch } from '../../utils/customFetch';
 
 export const registerAction = async ({ request }) => {
-    let formData = await request.formData();
-    let data = Object.fromEntries(formData);
+    let recourse = await customFetch("auth/register", request);
 
-    try {
-        let response = await fetch("/api/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data)
-        });
-
-        let recourse = await response.json();
-
-        if (recourse.error) {
-            return recourse.error
-        } else {
-            localStorage.setItem("userToken", JSON.stringify(recourse.token));
-
-            return redirect("/");
-        }
-    } catch (error) {
-        return error;
+    if (recourse.error) {
+        return recourse.error;
+    } else {
+        localStorage.setItem("userToken", JSON.stringify(recourse.token));
+        return redirect("/");
     }
 }
 

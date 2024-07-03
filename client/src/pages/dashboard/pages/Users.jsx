@@ -5,6 +5,7 @@ import { FaUser } from 'react-icons/fa';
 const AuthUsers = () => {
     let { users } = useDashboard()
 
+    console.log(users);
     return (
         <div className='mt-12'>
             <div className='flex flex-wrap gap-12 max-w-4xl w-full mx-auto'>
