@@ -2,9 +2,10 @@ import React from 'react';
 import Heading from '../../../components/heading/Heading';
 import CartProduct from './CartProduct';
 import { useCartContext } from '../../../context/cartContext';
+import { CiCirclePlus, CiCircleMinus } from "react-icons/ci";
 
 const CartDetails = () => {
-    let { cartItems } = useCartContext();
+    let { cartItems, removeFromCart, addToCart } = useCartContext();
 
     if (cartItems.length > 0) {
         return (
@@ -15,12 +16,22 @@ const CartDetails = () => {
                             <Heading title="Cart" />
                             {
                                 cartItems.map((item, index) => (
-                                    <CartProduct item={item} key={index} />
+                                    <CartProduct item={item} key={index}>
+                                        <div className='flex items-center gap-6 justify-center flex-grow'>
+                                            <button onClick={() => removeFromCart(item)} className='text-3xl transition-colors duration-500'>
+                                                <CiCircleMinus />
+                                            </button>
+                                            <p className='font-medium text-xl'>
+                                                {item.quantity}
+                                            </p>
+                                            <button onClick={() => addToCart(item)} className='text-3xl transition-colors duration-500'>
+                                                <CiCirclePlus />
+                                            </button>
+                                        </div>
+                                    </CartProduct>
                                 ))
                             }
                         </>
-                    ) || (
-                        <Heading title="No items in cart" />
                     )
                 }
             </div>
@@ -28,7 +39,7 @@ const CartDetails = () => {
     } else {
         return (
             <div className='w-full flex flex-wrap flex-col gap-8 max-w-3xl mx-auto'>
-                <Heading title="Cart is empety" />
+                <Heading title="Cart is empty" />
             </div>
         )
     }

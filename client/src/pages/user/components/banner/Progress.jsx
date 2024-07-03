@@ -36,7 +36,7 @@ const Progress = ({ user }) => {
                 </span>
             </div>
 
-            <ProgressBar totalUserPoints={user.totalPointsEarned} unlockNextRank={upcomingRank.unlockAt} />
+            <ProgressBar totalUserPoints={user.totalPointsEarned} unlockNextRank={upcomingRank ? upcomingRank.unlockAt : "MAX"} />
         </div>
     );
 }

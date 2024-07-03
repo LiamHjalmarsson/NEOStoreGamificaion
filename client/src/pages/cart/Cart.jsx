@@ -9,7 +9,6 @@ import { useRootContext } from '../Root';
 
 export const cartAction = async ({ request }) => {
     let formData = await request.formData();
-
     let data = Object.fromEntries(formData);
 
     let user = JSON.parse(data.user);
@@ -19,7 +18,9 @@ export const cartAction = async ({ request }) => {
 
     if (cart.length <= 0) {
         toast.error("Cart is empty");
+        return null;
     }
+
 
     let purchaseObject = {
         userId: user._id ? user._id : "66844a6aa1134d308362685a",
@@ -37,15 +38,14 @@ export const cartAction = async ({ request }) => {
         body: JSON.stringify(purchaseObject)
     });
 
-    console.log(purchaseResponse);
     let { purchase } = await purchaseResponse.json();
 
-    console.log(purchase);
     if (user) {
         let achievementUpdate = [...user.achievements];
         let ordersCount = user.orders.length + 1;
 
-        let totalPointsEarned = user.totalPointsEarned + earnedPoints
+        let totalPointsEarned = user.totalPointsEarned + earnedPoints;
+
         if (ordersCount === 1) {
             achievementUpdate.push('6681828a064778b8918cfebd');
         }
@@ -63,6 +63,8 @@ export const cartAction = async ({ request }) => {
 
         return { cart, purchase, totalPointsEarned };
     }
+
+    toast.success("Purchase completed successfully");
 
     return { cart, purchase };
 }
@@ -94,17 +96,14 @@ const Cart = () => {
     }, [user.ranks]);
 
     useEffect(() => {
-        
-        if(confirmationPurchase) setShowConfirmation(true)
-            
+
+        if (confirmationPurchase) setShowConfirmation(true)
+
         if (confirmationPurchase && user) {
-            let upcomingRank = ranks.find(rank => confirmationPurchase.totalPointsEarned < rank.unlockAt);
             let unlockRank = ranks.find(rank => confirmationPurchase.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
 
-            if (unlockRank) {
-                updateRanks(unlockRank._id);
-            }
-            
+            if (unlockRank) updateRanks(unlockRank._id);
+
         }
     }, [confirmationPurchase, user.ranks]);
 
