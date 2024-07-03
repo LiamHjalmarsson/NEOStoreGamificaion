@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Category from "./categoryModel.js";
-import SubCategory from "./subCategoryModel.js";
+import SubCategory from "./subcategoryModel.js";
 
 const ProductSchema = new mongoose.Schema(
     {

@@ -20,6 +20,7 @@ import userRouter from "./routes/userRouter.js";
 import rankRouter from "./routes/rankRouter.js";
 import achievementRouter from "./routes/achievementRouter.js";
 import purchaseRouter from "./routes/purchaseRouter.js";
+import subcategoryRouter from "./routes/subcategoryRouter.js";
 
 // Middleware
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
@@ -46,6 +47,7 @@ app.use(cookieParser());
 app.use("/api/auth", authRouter);
 app.use("/api/user", authenticateUser, userRouter);
 app.use("/api/category", categoryRouter);
+// app.use("/api/subcategory", subcategoryRouter);
 app.use("/api/product", productRouter);
 app.use("/api/rank", rankRouter);
 app.use("/api/achievement", achievementRouter);
