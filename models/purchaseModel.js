@@ -26,6 +26,9 @@ const PurchaseSchema = new mongoose.Schema(
         totalPrice: {
             type: Number,
         },
+        totalItems: {
+            type: Number,
+        },
         name: {
             type: String,
         },

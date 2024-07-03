@@ -23,12 +23,6 @@ const ProductSchema = new mongoose.Schema(
             type: Boolean,
             default: true
         },
-        averageRating: {
-            type: Number,
-        },
-        totalRatings: {
-            type: Number
-        },
         image: {
             type: String,
         },
