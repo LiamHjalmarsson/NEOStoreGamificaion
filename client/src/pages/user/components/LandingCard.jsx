@@ -2,7 +2,7 @@ import React from 'react';
 import Icon from '../../../components/elements/Icon';
 import LinkButton from '../../../components/elements/LinkButton';
 
-const Card = ({ item, id }) => {
+const LandingCard = ({ item, id }) => {
     return (
         <div className=' relative p-6 bg-stone-200 dark:bg-stone-800 transition duration-500'>
             <div className='absolute -top-6 p-4 bg-rose-600 text-stone-200 rounded-md transition duration-500'>
@@ -23,4 +23,4 @@ const Card = ({ item, id }) => {
     );
 }
 
-export default Card;
+export default LandingCard;

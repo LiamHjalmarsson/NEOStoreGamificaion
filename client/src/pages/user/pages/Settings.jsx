@@ -6,24 +6,11 @@ import { useRootContext } from '../../Root';
 import { toast } from 'react-toastify';
 import Form from '../../../components/form/Form';
 import FileUpload from '../../../components/form/FileUpload';
+import { customFetch } from '../../../utils/customFetch';
 
 export let updateUser = async ({ request }) => {
-    let formData = await request.formData();
-
-    let file = formData.get("avatar");
-
-    if (file && file.size > 500000) {
-        toast.error("Image to large");
-        return null
-    }
-
-    let response = await fetch("/api/user/update-user", {
-        method: "PATCH",
-        headers: {},
-        body: formData
-    });
-
-    let recourse = await response.json();
+    let recourse = await customFetch("user/update-user", request, "PATCH", true);
+    toast.success(recourse.message);
 
     return recourse;
 }

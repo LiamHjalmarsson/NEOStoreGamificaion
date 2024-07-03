@@ -1,8 +1,7 @@
 import React from 'react';
 import Navigation from '../components/navigation';
 import Heading from '../../../components/heading/Heading';
-import Benefit from '../components/Benefit';
-import { useUserContext } from '../User';
+import Rank from '../components/rank/Rank';
 import { useRootContext } from '../../Root';
 
 let ranks = [
@@ -42,7 +41,7 @@ let ranks = [
 ];
 
 const Benefits = () => {
-    let { ranks } = useUserContext();
+    let { ranks } = useRootContext();
 
     return (
         <div className='pt-24 flex flex-col gap-6'>
@@ -53,7 +52,7 @@ const Benefits = () => {
             <div className='flex gap-12 px-12 mx-auto mt-12 w-full flex-wrap justify-center'>
                 {
                     ranks.map((rank, index) => (
-                        <Benefit key={index} rank={rank} />
+                        <Rank key={index} rank={rank} />
                     ))
                 }
             </div>

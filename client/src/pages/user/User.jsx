@@ -9,12 +9,10 @@ export let userProfileLoader = async ({ params }) => {
     let { id } = params;
 
     try {
-        let { ranks } = await fetchData("rank");
         let { achievements } = await fetchData("achievement");
         let { purchase } = await fetchData(`purchase/${id}`);
 
         return {
-            ranks,
             achievements,
             purchase
         }
@@ -24,16 +22,14 @@ export let userProfileLoader = async ({ params }) => {
 }
 
 const User = () => {
-    let { ranks, achievements, purchase } = useLoaderData();
+    let { achievements, purchase } = useLoaderData();
     let { user } = useRootContext();
     let { id } = useParams();
     let navigation = useNavigate();
 
-    let upcomingRank = ranks.find(rank => user.totalPointsEarned < rank.unlockAt);
-
     useEffect(() => {
         if (!user) {
-            navigation("/register");
+            navigation("/login");
         }
 
         if (user._id !== id) {
@@ -42,7 +38,7 @@ const User = () => {
     }, []);
 
     return (
-        <userContext.Provider value={{ ranks, achievements, upcomingRank, purchase }}>
+        <userContext.Provider value={{ achievements, purchase }}>
             <Outlet />
         </userContext.Provider>
     );

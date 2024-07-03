@@ -1,9 +1,10 @@
 import React from 'react';
-import ProgressBar from './ProgressBar';
-import { firstLetter } from '../../../utils/textTransformation';
-import { useRootContext } from '../../Root';
+import ProgressBar from '../ProgressBar';
+import { firstLetter } from '../../../../utils/textTransformation';
+import { useRootContext } from '../../../Root';
+import Benefit from './Benefit';
 
-const Benefit = ({ rank }) => {
+const Rank = ({ rank }) => {
     let { user } = useRootContext();
 
     let points = user.totalPointsEarned <= rank.unlockAt ? user.totalPointsEarned : rank.unlockAt;
@@ -15,12 +16,10 @@ const Benefit = ({ rank }) => {
             </h3>
             <ProgressBar totalUserPoints={points} unlockNextRank={rank.unlockAt} />
             {/* {rank.benefits.map((benefit, index) => (
-                <div className='font-semibold' key={index}>
-                    {benefit.title}
-                </div>
+                <Benefit />
             ))} */}
         </div>
     );
 }
 
-export default Benefit;
+export default Rank;

@@ -1,8 +1,7 @@
 import React from 'react';
-import { useRootContext } from '../../Root';
 import { FaJediOrder, FaTrophy, FaUser } from 'react-icons/fa';
-import Card from '../components/Card';
-import Banner from '../components/Banner';
+import LandingCard from '../components/LandingCard';
+import Banner from '../components/banner/Banner';
 import { FaRankingStar } from 'react-icons/fa6';
 
 let cards = [
@@ -33,16 +32,14 @@ let cards = [
 ]
 
 const Landing = () => {
-    let { user } = useRootContext();
-    
     return (
         <>
-            <Banner user={user} />
+            <Banner />
 
             <div className='mx-auto mt-32 max-w-6xl grid grid-cols-2 gap-24 pb-12'>
                 {
                     cards.map((item, index) => (
-                        <Card item={item} key={index} id={user._id} />
+                        <LandingCard item={item} key={index} />
                     ))
                 }
             </div>
