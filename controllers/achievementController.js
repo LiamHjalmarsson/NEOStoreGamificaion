@@ -4,11 +4,11 @@ import { addItemWithImage, deleteImage } from "../utils/imageUtils.js";
 
 export const getAchievements = async (req, res) => {
     let achievements = await Achievement.find({});
-    res.status(StatusCodes.OK).json(achievements);
+    res.status(StatusCodes.OK).json({ achievements });
 }
 
 export const createAchievement = async (req, res) => {
-    let newAchievement = {...req.body }
+    let newAchievement = { ...req.body }
 
     if (req.file) {
         newAchievement = await addItemWithImage(req, newAchievement, "achievements");
@@ -20,7 +20,7 @@ export const createAchievement = async (req, res) => {
 
 export const getAchievement = async (req, res) => {
     let achievement = await Achievement.findById(req.params.id);
-    res.status(StatusCodes.OK).json(achievement);
+    res.status(StatusCodes.OK).json({ achievement });
 }
 
 export const updateAchievement = async (req, res) => {

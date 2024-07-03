@@ -4,18 +4,9 @@ import { firstLetter } from '../../../../../utils/textTransformation';
 import LinkButton from '../../../../elements/LinkButton';
 import { FiLogOut } from "react-icons/fi";
 import { userLinks } from '../../../../../utils/links';
-import { useNavigate } from 'react-router-dom';
-
 
 const Profile = ({ open }) => {
-    let { user } = useRootContext();
-    let navigate = useNavigate();
-    
-    let logout = async (e) => {
-        await fetch("/api/auth/logout");
-
-        navigate("/");
-    }
+    let { user, logout } = useRootContext();
 
     return (
         <div className={`${open ? "translate-x-0" : "translate-x-full"} transform transition duration-500 p-8 bg-stone-200 text-stone-800 dark:bg-stone-800 shadow shadow-rose-600 dark:text-stone-200 top-32 max-w-sm w-full right-0 fixed flex flex-col gap-8`}>

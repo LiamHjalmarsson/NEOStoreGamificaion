@@ -16,13 +16,9 @@ let dashboardContext = createContext();
 export let dashBoardLoader = async () => {
     try {
         let stats = await fetchData("user/stats");
-
-        let users = await fetchData("user");
-
-        let achievements = await fetchData("achievement");
-
+        let { users } = await fetchData("user");
+        let { achievements } = await fetchData("achievement");
         let { ranks } = await fetchData("rank");
-
         let { purchase } = await fetchData("purchase");
 
         return { stats, users, achievements, ranks, orders: purchase };

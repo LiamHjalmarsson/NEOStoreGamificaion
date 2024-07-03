@@ -10,8 +10,8 @@ export let userProfileLoader = async ({ params }) => {
 
     try {
         let { ranks } = await fetchData("rank");
-        let achievements = await fetchData("achievement");
-        let purchase = await fetchData(`purchase/${id}`);
+        let { achievements } = await fetchData("achievement");
+        let { purchase } = await fetchData(`purchase/${id}`);
 
         return {
             ranks,

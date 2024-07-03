@@ -14,7 +14,6 @@ const Achievements = () => {
         return user.achievements.some((achievement) => achievement !== id);
     };
 
-
     return (
         <div className='pt-24 flex flex-col gap-6'>
             <Heading title="Achievements" />

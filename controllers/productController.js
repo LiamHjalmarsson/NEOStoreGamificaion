@@ -4,7 +4,7 @@ import { addItemWithImage, deleteImage } from "../utils/imageUtils.js";
 
 export const getProducts = async (req, res) => {
     let products = await Product.find({});
-    res.status(StatusCodes.OK).json({ products });
+    res.status(StatusCodes.OK).json({products});
 }
 
 export const createProducts = async (req, res) => {

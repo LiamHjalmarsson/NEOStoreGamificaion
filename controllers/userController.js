@@ -9,7 +9,7 @@ import { deleteImage } from "../utils/imageUtils.js";
 
 export const getUsers = async (req, res) => {
     let users = await User.find({});
-    res.status(StatusCodes.OK).json(users);
+    res.status(StatusCodes.OK).json({ users });
 }
 
 export const getUser = async (req, res) => {
@@ -44,7 +44,7 @@ export const deleteUser = async (req, res) => {
     if (user.avatarPublicId) {
         deleteImage(user.avatarPublicId);
     }
-    
+
     res.cookie("token", "logout", {
         httpOnly: true,
         expires: new Date(Date.now())

@@ -8,7 +8,6 @@ import { useRootContext } from '../Root';
 
 const Home = () => {
     let { products } = useRootContext();
-
     return (
         <div className='flex flex-col gap-24'>
             <Hero />

@@ -29,7 +29,7 @@ export const getCategory = async (req, res) => {
 
 export const updateCategory = async (req, res) => {
     let newCategory = { ...req.body };
-    
+
     if (req.file) {
         newCategory = updateImage(req, newCategory, "categories");
     }
