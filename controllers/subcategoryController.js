@@ -4,11 +4,11 @@ import { addItemWithImage, deleteImage } from "../utils/imageUtils.js";
 
 export const getSubcategories = async (req, res) => {
     let subcategory = await SubCategory.find({});
-    res.status(StatusCodes.OK).json(subcategory);
+    res.status(StatusCodes.OK).json({ subcategory });
 }
 
 export const createSubcategory = async (req, res) => {
-    let newSubcategory = {...req.body }
+    let newSubcategory = { ...req.body }
 
     if (req.file) {
         newSubcategory = await addItemWithImage(req, newSubcategory, "subcategories");
@@ -19,8 +19,9 @@ export const createSubcategory = async (req, res) => {
 }
 
 export const getSubcategory = async (req, res) => {
+    console.log(req.params.id)
     let subcategory = await SubCategory.findById(req.params.id);
-    res.status(StatusCodes.OK).json(subcategory);
+    res.status(StatusCodes.OK).json({ subcategory });
 }
 
 export const updateSubcategory = async (req, res) => {
@@ -28,11 +29,11 @@ export const updateSubcategory = async (req, res) => {
     res.status(StatusCodes.OK).json(subcategory);
 }
 
-export const deleteSubcategory= async (req, res) => {
+export const deleteSubcategory = async (req, res) => {
     let subcategory = await SubCategory.findByIdAndDelete(req.params.id);
 
     if (subcategory.imageId) {
         deleteImage(subcategory.imageId);
     }
-    res.status(StatusCodes.OK).json(subcategory);
+    res.status(StatusCodes.OK).json({ subcategory });
 }
