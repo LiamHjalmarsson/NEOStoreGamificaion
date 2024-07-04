@@ -14,13 +14,14 @@ export const cartAction = async ({ request }) => {
     let user = JSON.parse(data.user);
     let cart = JSON.parse(data.cart);
     let earnedPoints = JSON.parse(data.earnPoints);
+    let totalToPay = JSON.parse(data.totalToPay);
+    let shippingFee = JSON.parse(data.shippingFee);
     let discount = JSON.parse(data.discount);
 
     if (cart.length <= 0) {
         toast.error("Cart is empty");
         return null;
     }
-
 
     let purchaseObject = {
         userId: user._id ? user._id : "66844a6aa1134d308362685a",
@@ -29,7 +30,9 @@ export const cartAction = async ({ request }) => {
             quantity: item.quantity,
             price: item.price
         })),
-        name: data.name
+        totalPrice: totalToPay,
+        name: data.name,
+        shippingFee: shippingFee
     };
 
     let purchaseResponse = await fetch(`/api/purchase`, {

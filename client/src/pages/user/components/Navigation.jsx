@@ -10,14 +10,14 @@ const Navigation = () => {
     let { pathname } = useLocation()
 
     return (
-        <nav className='mx-auto w-fit'>
-            <ul className='flex gap-8 font-bold tracking-wide'>
+        <nav className='mx-auto w-full max-w-4xl'>
+            <ul className='flex gap-8 font-bold  w-full tracking-wide'>
                 <LinkButton href={`/user/${user._id}`} >
                     Account
                 </LinkButton>
                 {
                     userLinks.map((link, index) => (
-                        <LinkButton key={index} href={`/user/${user._id}/${link.url}`} key={index} custom={`${pathname.includes(link.url) ? "bg-rose-500 border-rose-500 text-stone-200" : ""}`} >
+                        <LinkButton key={index} href={`/user/${user._id}/${link.url}`} custom={`${pathname.includes(link.url) ? "bg-rose-500 border-rose-500 text-stone-200" : ""}`} >
                             {firstLetter(link.url)}
                         </LinkButton>
                     ))

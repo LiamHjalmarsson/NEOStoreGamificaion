@@ -15,8 +15,10 @@ const Progress = ({ user }) => {
                 <span>
                     Rank
                 </span>
-                <span   >
-                    {firstLetter(unlocked.title)}
+                <span>
+                    {
+                        unlocked && firstLetter(unlocked.title)
+                    }
                 </span>
             </h2>
             <div className='flex gap-4 justify-between text-lg'>

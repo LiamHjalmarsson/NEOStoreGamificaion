@@ -11,7 +11,7 @@ export const createProducts = async (req, res) => {
     let newProduct = { ...req.body };
 
     if (req.file) {
-        newProduct = await addItemWithImage(req, newProduct, "product");
+        newProduct = await addItemWithImage(req, newProduct, "product", 1200, 900);
     }
 
     await Product.create(newProduct);

@@ -32,6 +32,9 @@ const PurchaseSchema = new mongoose.Schema(
         name: {
             type: String,
         },
+        shippingFee: {
+            type: Number,
+        }
     },
     {
         timestamps: true

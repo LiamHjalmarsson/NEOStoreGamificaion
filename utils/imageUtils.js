@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from "cloudinary";
 import { promises as fs } from "fs";
 
-export const addItemWithImage = async (req, obj, folderName, width = 1400, height=900) => {
+export const addItemWithImage = async (req, obj, folderName, width = 800, height=600) => {
     let response = await cloudinary.uploader.upload(req.file.path, { folder: folderName, width, height, crop: "limit" });
     await fs.unlink(req.file.path);
 

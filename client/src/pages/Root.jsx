@@ -28,7 +28,6 @@ export let loader = async () => {
 const Root = () => {
     let { categories, products, user, ranks } = useLoaderData();
     let navigate = useNavigate();
-    let { pathname } = useLocation();
 
     let logout = async () => {
         navigate("/")
@@ -46,6 +45,7 @@ const Root = () => {
 
             let recourse = await response.json();
 
+            console.log(recourse);
             toast.success(recourse.message);
         } catch (error) {
             toast.error(error);
