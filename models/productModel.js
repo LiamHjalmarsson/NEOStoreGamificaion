@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 import Category from "./categoryModel.js";
-import SubCategory from "./subcategoryModel.js";
 
 const ProductSchema = new mongoose.Schema(
     {
@@ -20,10 +19,6 @@ const ProductSchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: Category,
             required: true
-        },
-        subCategory: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: SubCategory
         },
         inStock: {
             type: Boolean,
