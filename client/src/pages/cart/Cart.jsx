@@ -112,7 +112,7 @@ const Cart = () => {
 
     return (
         <section className='w-full min-h-[90vh] flex flex-col relative'>
-            <div className='flex gap-24 w-full mx-auto max-w-7xl mt-24 px-10'>
+            <div className='flex max-lg:flex-wrap gap-24 w-full mx-auto max-w-7xl mt-24 px-4 lg:px-12'>
                 <CartDetails />
                 <CartForm />
             </div>

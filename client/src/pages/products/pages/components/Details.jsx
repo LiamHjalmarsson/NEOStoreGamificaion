@@ -32,7 +32,7 @@ const Details = ({ product }) => {
                         price: product.price,
                         image: product.image,
                     })}
-                    custom="w-full py-4 text-xl border-rose-600 text-rose-600 hover:text-stone-200 hover:bg-rose-600"
+                    custom="w-full py-4 text-xl bg-rose-600 text-stone-200 border-0 hover:bg-rose-500 dark:hover-rose-500"
                 >
                     Add to cart
                 </Button>

@@ -7,13 +7,13 @@ import { BiSolidPurchaseTag } from "react-icons/bi";
 const Stat = ({ stat }) => {
     return (
         <div className='bg-stone-200 dark:bg-stone-800 rounded-xl shadow min-w-48 p-4 grow text-center h-48 flex items-center flex-col transition duration-500 relative'>
-            <div className='absolute -top-4 p-2 md:p-4 bg-rose-600 rounded-lg text-2xl md:text-3xl text-stone-200'>
+            <div className='absolute -top-4 p-2 md:p-4 bg-rose-600 rounded-lg text-2xl md:text-3xl text-stone-200 '>
                 {stat[0] === "users" && <HiUsers />}
                 {stat[0] === "products" && <AiOutlineProduct />}
                 {stat[0] === "categories" && <TbCategoryFilled />}
                 {stat[0] === "purchases" && <BiSolidPurchaseTag />}
             </div>
-            <div className='mt-8 md:mt-12 text-stone-800 dark:text-stone-200'>
+            <div className='mt-8 md:mt-12'>
                 <p className='text-lg md:text-2xl font-semibold'>
                     {stat[1]}
                 </p>

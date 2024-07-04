@@ -7,6 +7,7 @@ import { customFetch } from '../../../utils/customFetch';
 import { useRootContext } from '../../Root';
 import Items from '../components/items/Items';
 import AddButton from '../components/AddButton';
+import Heading from '../../../components/heading/Heading';
 
 export let addCategoryAction = async ({ request }) => {
     let recourse = await customFetch("category", request, "POST", true);
@@ -32,8 +33,12 @@ const AuthCategories = () => {
         <div className='relative grow lg:pr-12'>
             {
                 showForm && (
-                    <div className='absolute z-20 h-full w-full flex justify-center items-center'>
+                    <div className='fixed z-20 top-0 h-full w-full flex justify-center items-center px-4'>
+                    {/* <div className='absolute z-20 h-full w-full flex justify-center items-center'> */}
                         <Form action='/dashboard/categories' method='post' enctype={true}>
+
+                            <Heading title="Add category" />
+
                             <Input input={{ id: "category", name: "title" }} custom="w-full" />
                             <FileUpload
                                 input={{

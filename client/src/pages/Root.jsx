@@ -3,6 +3,7 @@ import { Outlet, redirect, useLoaderData, useLocation, useNavigate } from 'react
 import Navigation from '../components/layouts/navigation/Navigation';
 import { toast } from 'react-toastify';
 import { fetchData } from '../utils/customFetch';
+import Footer from '../components/layouts/footer/Footer';
 
 const rootContext = createContext();
 
@@ -58,6 +59,7 @@ const Root = () => {
             <main className='min-h-screen bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200 duration-500 transition-colors relative pt-24'>
                 <Outlet />
             </main>
+            <Footer />
         </rootContext.Provider>
     );
 }

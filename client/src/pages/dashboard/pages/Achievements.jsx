@@ -8,6 +8,7 @@ import Items from '../components/items/Items';
 import { useRootContext } from '../../Root';
 import AddButton from '../components/AddButton';
 import { toast } from 'react-toastify';
+import Heading from '../../../components/heading/Heading';
 
 export let addAchievementAction = async ({ request }) => {
     let recourse = await customFetch("achievement", request, "POST", true);
@@ -33,8 +34,11 @@ const AuthAchievements = () => {
         <div className='relative grow'>
             {
                 showForm && (
-                    <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
+                    <div className='fixed z-20 top-0 h-full w-full flex justify-center items-center px-4'>
+                    {/* <div className=' absolute z-20 h-full w-full flex justify-center items-center'> */}
                         <Form action='/dashboard/achievements' method='post'>
+                            <Heading title="Add achievement" />
+
                             <Input input={{ id: "title", name: "title" }} custom="w-full"/>
                             <Input input={{ id: "points", name: "points", type: "number" }} custom="w-full"/>
 

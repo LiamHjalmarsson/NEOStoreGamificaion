@@ -3,7 +3,9 @@ import Input from '../../../../components/elements/Input';
 import FileUpload from '../../../../components/form/FileUpload';
 import { FaTrashCan, FaX } from 'react-icons/fa6';
 import { useRootContext } from '../../../Root';
-import Button from '../../../../components/elements/Button';
+import PrimaryButton from '../../../../components/elements/PrimaryButton';
+import SecondaryButton from '../../../../components/elements/SecondaryButton';
+import Heading from '../../../../components/heading/Heading';
 
 const Edith = ({ item, close, path }) => {
     let { deleteItem } = useRootContext();
@@ -15,12 +17,13 @@ const Edith = ({ item, close, path }) => {
 
     return (
         <div className='absolute w-full h-full flex justify-center items-center top-0'>
-            <form method='patch' encType='multipart/form-data' className={`shadow max-w-3xl w-full p-4 lg:p-6 bg-stone-200 dark:bg-stone-800 fixed transition duration-500 z-20`} onSubmit={submitUpdate}>
+            <form method='patch' encType='multipart/form-data' className={`shadow max-w-3xl w-full p-4 lg:p-6 bg-stone-200 shadow-stone-200 dark:bg-stone-700 dark:shadow-stone-700 fixed transition duration-500 z-20`} onSubmit={submitUpdate}>
                 <div className='relative p-2 flex justify-between'>
-                    <div className='p-4 z-10 w-fit rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-500 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
+                    <div className='flex items-center justify-center h-10 w-10 rounded-full bg-red-400 hover:bg-red-500 transition-colors duration-500 cursor-pointer'  onClick={() => deleteItem(`${path}/${item._id}`)}>
                         <FaTrashCan />
                     </div>
-                    <div className='p-4 z-10 w-fit rounded-full bg-blue-400 hover:bg-blue-500 text-stone-200 cursor-pointer duration-500' onClick={close} >
+                    <Heading title={`Edith ${item.title} ${path}`} />
+                    <div className='flex items-center justify-center h-10 w-10 rounded-full bg-blue-400 hover:bg-blue-500 transition-colors duration-500 cursor-pointer' onClick={close} >
                         <FaX />
                     </div>
                 </div>
@@ -30,7 +33,7 @@ const Edith = ({ item, close, path }) => {
                     {Object.keys(formData).map((key) => (
                         key !== '_id' && key !== '__v' && key !== 'createdAt' && key !== 'updatedAt' && key !== "imageId" && (
                             <React.Fragment key={key}>
-                                {key === 'image' ? (
+                                {key === 'image' && (
                                     <FileUpload
                                         input={{
                                             type: 'file',
@@ -40,7 +43,7 @@ const Edith = ({ item, close, path }) => {
                                         }}
                                         text={`Upload ${path} image`}
                                     />
-                                ) : (
+                                ) || key === "description" && (
                                     <Input
                                         input={{
                                             id: key,
@@ -48,20 +51,31 @@ const Edith = ({ item, close, path }) => {
                                             value: formData[key],
                                             placeholder: `Enter ${key}`,
                                         }}
+                                        custom="w-full max-w-none"
+                                        textarea={true}
                                     />
-                                )}
+                                ) || (
+                                        <Input
+                                            input={{
+                                                id: key,
+                                                name: key,
+                                                value: formData[key],
+                                                placeholder: `Enter ${key}`,
+                                            }}
+                                        />
+                                    )}
                             </React.Fragment>
                         )
                     ))}
                 </div>
-                
+
                 <div className='flex gap-8 p-4'>
-                    <Button type="submit" custom="w-full">
+                    <SecondaryButton type="submit" custom="w-full">
                         Cancel
-                    </Button>
-                    <Button type="submit" custom="w-full">
+                    </SecondaryButton>
+                    <PrimaryButton type="submit" custom="w-full">
                         Update
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </form>
         </div>

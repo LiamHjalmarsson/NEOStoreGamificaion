@@ -6,6 +6,8 @@ import Button from '../../../components/elements/Button';
 import Input from '../../../components/elements/Input';
 import Heading from '../../../components/heading/Heading';
 import { useRootContext } from '../../Root';
+import SecondaryButton from '../../../components/elements/SecondaryButton';
+import PrimaryButton from '../../../components/elements/PrimaryButton';
 
 const CartForm = () => {
     let { getCartTotal, clearCart, cartItems } = useCartContext();
@@ -25,8 +27,8 @@ const CartForm = () => {
     let earnPoints = user ? getCartTotal() - discount : 0;
 
     return (
-        <Form action='/cart' method='post' className='relative'>
-            <div className={`bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 min-w-96 transition duration-500`}>
+        <Form action='/cart' method='post' className='relative mx-auto'>
+            <div className={`bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 lg:min-w-96 transition duration-500`}>
                 <Heading title="Order" />
 
                 <CartFormRow title="Total: " text={getCartTotal() + " SEK"} />
@@ -35,11 +37,11 @@ const CartForm = () => {
 
                 <div className='w-full'>
                     {user && (
-                            <p className='text-sm text-rose-500'>
+                            <p className='text-base text-rose-600'>
                                 You have {user.pointsEarned} points to use
                             </p>
                         ) || (
-                            <p className='text-sm text-rose-500'>
+                            <p className='text-base text-rose-600'>
                                 Log in to use your points
                             </p>
                         )
@@ -86,12 +88,12 @@ const CartForm = () => {
                 />
 
                 <div className='flex flex-wrap justify-between gap-4 w-full'>
-                    <Button onclick={clearCart}>
+                    <SecondaryButton onclick={clearCart}>
                         Clear cart
-                    </Button>
-                    <Button type="submit" custom="bg-stone-800 text-stone-200 hover:bg-stone-700">
+                    </SecondaryButton>
+                    <PrimaryButton type="submit">
                         Purchase
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </div>
         </Form>

@@ -17,7 +17,7 @@ const Navigation = () => {
                 </LinkButton>
                 {
                     userLinks.map((link, index) => (
-                        <LinkButton key={index} href={`/user/${user._id}/${link.url}`} custom={`${pathname.includes(link.url) ? "bg-rose-500 border-rose-500 text-stone-200" : ""}`} >
+                        <LinkButton key={index} href={`/user/${user._id}/${link.url}`} custom={`${pathname.includes(link.url) ? "bg-rose-600 border-rose-600 text-stone-200" : ""}`} >
                             {firstLetter(link.url)}
                         </LinkButton>
                     ))

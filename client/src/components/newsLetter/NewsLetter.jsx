@@ -6,6 +6,7 @@ import { useRootContext } from '../../pages/Root';
 import { redirect, useActionData } from 'react-router-dom';
 import Button from '../elements/Button';
 import { FaX } from 'react-icons/fa6';
+import PrimaryButton from '../elements/PrimaryButton';
 
 export const newsLetterAction = async ({ request }) => {
     let formData = await request.formData();
@@ -46,9 +47,9 @@ const NewsLetter = () => {
                         To get a gift
                     </h2>
 
-                    <Button onclick={() => setOpen(!open)} custom="border-2 border-rose-600 text-rose-600 hover:text-stone-200 hover:bg-rose-600">
+                    <PrimaryButton onclick={() => setOpen(!open)}>
                         Sign up
-                    </Button>
+                    </PrimaryButton>
                 </div>
             </div>
 

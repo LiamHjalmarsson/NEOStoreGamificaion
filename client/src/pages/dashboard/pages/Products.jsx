@@ -7,6 +7,8 @@ import { toast } from 'react-toastify';
 import { useRootContext } from '../../Root';
 import Items from '../components/items/Items';
 import AddButton from '../components/AddButton';
+import Heading from '../../../components/heading/Heading';
+import CategorySelect from '../components/categorySelect/CategorySelect';
 
 export let addProductAction = async ({ request }) => {
     let recourse = await customFetch("product", request, "POST", true);
@@ -23,7 +25,7 @@ export let addProductAction = async ({ request }) => {
 const AuthProducts = () => {
     let { products, categories } = useRootContext();
     let [showForm, setShowForm] = useState(false);
-    
+
     let showHandler = () => {
         setShowForm(!showForm);
     }
@@ -32,25 +34,16 @@ const AuthProducts = () => {
         <div className='relative grow lg:pr-12'>
             {
                 showForm && (
-                    <div className=' absolute z-20 h-full w-full flex justify-center items-center'>
+                    <div className='fixed z-20 top-0 h-full w-full flex justify-center items-center px-4'>
                         <Form action='/dashboard/products' method='post'>
+                            <Heading title="Add product" />
+
                             <Input input={{ id: "product name", name: "title" }} custom="w-full" />
                             <Input input={{ id: "brand", name: "brand" }} custom="w-full" />
 
-                            <div className='flex gap-12 w-full'>
+                            <div className='flex gap-12 w-full max-w-md'>
                                 <Input input={{ id: "price", name: "price", type: "number" }} />
-                                <div className='flex flex-col relative text-stone-800 w-full'>
-                                    <label htmlFor="category" className='absolute -top-4 left-4 bg-stone-200 dark:bg-stone-800 px-2 text-stone-200'>
-                                        Category
-                                    </label>
-                                    <select name="category" className='rounded-md border-2 border-stone-200 bg-transparent text-stone-200 px-3 py-2 outline-none '>
-                                        {categories.map((category) => (
-                                            <option value={category._id} name="category" key={category._id}>
-                                                {category.title}
-                                            </option>
-                                        ))}
-                                    </select>
-                                </div>
+                                <CategorySelect categories={categories} />
                             </div>
 
                             <FileUpload

@@ -7,6 +7,7 @@ import AddButton from '../components/AddButton';
 import Item from '../components/items/Item';
 import Edith from '../components/items/Edith';
 import { toast } from 'react-toastify';
+import Heading from '../../../components/heading/Heading';
 
 export let addRankAction = async ({ request }) => {
     let recourse = await customFetch("rank", request);
@@ -41,8 +42,10 @@ const AuthRanks = () => {
         <div className='relative grow'>
             {
                 showForm && (
-                    <div className='absolute z-20 h-full w-full flex justify-center items-center'>
+                    <div className='fixed z-20 top-0 h-full w-full flex justify-center items-center px-4'>
                         <Form action='/dashboard/ranks' method='post'>
+                            <Heading title="Add Rank" />
+
                             <Input input={{ id: "rank", name: "title" }} />
                             <Input input={{ id: "unlockAt", name: "unlockAt", type: "number" }} />
                         </Form>
@@ -58,7 +61,7 @@ const AuthRanks = () => {
                 ))}
             </div>
 
-            { edithItem && <Edith item={edithItem} close={() => setEdithItem(false)} delete={deleteItem} path={"ranks"}/>}
+            {edithItem && <Edith item={edithItem} close={() => setEdithItem(false)} delete={deleteItem} path={"ranks"} />}
 
         </div>
     );
