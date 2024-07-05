@@ -4,6 +4,7 @@ import Input from '../../components/elements/Input';
 import Form from '../../components/form/Form';
 import Heading from '../../components/heading/Heading';
 import { customFetch } from '../../utils/customFetch';
+import { toast } from 'react-toastify';
 
 export const registerAction = async ({ request }) => {
     let recourse = await customFetch("auth/register", request);
@@ -12,6 +13,8 @@ export const registerAction = async ({ request }) => {
         return recourse.error;
     } else {
         localStorage.setItem("userToken", JSON.stringify(recourse.token));
+
+        toast.success("User was successfully registered");
         return redirect("/");
     }
 }
@@ -31,7 +34,6 @@ const Register = () => {
                     <Heading title="Register" />
 
                     <Input input={{ id: "firstName", placeholder: "Enter first name", name: "firstName" }} error={error} custom="w-full" />
-                    <Input input={{ id: "lastName", placeholder: "Enter last name", name: "lastName" }} error={error} custom="w-full" />
                     <Input input={{ id: "email", placeholder: "Enter email", name: "email" }} error={error} custom="w-full" />
                     <Input input={{ id: "password", placeholder: "Enter password", name: "password" }} error={error} custom="w-full" />
 

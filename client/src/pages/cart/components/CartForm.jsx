@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 import CartFormRow from './CartFormRow';
 import { Form } from 'react-router-dom';
 import { useCartContext } from '../../../context/cartContext';
-import Button from '../../../components/elements/Button';
 import Input from '../../../components/elements/Input';
 import Heading from '../../../components/heading/Heading';
 import { useRootContext } from '../../Root';
@@ -28,7 +27,7 @@ const CartForm = () => {
 
     return (
         <Form action='/cart' method='post' className='relative mx-auto'>
-            <div className={`bg-stone-200 dark:bg-stone-800 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 lg:min-w-96 transition duration-500`}>
+            <div className={`bg-stone-200 dark:bg-stone-700 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 lg:min-w-96 transition duration-500`}>
                 <Heading title="Order" />
 
                 <CartFormRow title="Total: " text={getCartTotal() + " SEK"} />

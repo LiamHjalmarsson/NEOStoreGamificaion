@@ -15,7 +15,11 @@ const RankSchema = new mongoose.Schema(
                 type: String,
                 default: "Benefit"
             }
-        }]
+        }],
+        achievement: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Achievement",
+        },
     },
     { timestamps: true }
 );

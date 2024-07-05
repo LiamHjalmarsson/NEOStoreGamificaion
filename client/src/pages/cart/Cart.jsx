@@ -50,7 +50,9 @@ export const cartAction = async ({ request }) => {
         let totalPointsEarned = user.totalPointsEarned + earnedPoints;
 
         if (ordersCount === 1) {
-            achievementUpdate.push('6681828a064778b8918cfebd');
+            achievementUpdate.push('66867678ee6612e8986785bf');
+        } else if (ordersCount === 5) {
+            achievementUpdate.push('6687f238db6ab37041325f9a');
         }
 
         await fetch(`/api/user/update-user`, {
@@ -89,7 +91,8 @@ const Cart = () => {
                 method: "PATCH",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    ranks: [...user.ranks, unlockRankId],
+                    ranks: [...user.ranks, unlockRankId._id],
+                    achievements: [...user.achievements, unlockRankId.achievement]
                 }),
             });
 
@@ -99,26 +102,24 @@ const Cart = () => {
     }, [user.ranks]);
 
     useEffect(() => {
-
         if (confirmationPurchase) setShowConfirmation(true)
 
         if (confirmationPurchase && user) {
             let unlockRank = ranks.find(rank => confirmationPurchase.totalPointsEarned >= rank.unlockAt && !user.ranks.includes(rank._id));
 
-            if (unlockRank) updateRanks(unlockRank._id);
-
+            if (unlockRank) updateRanks(unlockRank);
         }
     }, [confirmationPurchase, user.ranks]);
 
     return (
-        <section className='w-full min-h-[90vh] flex flex-col relative'>
+        <div className='w-full min-h-[90vh] flex flex-col relative'>
             <div className='flex max-lg:flex-wrap gap-24 w-full mx-auto max-w-7xl mt-24 px-4 lg:px-12'>
                 <CartDetails />
                 <CartForm />
             </div>
 
             {showConfirmation && <CartConfirmation confirmationHandler={confirmationHandler} data={confirmationPurchase} />}
-        </section >
+        </div >
     );
 }
 

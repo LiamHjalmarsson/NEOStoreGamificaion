@@ -1,5 +1,5 @@
 import React, { createContext, useContext } from 'react';
-import { Outlet, redirect, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
+import { Outlet, useLoaderData, useNavigate } from 'react-router-dom';
 import Navigation from '../components/layouts/navigation/Navigation';
 import { toast } from 'react-toastify';
 import { fetchData } from '../utils/customFetch';
@@ -28,14 +28,11 @@ export let loader = async () => {
 
 const Root = () => {
     let { categories, products, user, ranks } = useLoaderData();
-    let navigate = useNavigate();
 
     let logout = async () => {
-        navigate("/")
+        navigate("/");
         let rep = await fetch("/api/auth/logout");
         let res = await rep.json();
-
-        toast.success(res.message);
     }
 
     let deleteItem = async (path) => {
@@ -46,7 +43,6 @@ const Root = () => {
 
             let recourse = await response.json();
 
-            console.log(recourse);
             toast.success(recourse.message);
         } catch (error) {
             toast.error(error);

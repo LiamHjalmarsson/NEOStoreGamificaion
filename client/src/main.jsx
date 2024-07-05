@@ -5,19 +5,26 @@ import './index.css'
 import { CartProvider } from './context/cartContext'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { checkDarkTheme } from './utils/darkTheme'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <CartProvider>
       <ToastContainer
-        position="top-right"
+        position='top-left'
         autoClose={3000}
-        hideProgressBar={false}
+        limit={1}
+        hideProgressBar
         newestOnTop={false}
         closeOnClick
-        stacked
+        rtl={false}
+        pauseOnFocusLoss
+        draggable={false}
+        pauseOnHover={false}
+        theme={checkDarkTheme() === true ? 'dark' : 'light'}
         style={{
-          top: 100,
+          top: 130,
+          left: 10
         }}
       />
       <App />

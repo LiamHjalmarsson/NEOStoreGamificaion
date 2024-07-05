@@ -36,10 +36,14 @@ export const CartProvider = ({ children }) => {
                 )
             );
         }
+
+        toast.success(`Removed ${item.title} from cart`);
     };
 
     let clearCart = () => {
         setCartItems([]);
+
+        toast.success(`Removed all items from cart`);
     };
 
     let getCartTotal = () => {

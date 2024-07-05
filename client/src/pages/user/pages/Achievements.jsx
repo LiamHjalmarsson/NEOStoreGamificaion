@@ -13,7 +13,7 @@ const Achievements = () => {
 
             <Navigation />
 
-            <div className='flex gap-12 mx-auto max-w-4xl w-full mt-12'>
+            <div className='flex gap-12 flex-wrap mx-auto max-w-4xl w-full mt-12'>
                 {
                     achievements.map((achievement, index) => (
                         <AchievementCard achievement={achievement} key={index} />

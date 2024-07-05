@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Input from '../elements/Input';
 import Form from '../form/Form';
 import Gifts from './Gifts';
 import { useRootContext } from '../../pages/Root';
-import { redirect, useActionData } from 'react-router-dom';
-import Button from '../elements/Button';
+import { useActionData } from 'react-router-dom';
 import { FaX } from 'react-icons/fa6';
 import PrimaryButton from '../elements/PrimaryButton';
 
@@ -13,16 +12,14 @@ export const newsLetterAction = async ({ request }) => {
     let discount = formData.get("discount");
     let user = JSON.parse(formData.get("user"));
 
-    if (!user) {
-
-    } else {
+    if (user) {
         await fetch(`/api/user/update-user`, {
             method: "PATCH",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 partOfNewsLetter: true,
                 discounts: [...user.discounts, discount],
-                achievements: [...user.achievements, "66833a96b7df31f5d3fb7a82"]
+                achievements: [...user.achievements, "66867666ee6612e8986785b0"]
             })
         });
     }

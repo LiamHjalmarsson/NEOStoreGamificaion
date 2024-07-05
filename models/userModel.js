@@ -61,9 +61,9 @@ const UserSchema = mongoose.Schema(
                 {
                     type: mongoose.Schema.Types.ObjectId,
                     ref: Achievement,
-                    default: "6681ac48bd51b7c7af2e0d10"
                 }
             ],
+            default: "66867684ee6612e8986785ce"
         },
         orders: [{
             type: mongoose.Schema.Types.ObjectId,

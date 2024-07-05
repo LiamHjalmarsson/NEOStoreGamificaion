@@ -4,6 +4,7 @@ import Heading from '../../components/heading/Heading';
 import Input from '../../components/elements/Input';
 import Form from '../../components/form/Form';
 import { customFetch } from '../../utils/customFetch';
+import { toast } from 'react-toastify';
 
 export const loginAction = async ({ request }) => {
     let recourse = await customFetch("auth/login", request);
@@ -12,6 +13,7 @@ export const loginAction = async ({ request }) => {
         return recourse.error;
     } else {
         localStorage.setItem("userToken", JSON.stringify(recourse.token));
+        toast.success("User logged in successfully");
         return redirect("/");
     }
 }
