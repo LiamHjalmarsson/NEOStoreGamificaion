@@ -15,7 +15,7 @@ const Detail = ({ product }) => {
                     <span className=' group-hover:translate-x-0 -translate-x-24 duration-300 font-semibold transition-transform text-rose-600'>
                         Add to cart
                     </span>
-                    <FaCartPlus className='text-2xl h-10 w-10 p-2 bg-rose-600 group-hover:bg-rose-500 transition duration-500 rounded-full text-stone-200' />
+                    <FaCartPlus className='text-2xl rounded-full text-rose-600' />
                 </div>
             </div>
         </div>

@@ -3,15 +3,14 @@ import { useCartContext } from '../../../../../context/cartContext';
 import CartItem from './CartItem';
 import { FaX } from 'react-icons/fa6';
 import LinkButton from '../../../../elements/LinkButton';
-import Button from '../../../../elements/Button';
 import SecondaryButton from '../../../../elements/SecondaryButton';
 
 const Cart = ({ onClose, open }) => {
     let { cartItems, getCartTotal, clearCart } = useCartContext();
 
     return (
-        <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 shadow-lg z-50 max-w-md w-full p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
-            <div className="flex justify-between items-center my-6">
+        <div className={`fixed h-full top-0 right-0 bg-stone-200 dark:bg-stone-800 shadow-lg z-50 max-w-md w-full p-4 md:p-8 flex flex-col gap-4 transition transform duration-500 ${open ? 'translate-x-0' : ' translate-x-full'}`}>
+            <div className="flex justify-between items-center mt-6">
                 <h2 className="text-2xl font-bold">
                     Your Cart
                 </h2>
@@ -35,7 +34,8 @@ const Cart = ({ onClose, open }) => {
                         {getCartTotal().toFixed(2)} SEK
                     </span>
                 </div>
-                <div className='flex justify-between gap-12'>
+
+                <div className='flex max-md:flex-col justify-between gap-6 md:gap-12'>
                     <SecondaryButton onclick={clearCart}>
                         Clear cart
                     </SecondaryButton>
