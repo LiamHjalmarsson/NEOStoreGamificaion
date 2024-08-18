@@ -44,12 +44,12 @@ const Benefits = () => {
     let { ranks } = useRootContext();
 
     return (
-        <div className='pt-24 flex flex-col gap-6'>
+        <div className='pt-32 flex flex-col gap-6'>
             <Heading title="Benefits" />
 
             <Navigation />
 
-            <div className='flex gap-12 px-12 mx-auto mt-12 w-full flex-wrap justify-center'>
+            <div className='flex px-6 gap-6 lg:gap-12 lg:px-12 mx-auto lg:mt-12 w-full flex-wrap justify-center'>
                 {
                     ranks.map((rank, index) => (
                         <Rank key={index} rank={rank} />

@@ -9,7 +9,7 @@ const CartDetails = () => {
 
     if (cartItems.length > 0) {
         return (
-            <div className='w-full flex flex-wrap flex-col gap-8 max-w-3xl mx-auto'>
+            <div className='w-full flex flex-wrap flex-col gap-4 lg:gap-8 max-w-3xl mx-auto'>
                 {
                     cartItems.length > 0 && (
                         <>

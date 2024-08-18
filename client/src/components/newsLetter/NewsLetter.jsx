@@ -34,13 +34,13 @@ const NewsLetter = () => {
 
     return (
         <>
-            <div className='relative w-full h-[500px] flex flex-col justify-center items-center bg-stone-800 dark:bg-opacity-40'>
+            <div className='mb-6 relative w-full h-[500px] flex flex-col justify-center items-center bg-stone-800 dark:bg-opacity-40'>
                 <video src='/keyboard.mp4' className='absolute top-0 left-0 w-full h-full object-cover opacity-50' autoPlay loop muted />
                 <div className='p-6 absolute z-20 text-center'>
-                    <h3 className='text-3xl text-stone-200 font-semibold mb-2'>
+                    <h3 className='text-2xl lg:text-3xl text-stone-200 font-semibold mb-2'>
                         Join our newsletter
                     </h3>
-                    <h2 className='text-4xl text-stone-200 font-bold mb-6'>
+                    <h2 className='text-3xl lg:text-4xl text-stone-200 font-bold mb-6'>
                         To get a gift
                     </h2>
 
@@ -52,11 +52,12 @@ const NewsLetter = () => {
 
             {open && (
                 <>
-                    <div className='fixed bottom-0 z-30 -left-0 h-full w-full flex justify-center items-center'>
+                    <div className='fixed z-[999] bottom-0 w-full flex items-center h-full justify-center bg-stone-200'>
                         <Form action="" method="post">
                             <div className='flex w-full cursor-pointer' onClick={() => setOpen(false)}>
                                 <FaX size={24} />
                             </div>
+
                             <div className='text-center'>
                                 <h3 className='text-3xl font-semibold mb-2'>
                                     Join our newsletter

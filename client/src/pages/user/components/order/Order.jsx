@@ -5,8 +5,8 @@ const Order = ({ order }) => {
     let date = item => new Date(item).toLocaleDateString("en-US");
 
     return (
-        <div className='bg-stone-200 dark:bg-stone-800 p-6 flex justify-between items-center transition duration-500'>
-            <h3 className='font-semibold text-xl'>
+        <div className='bg-stone-200 dark:bg-stone-800 p-4 lg:p-8 flex justify-between items-center transition duration-500 shadow'>
+            <h3 className='font-semibold lg:text-xl'>
                 Order Purchase {date(order.createdAt)}
             </h3>
             <div className='flex items-center gap-6'>

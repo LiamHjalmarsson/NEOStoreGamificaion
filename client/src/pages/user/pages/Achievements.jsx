@@ -8,12 +8,12 @@ const Achievements = () => {
     let { achievements } = useUserContext();
 
     return (
-        <div className='pt-24 flex flex-col gap-6'>
+        <div className='pt-32 flex flex-col gap-6'>
             <Heading title="Achievements" />
 
             <Navigation />
 
-            <div className='flex gap-12 flex-wrap mx-auto max-w-4xl w-full mt-12'>
+            <div className='flex gap-6 lg:gap-12 flex-wrap mx-auto max-w-4xl w-full justify-center px-1'>
                 {
                     achievements.map((achievement, index) => (
                         <AchievementCard achievement={achievement} key={index} />

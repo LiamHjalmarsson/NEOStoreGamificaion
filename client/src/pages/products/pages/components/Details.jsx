@@ -7,8 +7,8 @@ const Details = ({ product }) => {
     let { addToCart } = useCartContext();
 
     return (
-        <div className=' max-w-[420px] flex-grow md:h-full p-8 flex flex-col gap-4 justify-evenly max-lg:text-center'>
-            <h2 className='text-4xl lg:text-5xl font-bold mb-4 text-rose-600'>
+        <div className=' max-w-[420px] flex-grow md:h-full p-4 lg:p-8 flex flex-col gap-4 justify-evenly max-lg:text-center'>
+            <h2 className='text-3xl lg:text-5xl font-bold mb-4 text-rose-600'>
                 {firstLetter(product.title)}
             </h2>
 

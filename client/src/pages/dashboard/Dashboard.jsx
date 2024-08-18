@@ -70,7 +70,7 @@ const Dashboard = () => {
 
     return (
         <dashboardContext.Provider value={{ stats, users, achievements, ranks, orders }}>
-            <div className='flex max-lg:flex-col relative pt-12'>
+            <div className='flex max-lg:flex-col relative pt-32'>
                 <Sidebar links={links} />
 
                 <div className='lg:px-12 min-h-[80vh] w-full lg:w-[90vw] flex justify-center grow'>

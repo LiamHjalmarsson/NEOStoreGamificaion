@@ -8,12 +8,12 @@ const Orders = () => {
     let { purchase } = useUserContext();
     
     return (
-        <div className='pt-24 flex flex-col gap-6'>
+        <div className='pt-32 flex flex-col gap-6'>
             <Heading title="Orders" />
 
             <Navigation />
 
-            <div className='flex flex-col gap-12 mx-auto max-w-3xl w-full mt-12 '>
+            <div className='flex flex-col gap-6 lg:gap-12 mx-auto max-w-3xl w-full px-4'>
                 {purchase.map((item, index) => (
                     <Order order={item} key={index}/>
                 ))}

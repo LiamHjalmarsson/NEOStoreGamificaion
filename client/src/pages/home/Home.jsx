@@ -10,7 +10,7 @@ const Home = () => {
     let { products } = useRootContext();
 
     return (
-        <div className='flex flex-col gap-24'>
+        <div className='flex flex-col gap-12 lg:gap-24'>
             <Hero />
 
             <div className='px-4 md:px-12'>

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useRootContext } from '../../Root';
 import ProductsContainer from '../../../components/product/Products';
@@ -11,7 +10,7 @@ const Category = () => {
     let categoryProducts = products.filter(product => product.category === category._id);
 
     return (
-        <div className='pt-12'>
+        <div className='pt-32'>
             <ProductsContainer products={categoryProducts} />
         </div>
     );

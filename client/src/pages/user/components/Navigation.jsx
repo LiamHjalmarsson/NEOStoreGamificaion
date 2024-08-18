@@ -11,7 +11,7 @@ const Navigation = () => {
 
     return (
         <nav className='mx-auto w-full max-w-4xl'>
-            <ul className='flex gap-8 font-bold  w-full tracking-wide'>
+            <ul className='flex gap-4 lg:gap-8 font-bold flex-wrap px-2 w-full tracking-wide'>
                 <LinkButton href={`/user/${user._id}`} >
                     Account
                 </LinkButton>

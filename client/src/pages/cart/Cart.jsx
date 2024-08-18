@@ -112,8 +112,8 @@ const Cart = () => {
     }, [confirmationPurchase, user.ranks]);
 
     return (
-        <div className='w-full min-h-[90vh] flex flex-col relative'>
-            <div className='flex max-lg:flex-wrap gap-24 w-full mx-auto max-w-7xl mt-24 px-4 lg:px-12'>
+        <div className='w-full min-h-[90vh] flex flex-col relative pt-32'>
+            <div className='flex max-lg:flex-wrap gap-24 w-full mx-auto max-w-7xl px-4 lg:px-12'>
                 <CartDetails />
                 <CartForm />
             </div>

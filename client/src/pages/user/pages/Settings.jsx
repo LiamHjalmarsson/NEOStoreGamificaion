@@ -40,35 +40,38 @@ const Settings = () => {
     ];
 
     return (
-        <div className='pt-24 flex flex-col gap-6 justify-center items-center'>
+        <div className='pt-32 flex flex-col gap-6 justify-center items-center'>
             <Heading title="Settings" />
 
             <Navigation />
 
-            <Form action={`/user/${user._id}/settings`} method='post' enctype={true} button='Update'>
-                <div className='flex flex-wrap gap-8'>
-                    <div className='flex flex-col gap-2 w-full items-center'>
-                        <FileUpload
-                            input={{
-                                type: 'file',
-                                id: 'avatar',
-                                name: 'avatar',
-                                accept: 'image/*',
-                            }}
-                            text="Upload new avatar"
-                            context={user.avatar}
-                        />
+            <div className='px-4'>
+                <Form action={`/user/${user._id}/settings`} method='post' enctype={true} button='Update'>
+                    <div className='flex flex-wrap gap-8'>
+                        <div className='flex flex-col gap-2 w-full items-center'>
+                            <FileUpload
+                                input={{
+                                    type: 'file',
+                                    id: 'avatar',
+                                    name: 'avatar',
+                                    accept: 'image/*',
+                                }}
+                                text="Upload new avatar"
+                                context={user.avatar}
+                            />
 
+                        </div>
+                        {
+                            inputs.map((input, index) => (
+                                <div className='grow' key={index}>
+                                    <Input input={{ id: input.id, value: input.value, name: input.id, onChange: input.onChange }} />
+                                </div>
+                            ))
+                        }
                     </div>
-                    {
-                        inputs.map((input, index) => (
-                            <div className='grow' key={index}>
-                                <Input input={{ id: input.id, value: input.value, name: input.id, onChange: input.onChange }} />
-                            </div>
-                        ))
-                    }
-                </div>
-            </Form>
+                </Form>
+            </div>
+
         </div>
     );
 }

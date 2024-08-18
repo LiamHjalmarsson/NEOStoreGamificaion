@@ -10,7 +10,7 @@ const Progress = ({ user }) => {
     let upcomingRank = ranks.find(rank => user.totalPointsEarned < rank.unlockAt);
 
     return (
-        <div className='absolute w-96 -bottom-12 right-1/3 p-6 bg-stone-200 dark:bg-stone-800 flex flex-col gap-4 transition duration-500'>
+        <div className='absolute w-full lg:w-96 -bottom-32 lg:-bottom-12 lg:right-1/3 p-6 bg-stone-200 dark:bg-stone-800 flex flex-col gap-4 transition duration-500'>
             <h2 className='font-semibold text-xl flex w-full justify-between'>
                 <span>
                     Rank

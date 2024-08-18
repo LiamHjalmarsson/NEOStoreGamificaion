@@ -17,7 +17,7 @@ const Items = ({ items, path }) => {
 
     return (
         <>
-            <div className={`grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-12 xl:gap-6 grid justify-center items-center px-6 xl:px-12 pb-12 mt-12`}>
+            <div className={`grid-cols-2 2xl:grid-cols-4 gap-6 grid justify-center items-center px-4 xl:px-12 pb-12 mt-12`}>
                 {items.map((item, index) => (
                     <Item item={item} key={index} openEdith={edithHandler} path={path} />
                 ))}

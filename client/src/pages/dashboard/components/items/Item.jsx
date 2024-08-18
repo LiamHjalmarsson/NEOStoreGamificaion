@@ -9,13 +9,13 @@ const Item = ({ item, openEdith, path }) => {
 
     return (
         <div className='relative'>
-            <div className='absolute top-4 right-4 p-4 z-10 rounded-full bg-blue-500 hover:bg-blue-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => openEdith(item)}>
+            <div className='absolute top-2 lg:top-4 right-2 lg:right-4 p-2 lg:p-4 z-10 rounded-full bg-blue-500 hover:bg-blue-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => openEdith(item)}>
                 <FaPen />
             </div>
-            <div className='absolute top-4 left-4 p-4 z-10 rounded-full bg-red-500 hover:bg-red-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
+            <div className='absolute top-2 lg:top-4 left-2 lg:left-4 p-2 lg:p-4 z-10 rounded-full bg-red-500 hover:bg-red-400 transition-colors duration-300 text-stone-200 cursor-pointer' onClick={() => deleteItem(`${path}/${item._id}`)}>
                 <FaTrashCan />
             </div>
-            <div className='flex-grow min-w-64 relative group bg-stone-800 flex justify-center h-72 items-center overflow-hidden'>
+            <div className='flex-grow lg:min-w-64 relative group bg-stone-800 flex justify-center h-48 lg:h-72 items-center overflow-hidden'>
                 {item.image && <img src={item.image} className='object-cover object-center w-full h-full opacity-70 group-hover:opacity-50 duration-500 transition group-hover:scale-110' alt={"no alt"} /> }
                 <div className='absolute text-center text-2xl lg:text:4xl 2xl:text-5xl p-4 font-semibold bg-opacity-80 tracking-wide text-stone-50 z-10 group-hover:scale-125 transition duration-500'>
                     {firstLetter(item.title)}

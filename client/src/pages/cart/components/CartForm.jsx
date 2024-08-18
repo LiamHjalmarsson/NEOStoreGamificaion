@@ -27,7 +27,7 @@ const CartForm = () => {
 
     return (
         <Form action='/cart' method='post' className='relative mx-auto'>
-            <div className={`bg-stone-200 dark:bg-stone-700 p-8 rounded-md w-full justify-center items-start flex flex-col gap-12 lg:min-w-96 transition duration-500`}>
+            <div className={`bg-stone-200 dark:bg-stone-700 p-4 lg:p-8 rounded-md w-full justify-center items-start flex flex-col gap-6 lg:gap-12 lg:min-w-96 transition duration-500`}>
                 <Heading title="Order" />
 
                 <CartFormRow title="Total: " text={getCartTotal() + " SEK"} />
@@ -37,7 +37,7 @@ const CartForm = () => {
                 <div className='w-full'>
                     {user && (
                             <p className='text-base text-rose-600'>
-                                You have {user.pointsEarned} points to use
+                                {user.pointsEarned} points to use
                             </p>
                         ) || (
                             <p className='text-base text-rose-600'>

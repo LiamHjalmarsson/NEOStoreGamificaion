@@ -23,8 +23,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         pauseOnHover={false}
         theme={checkDarkTheme() === true ? 'dark' : 'light'}
         style={{
-          top: 130,
-          left: 10
+          top: 120,
+          left: 0
         }}
       />
       <App />

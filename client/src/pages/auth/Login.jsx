@@ -22,10 +22,10 @@ const Login = () => {
     let error = useActionData();
 
     return (
-        <div className='relative min-h-[93.5vh] w-full flex justify-center items-center bg-stone-800'>
-            <img src='/placeholder.png' className='absolute h-full w-full opacity-60' />
+        <div className='relative min-h-screen w-full flex justify-center items-center bg-stone-800'>
+            <img src='/placeholder.png' className='absolute h-full w-full opacity-60 object-cover' />
 
-            <div className='relative w-full max-w-md'>
+            <div className='relative w-full max-w-md p-4'>
                 <Form method='post' action='/login' button='Login' enctype={false}>
                     <Heading title="Login" />
 

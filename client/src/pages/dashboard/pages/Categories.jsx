@@ -34,7 +34,6 @@ const AuthCategories = () => {
             {
                 showForm && (
                     <div className='fixed z-20 top-0 h-full w-full flex justify-center items-center px-4'>
-                    {/* <div className='absolute z-20 h-full w-full flex justify-center items-center'> */}
                         <Form action='/dashboard/categories' method='post' enctype={true}>
 
                             <Heading title="Add category" />

@@ -8,7 +8,7 @@ const FeaturedCategories = () => {
     let amountOfCategories = categories.slice(0, 4);
 
     return (
-        <div className='flex flex-col gap-12'>
+        <div className='flex flex-col gap-6 lg:gap-12'>
             <Headings subHeading="Need something" heading="Our Popular Categories" />
 
             <div className={`flex flex-wrap justify-center items-center`}>

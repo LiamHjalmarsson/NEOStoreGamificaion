@@ -52,7 +52,7 @@ const Root = () => {
     return (
         <rootContext.Provider value={{ categories, products, user, ranks, logout, deleteItem }}>
             <Navigation />
-            <main className='min-h-screen bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200 duration-500 transition-colors relative pt-24'>
+            <main className='min-h-screen bg-stone-100 text-stone-800 dark:bg-stone-900 dark:text-stone-200 duration-500 transition-colors relative'>
                 <Outlet />
             </main>
             <Footer />

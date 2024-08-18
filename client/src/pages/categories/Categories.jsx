@@ -6,7 +6,7 @@ const Categories = () => {
     let { categories } = useRootContext();
 
     return (
-        <div className='pt-24'>
+        <div className='pt-32'>
             <CategoriesContainer categories={categories} />
         </div>
     );

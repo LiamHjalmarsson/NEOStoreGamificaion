@@ -36,7 +36,7 @@ const Landing = () => {
         <>
             <Banner />
 
-            <div className='mx-auto mt-32 max-w-6xl grid grid-cols-2 gap-24 pb-12'>
+            <div className='mx-auto mt-44 lg:mt-32 max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 pb-12 px-4'>
                 {
                     cards.map((item, index) => (
                         <LandingCard item={item} key={index} />
